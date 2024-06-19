@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="一名菜鸟的日记本">
+    <meta property="og:type" content="website">
+    <meta name="description" content="一名菜鸟的日记本">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        随笔-服务器 - 神秘的张少爷
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="../../../../css/aircloud.css">
+
+    
+<link rel="stylesheet" href="../../../../css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+  
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+
+
+  
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="atom.xml" title="神秘的张少爷" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry，Stay Foolish </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>神秘的张少爷</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="../../../../index.html">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#CentO-S%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">CentO S防火墙</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3"><span class="toc-text">防火墙开放端口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">Ubuntu防火墙</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry，Stay Foolish </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        随笔-服务器
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-06-24 17:28:28</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#服务器" title="服务器">服务器</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h3 id="CentO-S防火墙"><a href="#CentO-S防火墙" class="headerlink" title="CentO S防火墙"></a>CentO S防火墙</h3><h4 id="防火墙开放端口"><a href="#防火墙开放端口" class="headerlink" title="防火墙开放端口"></a>防火墙开放端口</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd <span class="attribute">--zone</span>=public <span class="attribute">--add-port</span>=3306/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>–zone                            #作用域<br>  –add-port&#x3D;80&#x2F;tcp   #添加端口，格式为：端口&#x2F;通讯协议<br>  –permanent                #永久生效，没有此参数重启后失效</li>
+</ul>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd <span class="comment">--reload</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>即使已经关闭了防火墙, 也需要开放端口操作</strong></p>
+<h3 id="Ubuntu防火墙"><a href="#Ubuntu防火墙" class="headerlink" title="Ubuntu防火墙"></a>Ubuntu防火墙</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看防火墙当前状态</span></span><br><span class="line">sudo ufw status</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开启防火墙</span></span><br><span class="line">sudo ufw enable</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">关闭防火墙</span></span><br><span class="line">sudo ufw disable</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看防火墙版本</span></span><br><span class="line">sudo ufw version</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认允许外部访问本机</span></span><br><span class="line">sudo ufw default allow</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认拒绝外部访问主机</span></span><br><span class="line">sudo ufw default deny</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许外部访问53端口</span></span><br><span class="line">sudo ufw allow 53</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">拒绝外部访问53端口</span></span><br><span class="line">sudo ufw deny 53</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许某个IP地址访问本机所有端口</span></span><br><span class="line">sudo ufw allow from 192.168.0.1</span><br></pre></td></tr></table></figure>
+
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢您给予的支持 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/一撇he一捺的生活">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3919408003">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/MyGodOnLoad">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../../../js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

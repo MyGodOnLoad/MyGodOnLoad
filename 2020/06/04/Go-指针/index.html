@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="一名菜鸟的日记本">
+    <meta property="og:type" content="website">
+    <meta name="description" content="一名菜鸟的日记本">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Go-指针 - 神秘的张少爷
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="../../../../css/aircloud.css">
+
+    
+<link rel="stylesheet" href="../../../../css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+  
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+
+
+  
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="atom.xml" title="神秘的张少爷" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry，Stay Foolish </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>神秘的张少爷</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="../../../../index.html">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E9%92%88"><span class="toc-text">指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%B1%BB%E5%9E%8B-%E4%B8%8E-%E8%A7%A3%E5%BC%95%E7%94%A8"><span class="toc-text">指针类型 与 解引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90-%E4%B8%8E-%E6%A0%88%E5%B8%A7"><span class="toc-text">内存分析 与 栈帧</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry，Stay Foolish </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Go-指针
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-06-04 11:23:37</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Go" title="Go">Go</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><ul>
+<li>指针变量:存储地址的变量</li>
+<li>类型 <code>*T</code> 是指向 <code>T</code> 类型值的指针。其零值为 <code>nil</code>。</li>
+<li><code>&amp;</code> 操作符会生成一个指向其操作数的指针</li>
+<li><code>*</code> 操作符表示指针指向的底层值。</li>
+</ul>
+<h4 id="指针类型-与-解引用"><a href="#指针类型-与-解引用" class="headerlink" title="指针类型 与 解引用"></a>指针类型 与 解引用</h4><ul>
+<li>解引用 间接引用 或 重定向</li>
+</ul>
+<p><img src="/2020/06/04/Go-%E6%8C%87%E9%92%88/index/1591197431448.jpg" alt="1591197431448"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	i, j := <span class="number">42</span>, <span class="number">2701</span></span><br><span class="line">	p := &amp;i</span><br><span class="line">	fmt.Println(*p)</span><br><span class="line">	*p = <span class="number">21</span></span><br><span class="line">	fmt.Println(i)</span><br><span class="line">	p = &amp;j</span><br><span class="line">	*p = *p / <span class="number">37</span></span><br><span class="line">	fmt.Println(j)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="内存分析-与-栈帧"><a href="#内存分析-与-栈帧" class="headerlink" title="内存分析 与 栈帧"></a>内存分析 与 栈帧</h4><ul>
+<li>栈帧: <ul>
+<li>用来给函数运行提供内存空间,取内存于stack上</li>
+<li>函数调用 产生栈帧; 调用结束 释放栈帧</li>
+<li>存储:1.局部变量 2.形参 (形参与局部变量存储地位等同) 3.内存字段描述值(存储栈基指针与栈顶指针的地址)</li>
+</ul>
+</li>
+<li><strong>栈顶指针</strong>与<strong>栈基指针</strong>之间为 <strong>栈帧</strong></li>
+</ul>
+<p><img src="/2020/06/04/Go-%E6%8C%87%E9%92%88/index/1591197572373.png" alt="1591197572373"></p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢您给予的支持 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/一撇he一捺的生活">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3919408003">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/MyGodOnLoad">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../../../js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>
