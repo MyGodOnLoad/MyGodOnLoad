@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="一名菜鸟的日记本">
+    <meta property="og:type" content="website">
+    <meta name="description" content="一名菜鸟的日记本">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Django_plotly_Dash - 神秘的张少爷
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="../../../../../../css/aircloud.css">
+
+    
+<link rel="stylesheet" href="../../../../../../css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+  
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+
+
+  
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="atom.xml" title="神秘的张少爷" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry，Stay Foolish </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>神秘的张少爷</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="../../../../../../index.html">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../../tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../../archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">解决方法</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry，Stay Foolish </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Django_plotly_Dash
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-05-24 14:50:58</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#python" title="python">python</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#django" title="django">django</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>render渲染模板时报错:<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/61217855/django-django-plotly-dash-exception-value-expected-string-or-bytes-like-objec">Exception Value: expected string or bytes-like object</a></p>
+<p>When I try to render a plot by Django_Plotly_Dash, I get a TypeError. See below my code snippets and a traceback that I get. I’ve been trying to understand where the problem appears but nothing comes into my mind.</p>
+<p><strong>simpleexample.py</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dash_core_components <span class="keyword">as</span> dcc</span><br><span class="line"><span class="keyword">import</span> dash_html_components <span class="keyword">as</span> html</span><br><span class="line"><span class="keyword">from</span> django_plotly_dash <span class="keyword">import</span> DjangoDash</span><br><span class="line"></span><br><span class="line">external_stylesheets = [<span class="string">&#x27;https://codepen.io/chriddyp/pen/bWLwgP.css&#x27;</span>]</span><br><span class="line"></span><br><span class="line">app = DjangoDash(<span class="string">&#x27;SimpleExample&#x27;</span>, external_stylesheets=external_stylesheets)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.layout = html.Div([</span><br><span class="line">    html.H1(<span class="string">&#x27;Square Root Slider Graph&#x27;</span>),</span><br><span class="line">    dcc.Graph(<span class="built_in">id</span>=<span class="string">&#x27;slider-graph&#x27;</span>, animate=<span class="literal">True</span>, style=&#123;<span class="string">&quot;backgroundColor&quot;</span>: <span class="string">&quot;#1a2d46&quot;</span>, <span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;#ffffff&#x27;</span>&#125;),</span><br><span class="line">    dcc.Slider(</span><br><span class="line">        <span class="built_in">id</span>=<span class="string">&#x27;slider-updatemode&#x27;</span>,</span><br><span class="line">        marks=&#123;i: <span class="string">&#x27;&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>)&#125;,</span><br><span class="line">        <span class="built_in">max</span>=<span class="number">20</span>,</span><br><span class="line">        value=<span class="number">2</span>,</span><br><span class="line">        step=<span class="number">1</span>,</span><br><span class="line">        updatemode=<span class="string">&#x27;drag&#x27;</span>,</span><br><span class="line">    ),</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<p><strong>welcome.html</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;%  extends <span class="string">&#x27;base.html&#x27;</span> %&#125;</span><br><span class="line">&#123;% load static %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">    &#123;% load plotly_dash %&#125;</span><br><span class="line"></span><br><span class="line">&lt;block&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% plotly_app name=<span class="string">&#x27;SimpleExample&#x27;</span> ratio=<span class="number">0.45</span> %&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/block&gt;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>views.py</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"><span class="keyword">from</span> home.dash_apps.finished_apps <span class="keyword">import</span> simpleexample</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, views.home, name=<span class="string">&#x27;home&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>This is the traceback which I get after placing the content welcome.html in base.html to better identify where the problem lies</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">  Environment:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Request Method: GET</span><br><span class="line">Request URL: http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/</span><br><span class="line"></span><br><span class="line">Django Version: <span class="number">3.0</span></span><br><span class="line">Python Version: <span class="number">3.7</span><span class="number">.7</span></span><br><span class="line">Installed Applications:</span><br><span class="line">[<span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.contrib.auth&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.contrib.contenttypes&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.contrib.sessions&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.contrib.messages&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.contrib.staticfiles&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;home.apps.HomeConfig&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django_plotly_dash.apps.DjangoPlotlyDashConfig&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;channels&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;channels_redis&#x27;</span>]</span><br><span class="line">Installed Middleware:</span><br><span class="line">[<span class="string">&#x27;django.middleware.security.SecurityMiddleware&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.contrib.sessions.middleware.SessionMiddleware&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.middleware.common.CommonMiddleware&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.middleware.csrf.CsrfViewMiddleware&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.contrib.auth.middleware.AuthenticationMiddleware&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.contrib.messages.middleware.MessageMiddleware&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;django.middleware.clickjacking.XFrameOptionsMiddleware&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Template error:</span><br><span class="line">In template C:\Users\milos\statisticsofcorona\templates\base.html, error at line <span class="number">55</span></span><br><span class="line">   expected string <span class="keyword">or</span> <span class="built_in">bytes</span>-like <span class="built_in">object</span></span><br><span class="line">   <span class="number">45</span> :         &lt;div <span class="keyword">class</span>=<span class="string">&quot;container-fluid&quot;</span>&gt;</span><br><span class="line">   <span class="number">46</span> : </span><br><span class="line">   <span class="number">47</span> :           &lt;!-- Page Heading --&gt;</span><br><span class="line">   <span class="number">48</span> :           &lt;div <span class="keyword">class</span>=<span class="string">&quot;d-sm-flex align-items-center justify-content-between mb-4&quot;</span>&gt;</span><br><span class="line">   <span class="number">49</span> :             &lt;h1 <span class="keyword">class</span>=<span class="string">&quot;h3 mb-0 text-gray-800&quot;</span>&gt;Dashboard&lt;/h1&gt;</span><br><span class="line">   <span class="number">50</span> :             &lt;a href=<span class="string">&quot;#&quot;</span> <span class="keyword">class</span>=<span class="string">&quot;d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm&quot;</span>&gt;&lt;i <span class="keyword">class</span>=<span class="string">&quot;fas fa-download fa-sm text-white-50&quot;</span>&gt;&lt;/i&gt; Generate Report&lt;/a&gt;</span><br><span class="line">   <span class="number">51</span> :           &lt;/div&gt;</span><br><span class="line">   <span class="number">52</span> :         &lt;div <span class="keyword">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span><br><span class="line">   <span class="number">53</span> :           &lt;div&gt;</span><br><span class="line">   <span class="number">54</span> :             &#123;% load plotly_dash %&#125;</span><br><span class="line">   <span class="number">55</span> :              &#123;% plotly_app name=<span class="string">&quot;SimpleExample&quot;</span> %&#125; </span><br><span class="line">   <span class="number">56</span> :           &lt;/div&gt;</span><br><span class="line">   <span class="number">57</span> :           &lt;div&gt;</span><br><span class="line">   <span class="number">58</span> :             &#123;&#123; plot1 | safe &#125;&#125;</span><br><span class="line">   <span class="number">59</span> :           &lt;/div&gt;</span><br><span class="line">   <span class="number">60</span> :         &lt;/div&gt;</span><br><span class="line">   <span class="number">61</span> : </span><br><span class="line">   <span class="number">62</span> : </span><br><span class="line">   <span class="number">63</span> :       &lt;/div&gt;</span><br><span class="line">   <span class="number">64</span> :       &lt;!-- End of Main Content --&gt;</span><br><span class="line">   <span class="number">65</span> : </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\core\handlers\exception.py&quot;</span>, line <span class="number">34</span>, <span class="keyword">in</span> inner</span><br><span class="line">    response = get_response(request)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\core\handlers\base.py&quot;</span>, line <span class="number">115</span>, <span class="keyword">in</span> _get_response</span><br><span class="line">    response = self.process_exception_by_middleware(e, request)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\core\handlers\base.py&quot;</span>, line <span class="number">113</span>, <span class="keyword">in</span> _get_response</span><br><span class="line">    response = wrapped_callback(request, *callback_args, **callback_kwargs)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\home\views.py&quot;</span>, line <span class="number">29</span>, <span class="keyword">in</span> home</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;base.html&#x27;</span>, context)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\shortcuts.py&quot;</span>, line <span class="number">19</span>, <span class="keyword">in</span> render</span><br><span class="line">    content = loader.render_to_string(template_name, context, request, using=using)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\template\loader.py&quot;</span>, line <span class="number">62</span>, <span class="keyword">in</span> render_to_string</span><br><span class="line">    <span class="keyword">return</span> template.render(context, request)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\template\backends\django.py&quot;</span>, line <span class="number">61</span>, <span class="keyword">in</span> render</span><br><span class="line">    <span class="keyword">return</span> self.template.render(context)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\template\base.py&quot;</span>, line <span class="number">171</span>, <span class="keyword">in</span> render</span><br><span class="line">    <span class="keyword">return</span> self._render(context)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\template\base.py&quot;</span>, line <span class="number">163</span>, <span class="keyword">in</span> _render</span><br><span class="line">    <span class="keyword">return</span> self.nodelist.render(context)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\template\base.py&quot;</span>, line <span class="number">936</span>, <span class="keyword">in</span> render</span><br><span class="line">    bit = node.render_annotated(context)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\template\base.py&quot;</span>, line <span class="number">903</span>, <span class="keyword">in</span> render_annotated</span><br><span class="line">    <span class="keyword">return</span> self.render(context)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django\template\library.py&quot;</span>, line <span class="number">214</span>, <span class="keyword">in</span> render</span><br><span class="line">    _<span class="built_in">dict</span> = self.func(*resolved_args, **resolved_kwargs)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django_plotly_dash\templatetags\plotly_dash.py&quot;</span>, line <span class="number">76</span>, <span class="keyword">in</span> plotly_app</span><br><span class="line">    da, app = _locate_daapp(name, slug, da, cache_id=cache_id)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django_plotly_dash\templatetags\plotly_dash.py&quot;</span>, line <span class="number">43</span>, <span class="keyword">in</span> _locate_daapp</span><br><span class="line">    da, app = DashApp.locate_item(name, stateless=<span class="literal">True</span>, cache_id=cache_id)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django_plotly_dash\models.py&quot;</span>, line <span class="number">200</span>, <span class="keyword">in</span> locate_item</span><br><span class="line">    app = dash_app.as_dash_instance(cache_id=cache_id)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django_plotly_dash\dash_wrapper.py&quot;</span>, line <span class="number">165</span>, <span class="keyword">in</span> as_dash_instance</span><br><span class="line">    <span class="keyword">return</span> self.do_form_dash_instance(cache_id=cache_id)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django_plotly_dash\dash_wrapper.py&quot;</span>, line <span class="number">201</span>, <span class="keyword">in</span> do_form_dash_instance</span><br><span class="line">    <span class="keyword">return</span> self.form_dash_instance(replacements, ndid, base_pathname)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django_plotly_dash\dash_wrapper.py&quot;</span>, line <span class="number">213</span>, <span class="keyword">in</span> form_dash_instance</span><br><span class="line">    serve_locally=self._serve_locally)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\django_plotly_dash\dash_wrapper.py&quot;</span>, line <span class="number">312</span>, <span class="keyword">in</span> __init__</span><br><span class="line">    **kwargs)</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\dash\dash.py&quot;</span>, line <span class="number">355</span>, <span class="keyword">in</span> __init__</span><br><span class="line">    self.init_app()</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\dash\dash.py&quot;</span>, line <span class="number">384</span>, <span class="keyword">in</span> init_app</span><br><span class="line"><span class="meta">    @self.server.errorhandler(<span class="params">PreventUpdate</span>)</span></span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\statisticsofcorona\myvenv\lib\site-packages\dash\exceptions.py&quot;</span>, line <span class="number">6</span>, <span class="keyword">in</span> __init__</span><br><span class="line">    <span class="built_in">super</span>(DashException, self).__init__(dedent(msg).strip())</span><br><span class="line">  File <span class="string">&quot;C:\Users\milos\AppData\Local\Programs\Python\Python37\lib\textwrap.py&quot;</span>, line <span class="number">430</span>, <span class="keyword">in</span> dedent</span><br><span class="line">    text = _whitespace_only_re.sub(<span class="string">&#x27;&#x27;</span>, text)</span><br><span class="line"></span><br><span class="line">Exception <span class="type">Type</span>: TypeError at /</span><br><span class="line">Exception Value: expected string <span class="keyword">or</span> <span class="built_in">bytes</span>-like <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>Django_plotly_dash throws this error when Dash 1.11.0 is installed. Downgrading Dash to 1.10.0 has helped to fix the problem.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Dash==1.10.0</span><br></pre></td></tr></table></figure>
+
+<p>如果运行后dash的静态文件加载失败,尝试安装1.0.0版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Dash==1.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>仅供记录,复制于: <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/61217855/django-django-plotly-dash-exception-value-expected-string-or-bytes-like-objec">https://stackoverflow.com/questions/61217855/django-django-plotly-dash-exception-value-expected-string-or-bytes-like-objec</a></p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢您给予的支持 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/忘機">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3919408003">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/MyGodOnLoad">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../../../../../js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="一名菜鸟的日记本">
+    <meta property="og:type" content="website">
+    <meta name="description" content="一名菜鸟的日记本">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        缓存方案 - 神秘的张少爷
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="../../../../../../css/aircloud.css">
+
+    
+<link rel="stylesheet" href="../../../../../../css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+  
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+
+
+  
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="atom.xml" title="神秘的张少爷" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry，Stay Foolish </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>神秘的张少爷</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="../../../../../../index.html">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../../tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../../archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE6"><span class="toc-text">项目6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E9%A1%B9%E7%9B%AE%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88"><span class="toc-text">一. 项目缓存方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E9%A1%B9%E7%9B%AE%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1-%E9%87%8D%E7%82%B9"><span class="toc-text">1.1 项目缓存设计(重点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5"><span class="toc-text">1.2 过期策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E7%BC%93%E5%AD%98%E6%B7%98%E6%B1%B0-%E9%87%8D%E7%82%B9"><span class="toc-text">1.3 缓存淘汰 (重点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98-%E9%87%8D%E7%82%B9"><span class="toc-text">1.2 缓存问题 (重点)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-1-%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0"><span class="toc-text">1.2.1 缓存更新</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-2-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-text">1.2.2 缓存穿透</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-3-%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="toc-text">1.2.3 缓存雪崩</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E8%AE%BE%E8%AE%A1-%E9%87%8D%E7%82%B9"><span class="toc-text">1.3 持久化数据设计 (重点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-%E7%BC%93%E5%AD%98%E7%9A%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">1.4 缓存的模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E7%BC%93%E5%AD%98%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-text">二. 缓存层实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E7%BC%93%E5%AD%98%E7%B1%BB%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.1 缓存类设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E8%8E%B7%E5%8F%96%E7%BC%93%E5%AD%98-%E9%87%8D%E7%82%B9"><span class="toc-text">2.2 获取缓存(重点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E6%9C%89%E6%95%88%E6%9C%9F%E7%B1%BB%E7%9A%84%E5%B0%81%E8%A3%85"><span class="toc-text">2.3 有效期类的封装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">2.4 异常处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="toc-text">2.5 清除缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E5%92%8C%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2"><span class="toc-text">2.6 数据校验和数据查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E6%8E%A5%E5%8F%A3"><span class="toc-text">2.7 个人信息接口</span></a></li></ol></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry，Stay Foolish </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        缓存方案
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2024-05-19 20:45:57</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#缓存" title="缓存">缓存</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="项目6"><a href="#项目6" class="headerlink" title="项目6"></a>项目6</h1><p>[TOC]</p>
+<h3 id="一-项目缓存方案"><a href="#一-项目缓存方案" class="headerlink" title="一. 项目缓存方案"></a>一. 项目缓存方案</h3><h4 id="1-1-项目缓存设计-重点"><a href="#1-1-项目缓存设计-重点" class="headerlink" title="1.1 项目缓存设计(重点)"></a>1.1 项目缓存设计(重点)</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"># 用户数据</span><br><span class="line">user<span class="punctuation">:</span>&lt;用户id&gt;<span class="punctuation">:</span>profile   string   &#x27;<span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> xx<span class="punctuation">,</span> <span class="attr">&quot;mobile&quot;</span><span class="punctuation">:</span> xx<span class="punctuation">&#125;</span>&#x27;</span><br><span class="line"># 用户关注列表</span><br><span class="line">user<span class="punctuation">:</span>&lt;用户id&gt;<span class="punctuation">:</span>followings  zset  <span class="punctuation">[</span><span class="punctuation">&#123;</span>value<span class="punctuation">:</span> 用户id<span class="punctuation">,</span> score<span class="punctuation">:</span> 关注时间<span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> </span><br><span class="line"># 用户粉丝列表</span><br><span class="line">user<span class="punctuation">:</span>&lt;用户id&gt;<span class="punctuation">:</span>followers  zset  <span class="punctuation">[</span><span class="punctuation">&#123;</span>value<span class="punctuation">:</span> 用户id<span class="punctuation">,</span> score<span class="punctuation">:</span> 被关注时间<span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> </span><br><span class="line"># 用户收藏列表</span><br><span class="line">user<span class="punctuation">:</span>&lt;用户id&gt;<span class="punctuation">:</span>collect    zset  <span class="punctuation">[</span><span class="punctuation">&#123;</span>value<span class="punctuation">:</span> 文章id<span class="punctuation">,</span> score<span class="punctuation">:</span> 收藏时间<span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> </span><br><span class="line"># 用户发布列表</span><br><span class="line">user<span class="punctuation">:</span>&lt;用户id&gt;<span class="punctuation">:</span>release    zset  <span class="punctuation">[</span><span class="punctuation">&#123;</span>value<span class="punctuation">:</span> 文章id<span class="punctuation">,</span> score<span class="punctuation">:</span> 发布时间<span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> </span><br><span class="line"></span><br><span class="line"># 文章数据   记录点赞数量</span><br><span class="line">article<span class="punctuation">:</span>&lt;文章id&gt;<span class="punctuation">:</span>basic   string   &#x27;<span class="punctuation">&#123;</span><span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> xx<span class="punctuation">,</span> <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> xx<span class="punctuation">&#125;</span>&#x27;</span><br><span class="line"># 文章点赞列表(可选)</span><br><span class="line">article<span class="punctuation">:</span>&lt;文章id&gt;<span class="punctuation">:</span>like   set   <span class="punctuation">[</span>用户id<span class="punctuation">,</span> ..<span class="punctuation">,</span> ..<span class="punctuation">]</span></span><br><span class="line"># 文章的评论列表</span><br><span class="line">article<span class="punctuation">:</span>&lt;文章id&gt;<span class="punctuation">:</span>comments    zset  <span class="punctuation">[</span><span class="punctuation">&#123;</span>value<span class="punctuation">:</span> 评论id<span class="punctuation">,</span> score<span class="punctuation">:</span> 评论时间<span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> </span><br><span class="line"></span><br><span class="line"># 评论数据  记录点赞数量</span><br><span class="line">comment<span class="punctuation">:</span>&lt;评论id&gt;   string   &#x27;<span class="punctuation">&#123;</span><span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> xx<span class="punctuation">&#125;</span>&#x27;</span><br><span class="line"># 评论的回复列表</span><br><span class="line">comment<span class="punctuation">:</span>&lt;评论id&gt;<span class="punctuation">:</span>replys   zset <span class="punctuation">[</span><span class="punctuation">&#123;</span>value<span class="punctuation">:</span> 子评论id<span class="punctuation">,</span> score<span class="punctuation">:</span> 评论时间<span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> </span><br><span class="line"></span><br><span class="line"># 公告数据</span><br><span class="line">note<span class="punctuation">:</span>&lt;公告id&gt;  string   &#x27;<span class="punctuation">&#123;</span><span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> xx<span class="punctuation">,</span>content<span class="string">&quot;: xx&#125;&#x27;</span></span><br><span class="line"><span class="string"># 公告列表</span></span><br><span class="line"><span class="string">note:all  zset  [&#123;value: 公告id, score: 发布时间&#125;, &#123;&#125;, &#123;&#125;] </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 所有频道列表</span></span><br><span class="line"><span class="string">channel:all    string  &#x27;[频道名称, .., ..]&#x27;</span></span><br><span class="line"><span class="string"># 用户的频道</span></span><br><span class="line"><span class="string">channel:&lt;用户id&gt;   string  &#x27;[频道名称, .., ..]&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-2-过期策略"><a href="#1-2-过期策略" class="headerlink" title="1.2 过期策略"></a>1.2 过期策略</h4><ul>
+<li><p>作用</p>
+<ul>
+<li>节省空间   </li>
+<li>实现数据的弱一致性</li>
+</ul>
+</li>
+<li><p>过期策略</p>
+<ul>
+<li>定时过期<ul>
+<li>效率太低, 每个数据都需要设置定时器进行计数</li>
+</ul>
+</li>
+<li>惰性过期<ul>
+<li>查询时, 才去检查数据的有效期, 如果过期, 则返回nil, 并删除过期数据</li>
+</ul>
+</li>
+<li>定期过期<ul>
+<li>每隔100ms, 随机取出一部分数据进行过期校验, 如果过期, 删除数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>redis的选择</p>
+<ul>
+<li><code>惰性过期+定期过期</code>(每100ms对设置了过期时间的数据随机查询并删除过期数据)</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-缓存淘汰-重点"><a href="#1-3-缓存淘汰-重点" class="headerlink" title="1.3 缓存淘汰 (重点)"></a>1.3 缓存淘汰 (重点)</h4><ul>
+<li><code>LRU</code>  <ul>
+<li>least recently use  优先淘汰不是最近使用的数据</li>
+</ul>
+</li>
+<li><code>LFU</code> <ul>
+<li>least frequently use  优先淘汰不是频繁使用的数据</li>
+<li>采用了<code>定期衰减</code>的机制, 防止旧数据始终无法删除</li>
+<li>缺点<ul>
+<li>需要每条数据维护一个使用计数<ul>
+<li>还需要定期衰减</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>面试问题<ul>
+<li>mysql中有100万数据, 要求redis中保留20万热点数据</li>
+<li>设置redis内存最大存储空间, 并且设置缓存策略为LFU</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>淘汰配置</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">maxmemory # 最大使用内存数量  如服务器内存10G, 最多给redis分配9G</span><br><span class="line">maxmemory-policy volatile-lru  # 淘汰策略</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-缓存问题-重点"><a href="#1-2-缓存问题-重点" class="headerlink" title="1.2 缓存问题 (重点)"></a>1.2 缓存问题 (重点)</h4><h5 id="1-2-1-缓存更新"><a href="#1-2-1-缓存更新" class="headerlink" title="1.2.1 缓存更新"></a>1.2.1 缓存更新</h5><ul>
+<li>问题<ul>
+<li>mysql和redis是两个独立的系统, 在并发环境下, 无法保证更新的一致性</li>
+</ul>
+</li>
+<li>解决办法<ul>
+<li>设计分布式锁(redis-setnx)&#x2F;使用消息队列串行处理<ul>
+<li>缺点  并发能力差</li>
+</ul>
+</li>
+<li><code>更新数据时, 先写入mysql, 再删除缓存</code>    facebook<ul>
+<li>主要用于  数据对象  (更新少)</li>
+<li>数据集合主要还是更新缓存  (更新多, 频繁查询成本高)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="1-2-2-缓存穿透"><a href="#1-2-2-缓存穿透" class="headerlink" title="1.2.2 缓存穿透"></a>1.2.2 缓存穿透</h5><ul>
+<li>问题<ul>
+<li>黑客会主动访问数据库不存在的数据, 缓存会被穿透, 直接访问数据库, 导致数据库的的访问压力变大</li>
+</ul>
+</li>
+<li>解决办法<ul>
+<li><code>对于数据库中不存在的数据, 也对其在缓存中设置默认值</code>  一般过期时间会比较短</li>
+<li>可以设置一些过滤规则, 如布隆过滤器(算法, 用于判断数据是否包含在集合中), 将所有可能的值录入过滤器, 如果不包含直接返回None, 有误杀概率</li>
+</ul>
+</li>
+</ul>
+<h5 id="1-2-3-缓存雪崩"><a href="#1-2-3-缓存雪崩" class="headerlink" title="1.2.3 缓存雪崩"></a>1.2.3 缓存雪崩</h5><ul>
+<li><p>问题</p>
+<ul>
+<li>如果大量缓存数据都在同一个时间过期, 那么很可能出现缓存集体失效, 会导致所有的请求都直接访问数据库, 导致数据库压力过大</li>
+</ul>
+</li>
+<li><p>解决办法</p>
+<ul>
+<li><code>设置过期时间时, 添加随机值, 让过期时间进行一定程度分散</code></li>
+<li>多级缓存的方式来处理</li>
+<li>利用锁&#x2F;队列的形式</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-持久化数据设计-重点"><a href="#1-3-持久化数据设计-重点" class="headerlink" title="1.3 持久化数据设计 (重点)"></a>1.3 持久化数据设计 (重点)</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 用户搜索历史</span><br><span class="line">user<span class="punctuation">:</span>&lt;用户id&gt;<span class="punctuation">:</span>search_history    zset  <span class="punctuation">[</span><span class="punctuation">&#123;</span>value<span class="punctuation">:</span> 关键词<span class="punctuation">,</span> score<span class="punctuation">:</span> 搜索时间<span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span> </span><br><span class="line"># 用户阅读历史</span><br><span class="line">user<span class="punctuation">:</span>&lt;用户id&gt;<span class="punctuation">:</span>read_history    zset  <span class="punctuation">[</span><span class="punctuation">&#123;</span>value<span class="punctuation">:</span> 文章id<span class="punctuation">,</span> score<span class="punctuation">:</span> 阅读时间<span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line"># 评论的点赞数量列表  可以根据点赞数量进行排序</span><br><span class="line">comments<span class="punctuation">:</span>all<span class="punctuation">:</span>like_count    zset    <span class="punctuation">[</span><span class="punctuation">&#123;</span>value<span class="punctuation">:</span> 评论id<span class="punctuation">,</span> score<span class="punctuation">:</span> 点赞数量<span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line"># zrevrange 点赞数量从高到低排序     zscore  取评论的点赞数量(分数)   zincrby 增加分数</span><br><span class="line"></span><br><span class="line"># comment<span class="punctuation">:</span>&lt;评论id&gt;<span class="punctuation">:</span>like_count   string  <span class="number">1011</span>   incr/decr</span><br><span class="line"># article<span class="punctuation">:</span>&lt;文章id&gt;<span class="punctuation">:</span>like_count   string  <span class="number">1011</span>   incr/decr</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>阅读历史&#x2F;搜索历史 更新比较频繁</p>
+<ul>
+<li>不在mysql中进行保存, 直接持久化到redis中, 丢失了也不太重要</li>
+</ul>
+</li>
+<li><p>点赞数&#x2F;回复数  更新频繁</p>
+<ul>
+<li>如果保存到mysql中, 就会大量的并发更新操作, 出现阻塞的情况   -&gt; 取消mysql的冗余字段, 直接在redis中进行持久化</li>
+<li>如果保存在redis的数据对象中, 需要经常进行序列化转换, 效率太低, 所以将统计数量从数据对象中提取出来单独存储, 这样也能减少持久化的数据总量</li>
+<li>为了后续排序考虑,  将各类统计数量保存到对应的zset中, 方便排序(点赞数&#x2F;评论数&#x2F;文章数排行)</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-4-缓存的模式"><a href="#1-4-缓存的模式" class="headerlink" title="1.4 缓存的模式"></a>1.4 缓存的模式</h4><ul>
+<li><p>读缓存</p>
+<ul>
+<li><p>先读取缓存中的数据, 没有才会读取数据库中的数据</p>
+</li>
+<li><p>解决数据库读取压力</p>
+</li>
+<li><p>方式</p>
+<ul>
+<li>cache aside  具体读写操作交给应用完成</li>
+<li><code>read through</code> <code>具体读写操作交给缓存层完成</code>, 即使后期修改存储方案, 业务代码不需要修改, 有利于项目的重构和架构升级</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>写缓存</p>
+<ul>
+<li>先写入缓存, 再写入数据库</li>
+<li>解决数据库的写入压力</li>
+<li>方式<ul>
+<li>write through 具体写操作交给缓存层完成, 立即更新数据库</li>
+<li>write behind caching  具体读操作交给缓存层完成, 定时异步更新数据库</li>
+</ul>
+</li>
+<li>实现思路<ul>
+<li>将数据操作保存到消息队列(redis&#x2F;rabbitMQ等)中, celery作为消费者异步执行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="二-缓存层实现"><a href="#二-缓存层实现" class="headerlink" title="二. 缓存层实现"></a>二. 缓存层实现</h3><h4 id="2-1-缓存类设计"><a href="#2-1-缓存类设计" class="headerlink" title="2.1 缓存类设计"></a>2.1 缓存类设计</h4><p><img src="/2024/05/19/Python/%E8%AF%BE%E7%A8%8B/26_flask%E9%A1%B9%E7%9B%AE6-%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88/index/image-20190807163218623.png" alt="image-20190807163218623"></p>
+<h4 id="2-2-获取缓存-重点"><a href="#2-2-获取缓存-重点" class="headerlink" title="2.2 获取缓存(重点)"></a>2.2 获取缓存(重点)</h4><p><img src="/2024/05/19/Python/%E8%AF%BE%E7%A8%8B/26_flask%E9%A1%B9%E7%9B%AE6-%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88/index/image-20190807165545830.png" alt="image-20190807165545830"></p>
+<h4 id="2-3-有效期类的封装"><a href="#2-3-有效期类的封装" class="headerlink" title="2.3 有效期类的封装"></a>2.3 有效期类的封装</h4><p><img src="/2024/05/19/Python/%E8%AF%BE%E7%A8%8B/26_flask%E9%A1%B9%E7%9B%AE6-%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88/index/image-20190807172745544.png" alt="image-20190807172745544"></p>
+<h4 id="2-4-异常处理"><a href="#2-4-异常处理" class="headerlink" title="2.4 异常处理"></a>2.4 异常处理</h4><ul>
+<li>redis查询失败, 继续让mysql进行查询</li>
+<li>mysql查询失败, 抛出异常, 让视图来处理</li>
+<li>redis缓存写入失败, 不做处理</li>
+</ul>
+<p><img src="/2024/05/19/Python/%E8%AF%BE%E7%A8%8B/26_flask%E9%A1%B9%E7%9B%AE6-%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88/index/image-20190807174845991.png" alt="image-20190807174845991"></p>
+<h4 id="2-5-清除缓存"><a href="#2-5-清除缓存" class="headerlink" title="2.5 清除缓存"></a>2.5 清除缓存</h4><p><img src="/2024/05/19/Python/%E8%AF%BE%E7%A8%8B/26_flask%E9%A1%B9%E7%9B%AE6-%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88/index/image-20190807175132578.png" alt="image-20190807175132578"></p>
+<h4 id="2-6-数据校验和数据查询"><a href="#2-6-数据校验和数据查询" class="headerlink" title="2.6 数据校验和数据查询"></a>2.6 数据校验和数据查询</h4><p><img src="/2024/05/19/Python/%E8%AF%BE%E7%A8%8B/26_flask%E9%A1%B9%E7%9B%AE6-%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88/index/image-20190807180858834.png" alt="image-20190807180858834"></p>
+<h4 id="2-7-个人信息接口"><a href="#2-7-个人信息接口" class="headerlink" title="2.7 个人信息接口"></a>2.7 个人信息接口</h4><ul>
+<li>接口设计</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 个人中心-获取用户信息</span><br><span class="line">/user</span><br><span class="line"># 请求方式  </span><br><span class="line">GET</span><br><span class="line"></span><br><span class="line"># 响应形式 json</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;photo_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;centi&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;art_counts&quot;</span><span class="punctuation">:</span> <span class="number">3</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;followings_count&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;fans_count&quot;</span><span class="punctuation">:</span> <span class="number">5</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<ul>
+<li>代码实现</li>
+</ul>
+<p><img src="/2024/05/19/Python/%E8%AF%BE%E7%A8%8B/26_flask%E9%A1%B9%E7%9B%AE6-%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88/index/image-20190807182443771.png" alt="image-20190807182443771"></p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢您给予的支持 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/忘機">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3919408003">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/MyGodOnLoad">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../../../../../js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

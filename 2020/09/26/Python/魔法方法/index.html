@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="一名菜鸟的日记本">
+    <meta property="og:type" content="website">
+    <meta name="description" content="一名菜鸟的日记本">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        python类的魔法方法 - 神秘的张少爷
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="../../../../../css/aircloud.css">
+
+    
+<link rel="stylesheet" href="../../../../../css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+  
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+
+
+  
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="atom.xml" title="神秘的张少爷" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry，Stay Foolish </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>神秘的张少爷</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="../../../../../index.html">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-text">_new_</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repr"><span class="toc-text">_repr_</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#del"><span class="toc-text">_del_</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dir"><span class="toc-text">_dir_</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dict"><span class="toc-text">_dict_</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#call"><span class="toc-text">_call_</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hasattr"><span class="toc-text">hasattr()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getattr"><span class="toc-text">getattr()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setattr"><span class="toc-text">setattr()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#issubclass"><span class="toc-text">issubclass()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isinstance"><span class="toc-text">isinstance()</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry，Stay Foolish </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        python类的魔法方法
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-09-26 21:55:56</span></span>
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <table>
+<thead>
+<tr>
+<th>魔法方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong>基本的魔法方法</strong></td>
+</tr>
+<tr>
+<td>_<em>new</em>_(cls[, …])</td>
+<td>1. <strong>new</strong> 是在一个对象实例化的时候所调用的第一个方法 2. 它的第一个参数是这个类，其他的参数是用来直接传递给 <strong>init</strong> 方法 3. <strong>new</strong> 决定是否要使用该 <strong>init</strong> 方法，因为 <strong>new</strong> 可以调用其他类的构造方法或者直接返回别的实例对象来作为本类的实例，如果 <strong>new</strong> 没有返回实例对象，则 <strong>init</strong> 不会被调用 4. <strong>new</strong> 主要是用于继承一个不可变的类型比如一个 tuple 或者 string</td>
+</tr>
+<tr>
+<td>_<em>init</em>_(self[, …])</td>
+<td>构造器，当一个实例被创建的时候调用的初始化方法</td>
+</tr>
+<tr>
+<td>_<em>del</em>_(self)</td>
+<td>析构器，当一个实例被销毁的时候调用的方法</td>
+</tr>
+<tr>
+<td>_<em>call</em>_(self[, args…])</td>
+<td>允许一个类的实例像函数一样被调用：x(a, b) 调用 x.<strong>call</strong>(a, b)</td>
+</tr>
+<tr>
+<td>_<em>len</em>_(self)</td>
+<td>定义当被 len() 调用时的行为</td>
+</tr>
+<tr>
+<td>_<em>repr</em>_(self)</td>
+<td>定义当被 repr() 调用时的行为</td>
+</tr>
+<tr>
+<td>_<em>str</em>_(self)</td>
+<td>定义当被 str() 调用时的行为</td>
+</tr>
+<tr>
+<td>_<em>bytes</em>_(self)</td>
+<td>定义当被 bytes() 调用时的行为</td>
+</tr>
+<tr>
+<td>_<em>hash</em>_(self)</td>
+<td>定义当被 hash() 调用时的行为</td>
+</tr>
+<tr>
+<td>_<em>bool</em>_(self)</td>
+<td>定义当被 bool() 调用时的行为，应该返回 True 或 False</td>
+</tr>
+<tr>
+<td>_<em>format</em>_(self, format_spec)</td>
+<td>定义当被 format() 调用时的行为</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>有关属性</strong></td>
+</tr>
+<tr>
+<td>_<em>getattr</em>_(self, name)</td>
+<td>定义当用户试图获取一个不存在的属性时的行为</td>
+</tr>
+<tr>
+<td>_<em>getattribute</em>_(self, name)</td>
+<td>定义当该类的属性被访问时的行为</td>
+</tr>
+<tr>
+<td>_<em>setattr</em>_(self, name, value)</td>
+<td>定义当一个属性被设置时的行为</td>
+</tr>
+<tr>
+<td>_<em>delattr</em>_(self, name)</td>
+<td>定义当一个属性被删除时的行为</td>
+</tr>
+<tr>
+<td>_<em>dir</em>_(self)</td>
+<td>定义当 dir() 被调用时的行为</td>
+</tr>
+<tr>
+<td>_<em>get</em>_(self, instance, owner)</td>
+<td>定义当描述符的值被取得时的行为</td>
+</tr>
+<tr>
+<td>_<em>set</em>_(self, instance, value)</td>
+<td>定义当描述符的值被改变时的行为</td>
+</tr>
+<tr>
+<td>_<em>delete</em>_(self, instance)</td>
+<td>定义当描述符的值被删除时的行为</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>比较操作符</strong></td>
+</tr>
+<tr>
+<td>_<em>lt</em>_(self, other)</td>
+<td>定义小于号的行为：x &lt; y 调用 x.<strong>lt</strong>(y)</td>
+</tr>
+<tr>
+<td>_<em>le</em>_(self, other)</td>
+<td>定义小于等于号的行为：x &lt;&#x3D; y 调用 x.<strong>le</strong>(y)</td>
+</tr>
+<tr>
+<td>_<em>eq</em>_(self, other)</td>
+<td>定义等于号的行为：x &#x3D;&#x3D; y 调用 x.<strong>eq</strong>(y)</td>
+</tr>
+<tr>
+<td>_<em>ne</em>_(self, other)</td>
+<td>定义不等号的行为：x !&#x3D; y 调用 x.<strong>ne</strong>(y)</td>
+</tr>
+<tr>
+<td>_<em>gt</em>_(self, other)</td>
+<td>定义大于号的行为：x &gt; y 调用 x.<strong>gt</strong>(y)</td>
+</tr>
+<tr>
+<td>_<em>ge</em>_(self, other)</td>
+<td>定义大于等于号的行为：x &gt;&#x3D; y 调用 x.<strong>ge</strong>(y)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>算数运算符</strong></td>
+</tr>
+<tr>
+<td>_<em>add</em>_(self, other)</td>
+<td>定义加法的行为：+</td>
+</tr>
+<tr>
+<td>_<em>sub</em>_(self, other)</td>
+<td>定义减法的行为：-</td>
+</tr>
+<tr>
+<td>_<em>mul</em>_(self, other)</td>
+<td>定义乘法的行为：*</td>
+</tr>
+<tr>
+<td>_<em>truediv</em>_(self, other)</td>
+<td>定义真除法的行为：&#x2F;</td>
+</tr>
+<tr>
+<td>_<em>floordiv</em>_(self, other)</td>
+<td>定义整数除法的行为：&#x2F;&#x2F;</td>
+</tr>
+<tr>
+<td>_<em>mod</em>_(self, other)</td>
+<td>定义取模算法的行为：%</td>
+</tr>
+<tr>
+<td>_<em>divmod</em>_(self, other)</td>
+<td>定义当被 divmod() 调用时的行为</td>
+</tr>
+<tr>
+<td>_<em>pow</em>_(self, other[, modulo])</td>
+<td>定义当被 power() 调用或 ** 运算时的行为</td>
+</tr>
+<tr>
+<td>_<em>lshift</em>_(self, other)</td>
+<td>定义按位左移位的行为：&lt;&lt;</td>
+</tr>
+<tr>
+<td>_<em>rshift</em>_(self, other)</td>
+<td>定义按位右移位的行为：&gt;&gt;</td>
+</tr>
+<tr>
+<td>_<em>and</em>_(self, other)</td>
+<td>定义按位与操作的行为：&amp;</td>
+</tr>
+<tr>
+<td>_<em>xor</em>_(self, other)</td>
+<td>定义按位异或操作的行为：^</td>
+</tr>
+<tr>
+<td>_<em>or</em>_(self, other)</td>
+<td>定义按位或操作的行为：|</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>反运算</strong></td>
+</tr>
+<tr>
+<td>_<em>radd</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rsub</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rmul</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rtruediv</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rfloordiv</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rmod</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rdivmod</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rpow</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rlshift</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rrshift</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>rxor</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>_<em>ror</em>_(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>增量赋值运算</strong></td>
+</tr>
+<tr>
+<td>_<em>iadd</em>_(self, other)</td>
+<td>定义赋值加法的行为：+&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>isub</em>_(self, other)</td>
+<td>定义赋值减法的行为：-&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>imul</em>_(self, other)</td>
+<td>定义赋值乘法的行为：*&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>itruediv</em>_(self, other)</td>
+<td>定义赋值真除法的行为：&#x2F;&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>ifloordiv</em>_(self, other)</td>
+<td>定义赋值整数除法的行为：&#x2F;&#x2F;&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>imod</em>_(self, other)</td>
+<td>定义赋值取模算法的行为：%&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>ipow</em>_(self, other[, modulo])</td>
+<td>定义赋值幂运算的行为：**&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>ilshift</em>_(self, other)</td>
+<td>定义赋值按位左移位的行为：&lt;&lt;&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>irshift</em>_(self, other)</td>
+<td>定义赋值按位右移位的行为：&gt;&gt;&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>iand</em>_(self, other)</td>
+<td>定义赋值按位与操作的行为：&amp;&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>ixor</em>_(self, other)</td>
+<td>定义赋值按位异或操作的行为：^&#x3D;</td>
+</tr>
+<tr>
+<td>_<em>ior</em>_(self, other)</td>
+<td>定义赋值按位或操作的行为：|&#x3D;</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>一元操作符</strong></td>
+</tr>
+<tr>
+<td>_<em>neg</em>_(self)</td>
+<td>定义正号的行为：+x</td>
+</tr>
+<tr>
+<td>_<em>pos</em>_(self)</td>
+<td>定义负号的行为：-x</td>
+</tr>
+<tr>
+<td>_<em>abs</em>_(self)</td>
+<td>定义当被 abs() 调用时的行为</td>
+</tr>
+<tr>
+<td>_<em>invert</em>_(self)</td>
+<td>定义按位求反的行为：~x</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>类型转换</strong></td>
+</tr>
+<tr>
+<td>_<em>complex</em>_(self)</td>
+<td>定义当被 complex() 调用时的行为（需要返回恰当的值）</td>
+</tr>
+<tr>
+<td>_<em>int</em>_(self)</td>
+<td>定义当被 int() 调用时的行为（需要返回恰当的值）</td>
+</tr>
+<tr>
+<td>_<em>float</em>_(self)</td>
+<td>定义当被 float() 调用时的行为（需要返回恰当的值）</td>
+</tr>
+<tr>
+<td>_<em>round</em>_(self[, n])</td>
+<td>定义当被 round() 调用时的行为（需要返回恰当的值）</td>
+</tr>
+<tr>
+<td>_<em>index</em>_(self)</td>
+<td>1. 当对象是被应用在切片表达式中时，实现整形强制转换 2. 如果你定义了一个可能在切片时用到的定制的数值型,你应该定义 <strong>index</strong> 3. 如果 <strong>index</strong> 被定义，则 <strong>int</strong> 也需要被定义，且返回相同的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>上下文管理（with 语句）</strong></td>
+</tr>
+<tr>
+<td>_<em>enter</em>_(self)</td>
+<td>1. 定义当使用 with 语句时的初始化行为 2. <strong>enter</strong> 的返回值被 with 语句的目标或者 as 后的名字绑定</td>
+</tr>
+<tr>
+<td>_<em>exit</em>_(self, exc_type, exc_value, traceback)</td>
+<td>1. 定义当一个代码块被执行或者终止后上下文管理器应该做什么 2. 一般被用来处理异常，清除工作或者做一些代码块执行完毕之后的日常工作</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>容器类型</strong></td>
+</tr>
+<tr>
+<td>_<em>len</em>_(self)</td>
+<td>定义当被 len() 调用时的行为（返回容器中元素的个数）</td>
+</tr>
+<tr>
+<td>_<em>getitem</em>_(self, key)</td>
+<td>定义获取容器中指定元素的行为，相当于 self[key]</td>
+</tr>
+<tr>
+<td>_<em>setitem</em>_(self, key, value)</td>
+<td>定义设置容器中指定元素的行为，相当于 self[key] &#x3D; value</td>
+</tr>
+<tr>
+<td>_<em>delitem</em>_(self, key)</td>
+<td>定义删除容器中指定元素的行为，相当于 del self[key]</td>
+</tr>
+<tr>
+<td>_<em>iter</em>_(self)</td>
+<td>定义当迭代容器中的元素的行为</td>
+</tr>
+<tr>
+<td>_<em>reversed</em>_(self)</td>
+<td>定义当被 reversed() 调用时的行为</td>
+</tr>
+<tr>
+<td>_<em>contains</em>_(self, item)</td>
+<td>定义当使用成员测试运算符（in 或 not in）时的行为</td>
+</tr>
+</tbody></table>
+<h3 id="new"><a href="#new" class="headerlink" title="_new_"></a>_<em>new</em>_</h3><h3 id="repr"><a href="#repr" class="headerlink" title="_repr_"></a>_<em>repr</em>_</h3><h3 id="del"><a href="#del" class="headerlink" title="_del_"></a>_<em>del</em>_</h3><p>​		在编写程序时，如果之前创建的类实例化对象后续不再使用，可对对象进行销毁，释放其占用的内存空间（python的垃圾回收机制）</p>
+<p>无论是手动销毁，还是 Python 自动销毁，都会调用 _<em>del</em>_() 方法。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CLanguage</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;调用 __init__() 方法构造对象&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__del__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;调用__del__() 销毁对象，释放其空间&quot;</span>)</span><br><span class="line">clangs = CLanguage()</span><br><span class="line"><span class="keyword">del</span> clangs</span><br></pre></td></tr></table></figure>
+
+<p>程序运行结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">调用 __init__() 方法构造对象</span><br><span class="line">调用__del__() 销毁对象，释放其空间</span><br></pre></td></tr></table></figure>
+
+<p> 但是，千万不要误认为，只要为该实例对象调用 <strong>del</strong>() 方法，该对象所占用的内存空间就会被释放。举个例子： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CLanguage</span>:    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):        </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;调用 __init__() 方法构造对象&quot;</span>)    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__del__</span>(<span class="params">self</span>):        </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;调用__del__() 销毁对象，释放其空间&quot;</span>)</span><br><span class="line">clangs = CLanguage()<span class="comment">#添加一个引用clangs对象的实例对象</span></span><br><span class="line">cl = clangs</span><br><span class="line"><span class="keyword">del</span> clangs</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;***********&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>程序运行结果为：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">调用 <span class="built_in">__init__</span>() 方法构造对象</span><br><span class="line">***********</span><br><span class="line">调用<span class="built_in">__del__</span>() 销毁对象，释放其空间</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意，最后一行输出信息，是程序执行即将结束时调用 _<em>del</em>_() 方法输出的。</p>
+</blockquote>
+<p>可以看到，当程序中有其它变量（比如这里的 cl）引用该实例对象时，即便手动调用 __del__() 方法，该方法也不会立即执行。这和 Python 的垃圾回收机制的引用计数有关，只有对象的的计数器值为 0，Python 才会真正调用 __del__() 方法将其回收。</p>
+<p> 以上面程序中的 clangs 为例，实际上构建 clangs 实例对象的过程分为 2 步，先使用 CLanguage() 调用该类中的 __init__() 方法构造出一个该类的对象（将其称为 C，计数器为 0），并立即用 clangs 这个变量作为所建实例对象的引用（ C 的计数器值 + 1）。在此基础上，又有一个 cl 变量引用 clangs（其实相当于引用 CLanguage()，此时 C 的计数器再 +1 ），这时如果调用<code>del clangs</code>语句，只会导致 C 的计数器减 1（值变为 1），因为 C 的计数器值不为 0，因此 C 不会被销毁（不会执行 __del__() 方法）。 </p>
+<p>如果在上面程序结尾，添加如下语句：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> cl</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;-----------&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>则程序的执行结果为：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">调用 <span class="built_in">__init__</span>() 方法构造对象</span><br><span class="line">***********</span><br><span class="line">调用<span class="built_in">__del__</span>() 销毁对象，释放其空间</span><br><span class="line">-----------</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，当执行 del cl 语句时，其应用的对象实例对象 C 的计数器继续 -1（变为 0），对于计数器为 0 的实例对象，Python 会自动将其视为垃圾进行回收。</p>
+<p><strong>如果我们重写子类的 __del__() 方法（父类为非 object 的类），则必须显式调用父类的__del__() 方法，这样才能保证在回收子类对象时，其占用的资源（可能包含继承自父类的部分资源）能被彻底释放。</strong></p>
+<p>为了说明这一点，这里举一个反例： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CLanguage</span>:    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__del__</span>(<span class="params">self</span>):        </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;调用父类 __del__() 方法&quot;</span>)</span><br><span class="line">        </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">cl</span>(<span class="title class_ inherited__">CLanguage</span>):    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__del__</span>(<span class="params">self</span>):        </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;调用子类 __del__() 方法&quot;</span>)</span><br><span class="line">        </span><br><span class="line">c = cl()</span><br><span class="line"><span class="keyword">del</span> c</span><br></pre></td></tr></table></figure>
+
+<p>程序运行结果为：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">调用子类 <span class="built_in">__del__</span>() 方法</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="dir"><a href="#dir" class="headerlink" title="_dir_"></a>_<em>dir</em>_</h3><h3 id="dict"><a href="#dict" class="headerlink" title="_dict_"></a>_<em>dict</em>_</h3><h3 id="call"><a href="#call" class="headerlink" title="_call_"></a>_<em>call</em>_</h3><h3 id="hasattr"><a href="#hasattr" class="headerlink" title="hasattr()"></a>hasattr()</h3><h3 id="getattr"><a href="#getattr" class="headerlink" title="getattr()"></a>getattr()</h3><h3 id="setattr"><a href="#setattr" class="headerlink" title="setattr()"></a>setattr()</h3><h3 id="issubclass"><a href="#issubclass" class="headerlink" title="issubclass()"></a>issubclass()</h3><ul>
+<li><p>issubclass( cls, class_or_tuple )</p>
+</li>
+<li><p>检查 cls 是否为后一个类或元组包含的多个类中任意类的子类。</p>
+</li>
+</ul>
+<h3 id="isinstance"><a href="#isinstance" class="headerlink" title="isinstance()"></a>isinstance()</h3><ul>
+<li><p>isinstance( obj, class_or_tuple )</p>
+</li>
+<li><p>检查 obj 是否为后一个类或元组包含的多个类中任意类的对象。</p>
+</li>
+</ul>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢您给予的支持 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/忘機">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3919408003">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/MyGodOnLoad">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../../../../js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

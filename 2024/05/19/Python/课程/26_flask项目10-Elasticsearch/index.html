@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="一名菜鸟的日记本">
+    <meta property="og:type" content="website">
+    <meta name="description" content="一名菜鸟的日记本">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Elasticsearch - 神秘的张少爷
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="../../../../../../css/aircloud.css">
+
+    
+<link rel="stylesheet" href="../../../../../../css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+  
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+
+
+  
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="atom.xml" title="神秘的张少爷" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry，Stay Foolish </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>神秘的张少爷</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="../../../../../../index.html">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../../tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../../archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-Elasticsearch"><span class="toc-text">一.Elasticsearch</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-ES%E7%AE%80%E4%BB%8B"><span class="toc-text">1. ES简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ES%E6%90%9C%E7%B4%A2%E5%8E%9F%E7%90%86-%E9%87%8D%E7%82%B9"><span class="toc-text">2. ES搜索原理 (重点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%9B%86%E7%BE%A4"><span class="toc-text">3. 集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D"><span class="toc-text">4. 中文分词</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%88%9B%E5%BB%BAES%E5%BA%93"><span class="toc-text">5. 创建ES库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%98%A0%E5%B0%84"><span class="toc-text">6. 类型和映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E4%BF%AE%E6%94%B9%E7%B4%A2%E5%BC%95%E5%BA%93%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%98%A0%E5%B0%84"><span class="toc-text">7. 修改索引库的类型映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E6%96%87%E6%A1%A3%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5-%E9%87%8D%E7%82%B9"><span class="toc-text">8. 文档数据的增删改查 (重点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-Logstash%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">9. Logstash导入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E5%9F%BA%E6%9C%AC%E6%9F%A5%E8%AF%A2-%E9%87%8D%E7%82%B9"><span class="toc-text">10. 基本查询 (重点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2-%E9%87%8D%E7%82%B9"><span class="toc-text">11. 高级查询(重点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-python%E6%93%8D%E4%BD%9CES-%E9%87%8D%E7%82%B9"><span class="toc-text">12. python操作ES (重点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-%E6%96%87%E7%AB%A0%E6%90%9C%E7%B4%A2%E6%8E%A5%E5%8F%A3"><span class="toc-text">13. 文章搜索接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0"><span class="toc-text">14. 发布文章</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry，Stay Foolish </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Elasticsearch
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2024-05-19 20:45:57</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Elasticsearch" title="Elasticsearch">Elasticsearch</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h3 id="一-Elasticsearch"><a href="#一-Elasticsearch" class="headerlink" title="一.Elasticsearch"></a>一.Elasticsearch</h3><h4 id="1-ES简介"><a href="#1-ES简介" class="headerlink" title="1. ES简介"></a>1. ES简介</h4><ul>
+<li>Django <ul>
+<li>haystack + es</li>
+<li>haystack起到的作用类似于orm 2.x</li>
+</ul>
+</li>
+<li>版本<ul>
+<li>2.x   5.x   6.x</li>
+<li>语法有一定区别, 不兼容</li>
+</ul>
+</li>
+<li>概念<ul>
+<li>既是搜索引擎, 也是数据库<ul>
+<li>主要用于全文检索, 和搜索无关的字段不应该保存在ES中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特点<ul>
+<li>支持分布式  分片存储</li>
+<li>虽然是Java开发的, 但是封装了一套http访问接口, 使用restful的设计风格  端口<code>9200</code></li>
+<li>文档型数据库   存字符串, 不是表, 也不是键值对</li>
+<li>最受欢迎的搜索引擎</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-ES搜索原理-重点"><a href="#2-ES搜索原理-重点" class="headerlink" title="2. ES搜索原理 (重点)"></a>2. ES搜索原理 (重点)</h4><ul>
+<li><p>关系数据库查询的缺点</p>
+<ul>
+<li><p>关键词检索</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 全文检索&quot;python&quot;  范围: 文章标题 和 文章内容</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t_article <span class="keyword">where</span> title <span class="keyword">like</span> &quot;%python%&quot; <span class="keyword">or</span> content <span class="keyword">like</span> &quot;%python%&quot; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>即使title和content字段建立了索引, 也不能完美使用索引, 只对”python%”的查询才会使用索引, 慢查询效率极低</p>
+</li>
+</ul>
+</li>
+<li><p>ES搜索的原理</p>
+<ul>
+<li>分析</li>
+<li>建立倒排索引</li>
+<li>相关性排序</li>
+</ul>
+</li>
+<li><p>分析</p>
+<ul>
+<li>提取和优化关键词</li>
+<li>分词 <ul>
+<li>将搜索内容以词条形式拆分</li>
+</ul>
+</li>
+<li>标准化<ul>
+<li>忽略大小写</li>
+<li>忽略单复数</li>
+<li>同义词合并</li>
+</ul>
+</li>
+<li>处理停用词<ul>
+<li>谓词, 语气词, 主语</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>倒排&#x2F;反向索引</p>
+<ul>
+<li>正向索引<ul>
+<li>一条文档为一条记录, 字段为关键词的信息(位置&amp;次数)</li>
+<li>缺点<ul>
+<li>收录到搜索引擎的文档数量是天文数字, 需要查询所有记录, 无法达到实时性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>反向索引   <ul>
+<li>以关键字为一条记录, 文档id为字段</li>
+<li>虽然关键字数量庞大, 但是一旦查询到关键词, 就可以锁定与其有关的所有文档, 效率高于正向索引</li>
+<li>网站SEO时, 要在网页&#x2F;百度录入时设置精准的关键词, 目的就是为快速反向索引</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">文档1  The quick brown fox jumped over the , lazy+ dog</span><br><span class="line">文档2  Quick brown foxes leap over lazy dogs in summer</span><br><span class="line"></span><br><span class="line">id   quick   brown  fox  jump  dog  summer</span><br><span class="line">1     <span class="number"> 1 </span>     <span class="number"> 1 </span>   <span class="number"> 1 </span>   <span class="number"> 1 </span>   </span><br><span class="line">2             <span class="number"> 1 </span>   <span class="number"> 1 </span>        <span class="number"> 1 </span>     1</span><br><span class="line">....</span><br><span class="line">10000000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">关键词     文档1   文档2   ...  文档100000</span><br><span class="line">qucik       1</span><br><span class="line">brown      <span class="number"> 1 </span>     1</span><br><span class="line">fox </span><br><span class="line">dog         1</span><br><span class="line">summer </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>相关性排序</p>
+<ul>
+<li><p>对搜索结果按照权重进行排序</p>
+</li>
+<li><p>算法 TF&#x2F;IDF</p>
+<ul>
+<li>检索词频率   关键词在文章中出现的次数  </li>
+<li>反向文档频率  多个关键词中的某个如果在大量文章中都出现了, 降低其权重</li>
+<li>字段长度准则  关键词占文章总长度的比重 比重越高, 相关性越大</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>开发搜索引擎</p>
+<ul>
+<li>爬虫</li>
+<li>分布式存储</li>
+<li>分析</li>
+<li>建立倒排索引</li>
+<li>相关性排序</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-集群"><a href="#3-集群" class="headerlink" title="3. 集群"></a>3. 集群</h4><ul>
+<li><p>实现了复制, 并且自动故障转移</p>
+</li>
+<li><p>实现了分片, 提高吞吐量</p>
+</li>
+<li><p>访问ES</p>
+<ul>
+<li>使用POSTMAN</li>
+<li>终端curl命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl -X http请求方式 url -H 请求头字段 -d 请求体数据</span><br><span class="line">curl -X GET 127.0.0.1:9200/_cluster/health?pretty  <span class="comment"># 设置?pretty可以进行格式化显示</span></span><br><span class="line">curl -X PUT 127.0.0.1:9200/article -H <span class="string">&#x27;Content-Type:application/json&#x27;</span> -d <span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看集群状态</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET 127.0.0.1:9200/_cluster/health?pretty</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-中文分词"><a href="#4-中文分词" class="headerlink" title="4. 中文分词"></a>4. 中文分词</h4><ul>
+<li>默认每个汉字分词</li>
+<li>ES拓展-IK中文分析器</li>
+<li>安装拓展</li>
+<li>测试分析器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET 127.0.0.1:9200/_analyze?pretty -d <span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;analyzer&quot;: &quot;standard&quot;,  # ES默认的解析器, 不能对中文分词, 每个汉字对应一个词条</span></span><br><span class="line"><span class="string">  &quot;text&quot;: &quot;我是&amp;中国人&quot;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">curl -X GET 127.0.0.1:9200/_analyze?pretty -d <span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;analyzer&quot;: &quot;ik_max_word&quot;,  # IK解析器提供的ik_max_word策略, 力求实现最大的覆盖率, 词条覆盖范围大</span></span><br><span class="line"><span class="string">  &quot;text&quot;: &quot;TypeScript + Vue&quot;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">curl -X GET 127.0.0.1:9200/_analyze?pretty -d <span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;analyzer&quot;: &quot;ik_smart&quot;,  # IK解析器提供的ik_smart策略, 力求精确, 词条覆盖范围小</span></span><br><span class="line"><span class="string">  &quot;text&quot;: &quot;我是&amp;中国人&quot;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-创建ES库"><a href="#5-创建ES库" class="headerlink" title="5. 创建ES库"></a>5. 创建ES库</h4><ul>
+<li>查看所有索引库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 127.0.0.1:9200/_cat/indices</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建索引(数据库)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PUT /my_index</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;settings&quot;</span>: &#123; ... any settings ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建文章索引库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 文章索引</span><br><span class="line">curl -X PUT 127.0.0.1:9200/articles -H <span class="string">&#x27;Content-Type: application/json&#x27;</span> -d<span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">   &quot;settings&quot; : &#123;</span></span><br><span class="line"><span class="string">        &quot;index&quot;: &#123;</span></span><br><span class="line"><span class="string">            &quot;number_of_shards&quot; : 3,  # 主分片数</span></span><br><span class="line"><span class="string">            &quot;number_of_replicas&quot; : 1  # 从数据库数量</span></span><br><span class="line"><span class="string">           &#125;</span></span><br><span class="line"><span class="string">   &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#x27;</span></span><br><span class="line"><span class="comment"># 查看索引库</span></span><br><span class="line">curl 127.0.0.1:9200/_cat/indices</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除索引库</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">curl</span> -X DELETE <span class="number">127.0.0.1:9200</span>/articles</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-类型和映射"><a href="#6-类型和映射" class="headerlink" title="6. 类型和映射"></a>6. 类型和映射</h4><ul>
+<li><p>概念</p>
+<ul>
+<li>类型, 相当于数据库的表</li>
+<li>设置类型映射, 相当于描述表结构(字段名称, 字段类型)并建表</li>
+</ul>
+</li>
+<li><p>字段的类型</p>
+<ul>
+<li><p>字符串: <code>text</code> (在elaticsearch 2.x版本中，为string类型)</p>
+</li>
+<li><p>整数 : <code>byte</code>, <code>short</code>, <code>integer</code>, <code>long</code></p>
+</li>
+<li><p>浮点数: <code>float</code>, <code>double</code></p>
+</li>
+<li><p>布尔型: <code>boolean</code></p>
+</li>
+<li><p>日期: <code>date</code></p>
+</li>
+</ul>
+</li>
+<li><p>头条项目的文章类型映射</p>
+<ul>
+<li><code>_mapping</code> 设置类型映射的接口 </li>
+<li>&#x2F;article  类型, 对应一张表</li>
+<li>properties  指定字段名称和类型  <ul>
+<li><code>以查询为目的</code>建立字段</li>
+<li>标题&#x2F;内容 <code>为用户提供</code>查询使用的字段</li>
+<li>文章id&#x2F;作者id&#x2F;文章状态&#x2F;发布时间  主要给<code>后台管理</code>查询使用</li>
+<li>_all字段默认会包含所有字段的关键词, 比如查询关键词时, 不设置查询条件, 既查询标题也查询内容, 则可以使用__all字段查询</li>
+<li>include_in_all则是设置该字段的关键词是否加入到_all字段的关键词中<ul>
+<li>user_id, article_id不加入_all, 这样用户查询时, 可以直接查询__all字段</li>
+<li>后台查询,可以根据需求进行查询</li>
+</ul>
+</li>
+<li>analyzer 分析器设置, 只对字符串类型(text)有效 </li>
+<li>boost 设置相关性排序的权重  整数形式, 尽量控制在10以内</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT 127.0.0.1:9200/articles/_mapping/article -H <span class="string">&#x27;Content-Type: application/json&#x27;</span> -d<span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">     &quot;_all&quot;: &#123;</span></span><br><span class="line"><span class="string">          &quot;analyzer&quot;: &quot;ik_max_word&quot;</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      &quot;properties&quot;: &#123;</span></span><br><span class="line"><span class="string">          &quot;article_id&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;long&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;false&quot;</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;user_id&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;long&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;false&quot;</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;title&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;text&quot;,</span></span><br><span class="line"><span class="string">              &quot;analyzer&quot;: &quot;ik_max_word&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;true&quot;,</span></span><br><span class="line"><span class="string">              &quot;boost&quot;: 2</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;content&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;text&quot;,</span></span><br><span class="line"><span class="string">              &quot;analyzer&quot;: &quot;ik_max_word&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;true&quot;</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;status&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;integer&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;false&quot;</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;create_time&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;date&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;false&quot;</span></span><br><span class="line"><span class="string">          &#125;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>查看映射</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl 127.0.0.1:9200/articles?pretty  <span class="comment"># 查询整个索引库结构</span></span><br><span class="line">curl 127.0.0.1:9200/articles/_mapping/article?pretty  <span class="comment"># 查询article表的结构</span></span><br><span class="line"><span class="comment"># 不设置-X默认为GET</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="7-修改索引库的类型映射"><a href="#7-修改索引库的类型映射" class="headerlink" title="7. 修改索引库的类型映射"></a>7. 修改索引库的类型映射</h4><ul>
+<li>可以增加字段</li>
+<li>不能修改已有字段的类型(索引的建立和类型有关)<ul>
+<li>只能建立新的库, 重新进行类型映射</li>
+<li>好处是不需要将数据再导入到新的索引库, 只需要重新索引数据</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建新的索引库 5.x版本分别设置配置和类型映射</span></span><br><span class="line">curl -X PUT 127.0.0.1:9200/articles_v2 -H <span class="string">&#x27;Content-Type: application/json&#x27;</span> -d<span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">   &quot;settings&quot; : &#123;</span></span><br><span class="line"><span class="string">      &quot;index&quot;: &#123;</span></span><br><span class="line"><span class="string">          &quot;number_of_shards&quot; : 3,</span></span><br><span class="line"><span class="string">          &quot;number_of_replicas&quot; : 1</span></span><br><span class="line"><span class="string">       &#125;</span></span><br><span class="line"><span class="string">   &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#x27;</span></span><br><span class="line"></span><br><span class="line">curl -X PUT 127.0.0.1:9200/articles_v2/_mapping/article -H <span class="string">&#x27;Content-Type: application/json&#x27;</span> -d<span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">     &quot;_all&quot;: &#123;</span></span><br><span class="line"><span class="string">          &quot;analyzer&quot;: &quot;ik_max_word&quot;</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      &quot;properties&quot;: &#123;</span></span><br><span class="line"><span class="string">          &quot;article_id&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;long&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;false&quot;</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;user_id&quot;: &#123;</span></span><br><span class="line"><span class="string">               &quot;type&quot;: &quot;long&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;false&quot;</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;title&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;text&quot;,</span></span><br><span class="line"><span class="string">              &quot;analyzer&quot;: &quot;ik_max_word&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;true&quot;,</span></span><br><span class="line"><span class="string">              &quot;boost&quot;: 2</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;content&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;text&quot;,</span></span><br><span class="line"><span class="string">              &quot;analyzer&quot;: &quot;ik_max_word&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;true&quot;</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;status&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;byte&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;false&quot;</span></span><br><span class="line"><span class="string">          &#125;,</span></span><br><span class="line"><span class="string">          &quot;create_time&quot;: &#123;</span></span><br><span class="line"><span class="string">              &quot;type&quot;: &quot;date&quot;,</span></span><br><span class="line"><span class="string">              &quot;include_in_all&quot;: &quot;false&quot;</span></span><br><span class="line"><span class="string">          &#125;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 重新索引数据</span></span><br><span class="line"><span class="string">curl -X POST 127.0.0.1:9200/_reindex -H &#x27;</span>Content-Type:application/json<span class="string">&#x27; -d &#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;source&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;index&quot;</span>: <span class="string">&quot;articles&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;dest&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;index&quot;</span>: <span class="string">&quot;articles_v2&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>起别名</p>
+<ul>
+<li>如果修改索引库, 代码中的库名称也要对应修改, 为了避免代码的改动, 可以给新的索引库起别名, 让其使用原库的名称</li>
+<li>注意先删除原库, 避免出现名称冲突</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X DELETE 127.0.0.1:9200/articles  <span class="comment"># 先删除原索引库</span></span><br><span class="line">curl -X PUT 127.0.0.1:9200/articles_v2/_alias/articles  <span class="comment"># 给索引库起别名, 设置为原索引库的名称</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询索引别名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看别名指向哪个索引</span></span><br><span class="line">curl 127.0.0.1:9200/*/_alias/articles</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看哪些别名指向这个索引</span></span><br><span class="line">curl 127.0.0.1:9200/articles_v2/_alias/*</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="8-文档数据的增删改查-重点"><a href="#8-文档数据的增删改查-重点" class="headerlink" title="8. 文档数据的增删改查 (重点)"></a>8. 文档数据的增删改查 (重点)</h4><ul>
+<li><p>文档数据</p>
+<ul>
+<li>json形式的字符串</li>
+<li>除了本身包含的数据, 还会包含一些其他信息<ul>
+<li>_index 所在的索引库</li>
+<li>_type 类型(所在的表)</li>
+<li><code>_id</code>  文档id    <code>一般不会自动生成, 而是让其跟踪基础数据库的主键</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>添加数据</p>
+<ul>
+<li><p>使用自定义的文档id   <code>优先考虑</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT /&#123;index&#125;/&#123;<span class="built_in">type</span>&#125;/&#123;<span class="built_in">id</span>&#125;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;field&quot;</span>: <span class="string">&quot;value&quot;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自动生成文档id</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT /&#123;index&#125;/&#123;<span class="built_in">type</span>&#125;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;field&quot;</span>: <span class="string">&quot;value&quot;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>_version 每修改一次数据, 版本号加1, 可以作为乐观锁的判断标准来使用</p>
+</li>
+</ul>
+</li>
+<li><p>查询数据</p>
+<ul>
+<li>根据文档id, 其他的高级查询在下一节</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有的字段数据</span></span><br><span class="line">curl 127.0.0.1:9200/articles/article/150000?pretty</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取一部分字段数据</span></span><br><span class="line">curl 127.0.0.1:9200/articles/article/150000?_source=title,content\&amp;pretty</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">不获取任何字段的数据  使用率最高</span></span><br><span class="line">curl 127.0.0.1:9200/articles/article/150000?_source=false\&amp;pretty</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断文档是否存在<ul>
+<li>注意需要添加 <code>-i</code> 选项</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X HEAD 127.0.0.1:9200/articles/article/150000</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>更新文档<ul>
+<li>本质是先删除该文档的所有数据, 再更新数据, 所以更新时数据必须全部更新</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT 127.0.0.1:9200/articles/article/150000 -H <span class="string">&#x27;Content-Type:application/json&#x27;</span> -d <span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;article_id&quot;: 150000,</span></span><br><span class="line"><span class="string">  &quot;user_id&quot;: 1,</span></span><br><span class="line"><span class="string">  &quot;title&quot;: &quot;c必须是世界上最好的语言&quot;,</span></span><br><span class="line"><span class="string">  &quot;content&quot;: &quot;确实如此&quot;,</span></span><br><span class="line"><span class="string">  &quot;status&quot;: 2,</span></span><br><span class="line"><span class="string">  &quot;create_time&quot;: &quot;2019-04-03&quot;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除文档</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X DELETE 127.0.0.1:9200/articles/article/150000</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>取出多个文档</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET 127.0.0.1:9200/_mget -d &#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;docs&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;_index&quot;: &quot;articles&quot;,</span><br><span class="line">      &quot;_type&quot;: &quot;article&quot;,</span><br><span class="line">      &quot;_id&quot;: 150000</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;_index&quot;: &quot;articles&quot;,</span><br><span class="line">      &quot;_type&quot;: &quot;article&quot;,</span><br><span class="line">      &quot;_id&quot;: 150001</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>总结</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">增加数据</span></span><br><span class="line">PUT  /数据库/类型/文档id  -d &#123;&#125;   # 使用自定义的文档id   一般文档id为基础数据库的主键</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除数据</span></span><br><span class="line">DELETE /数据库/类型/文档id</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查询数据  根据文档<span class="built_in">id</span>查询</span></span><br><span class="line">GET /数据库/类型/文档id?_source=false    不取出任何字段, 但是会返回文档id    字段名 _id</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新数据   不能单独更新一个字段, 必须将该文档的所有都更新(删除原数据, 再覆盖的机制)</span></span><br><span class="line">PUT  /数据库/类型/文档id  -d</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-Logstash导入数据"><a href="#9-Logstash导入数据" class="headerlink" title="9. Logstash导入数据"></a>9. Logstash导入数据</h4><ul>
+<li><p>开发中, 更多的是从现有数据库中导入数据</p>
+</li>
+<li><p>Django中  <code>python manage.py rebuild_index</code> 就是在导入数据</p>
+</li>
+<li><p>方式</p>
+<ul>
+<li>自己写一个程序, 按照之前的语法从数据库中读取数据并添加到es中</li>
+<li>也可以使用Logstash工具导入数据</li>
+</ul>
+</li>
+<li><p>安装</p>
+</li>
+<li><p>从mysql中导入数据</p>
+<ul>
+<li>创建配置文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">input&#123;</span><br><span class="line">     jdbc &#123;  <span class="comment"># java数据库访问的API接口</span></span><br><span class="line">         jdbc_driver_library =&gt; <span class="string">&quot;/home/python/mysql-connector-java-8.0.13/mysql-connector-java-8.0.13.jar&quot;</span></span><br><span class="line">         jdbc_driver_class =&gt; <span class="string">&quot;com.mysql.jdbc.Driver&quot;</span></span><br><span class="line">         jdbc_connection_string =&gt; <span class="string">&quot;jdbc:mysql://127.0.0.1:3306/toutiao?tinyInt1isBit=false&quot;</span></span><br><span class="line">         jdbc_user =&gt; <span class="string">&quot;root&quot;</span></span><br><span class="line">         jdbc_password =&gt; <span class="string">&quot;mysql&quot;</span></span><br><span class="line">         jdbc_paging_enabled =&gt; <span class="string">&quot;true&quot;</span>  <span class="comment"># 数据分页, 一共14W数据</span></span><br><span class="line">         jdbc_page_size =&gt; <span class="string">&quot;1000&quot;</span>  <span class="comment"># 每页1000条数据</span></span><br><span class="line">         jdbc_default_timezone =&gt;<span class="string">&quot;Asia/Shanghai&quot;</span></span><br><span class="line">         statement =&gt; <span class="string">&quot;select a.article_id as article_id,a.user_id as user_id, a.title as title, a.status as status, a.create_time as create_time,  b.content as content from news_article_basic as a inner join news_article_content as b on a.article_id=b.article_id&quot;</span>  <span class="comment"># 联表查询, 尽量起别名,否则ES的字段名称会变为a.xx, 这样和mysql的字段名称会出现差异</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output&#123;</span><br><span class="line">      elasticsearch &#123;</span><br><span class="line">         hosts =&gt; <span class="string">&quot;127.0.0.1:9200&quot;</span></span><br><span class="line">         index =&gt; <span class="string">&quot;articles&quot;</span></span><br><span class="line">         document_id =&gt; <span class="string">&quot;%&#123;article_id&#125;&quot;</span>  <span class="comment"># 让文档id记录文章id, 方便进行数据库查询</span></span><br><span class="line">         document_type =&gt; <span class="string">&quot;article&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">      stdout &#123;  <span class="comment"># 导入过程中以json形式显式的输出导入的内容</span></span><br><span class="line">         codec =&gt; json_lines  </span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>增量更新的配置</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">input&#123;</span><br><span class="line">    record_last_run =&gt; &quot;true&quot;  	# 记录最后一次运行时的数据点, 默认为最后一次更新的时间</span><br><span class="line">  	use_column_value =&gt; &quot;true&quot;  # 不再记录最后一次更新的时间, 而是记录最后一次更新时, 数据库某个字段的值(字段的值要求是递增的)</span><br><span class="line">    tracking_column =&gt; &quot;article_id&quot;  # 设置记录的字段</span><br><span class="line">  last_run_metadata_path =&gt; &quot;/xx/data&quot;    # 数据点的存储位置</span><br><span class="line">    clean_run =&gt; &quot;false&quot;    # 从存储位置开始继续读取, 如果设置为true, 则清除数据点, 从头开始读取</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>解压缩java类库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf mysqlxxx.tar.gz</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行导入命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/share/logstash/bin/logstash -f ./logstash_mysql.conf</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="10-基本查询-重点"><a href="#10-基本查询-重点" class="headerlink" title="10. 基本查询 (重点)"></a>10. 基本查询 (重点)</h4><ul>
+<li>两种查询方法  <ul>
+<li>查询条件设置在查询字符串中</li>
+<li>查询条件设置在请求体中  GET也可以设置</li>
+</ul>
+</li>
+<li>根据文档ID</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET 127.0.0.1:9200/articles/article/1  <span class="comment"># 查询文档id=1d的数据</span></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/1?_source=title,user_id  <span class="comment"># 查询文档id=1d的数据, 只取出标题和用户id</span></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/1?_source=<span class="literal">false</span>   <span class="comment"># 查询文档id=1d的数据,不取出任何基础数据</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>查询所有</p>
+<ul>
+<li>默认分页10条</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?_source=title,user_id</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分页查询</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?_source=title,user_id\&amp;size=3  # 每页3条</span><br><span class="line"></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?_source=title,user_id\&amp;size=3\&amp;from=10  # 从第10条开始取, 取3条</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>全文检索</p>
+<ul>
+<li>%20表示空格</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文章内容匹配 <span class="string">&quot;python web&quot;</span></span></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?q=content:python%20web\&amp;_source=title,article_id\&amp;pretty  # 查询内容匹配&quot;python web&quot;的数据</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文章标题和内容匹配 <span class="string">&quot;python web&quot;</span></span></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?q=title:python%20web,content:python%20web\&amp;_source=title,article_id\&amp;pretty</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">所有字段匹配<span class="string">&quot;python web&quot;</span></span></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?q=_all:python%20web\&amp;_source=title,article_id\&amp;pretty</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="11-高级查询-重点"><a href="#11-高级查询-重点" class="headerlink" title="11. 高级查询(重点)"></a>11. 高级查询(重点)</h4><ul>
+<li>全文检索   </li>
+<li>根据分词后的结果进行查询, 按照得分排序</li>
+<li>match</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search -d&#x27;</span><br><span class="line">  &#123;</span><br><span class="line">      &quot;query&quot; : &#123;</span><br><span class="line">          &quot;match&quot; : &#123;  # 表示全文检索</span><br><span class="line">              &quot;title&quot; : &quot;python web&quot;  # 指定检索的字段</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;&#x27;</span><br><span class="line"></span><br><span class="line">  curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d&#x27;</span><br><span class="line">  &#123;</span><br><span class="line">      &quot;from&quot;: 0,  # 指定分页</span><br><span class="line">      &quot;size&quot;: 5,</span><br><span class="line">      &quot;_source&quot;: [&quot;article_id&quot;,&quot;title&quot;],  # 指定返回的数据</span><br><span class="line">      &quot;query&quot; : &#123;</span><br><span class="line">          &quot;match&quot; : &#123;</span><br><span class="line">              &quot;title&quot; : &quot;python web&quot;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;&#x27;</span><br><span class="line"></span><br><span class="line">  curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d&#x27;</span><br><span class="line"> &#123;</span><br><span class="line">      &quot;from&quot;: 0,</span><br><span class="line">      &quot;size&quot;: 5,</span><br><span class="line">      &quot;_source&quot;: [&quot;article_id&quot;,&quot;title&quot;],</span><br><span class="line">      &quot;query&quot; : &#123;</span><br><span class="line">          &quot;match&quot; : &#123;</span><br><span class="line">              &quot;_all&quot; : &quot;python web 编程&quot;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"> &#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>短语查询   </p>
+<ul>
+<li>要求包含所有的词条, 不需要直接相连, 相对位置不能改变</li>
+<li>match_phrase</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT 127.0.0.1:9200/articles/article/150000 -H &#x27;Content-Type:application/json&#x27; -d &#x27;&#123;</span><br><span class="line">  &quot;article_id&quot;: 150000,</span><br><span class="line">  &quot;title&quot;: &quot;python is good&quot;,</span><br><span class="line">  &quot;status&quot;: 2</span><br><span class="line">&#125;&#x27;</span><br><span class="line"></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d&#x27;</span><br><span class="line"> &#123;</span><br><span class="line">      &quot;from&quot;: 0,</span><br><span class="line">      &quot;size&quot;: 5,</span><br><span class="line">      &quot;_source&quot;: [&quot;article_id&quot;,&quot;title&quot;],</span><br><span class="line">      &quot;query&quot; : &#123;</span><br><span class="line">          &quot;match_phrase&quot; : &#123;</span><br><span class="line">              &quot;title&quot; : &quot;python good&quot;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"> &#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>精确查找   </p>
+<ul>
+<li>不会分词, 必须能够匹配到词条(索引库中必须有该词条)</li>
+<li>term</li>
+</ul>
+</li>
+<li><pre><code class="shell">curl -X PUT 127.0.0.1:9200/articles/article/150000 -H &#39;Content-Type:application/json&#39; -d &#39;
+&#123;
+  &quot;article_id&quot;: 150000,
+  &quot;user_id&quot;: 1,
+  &quot;title&quot;: &quot;确实如此&quot;,  # 确实  实如  如此  
+  &quot;content&quot;: &quot;python is good&quot;,
+  &quot;status&quot;: 2,
+  &quot;create_time&quot;: &quot;2019-04-03&quot;
+&#125;&#39;
+
+
+curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d&#39;
+    &#123;
+        &quot;size&quot;: 5,
+        &quot;_source&quot;: [&quot;title&quot;],
+        &quot;query&quot; : &#123;
+            &quot;term&quot; : &#123;
+                &quot;title&quot; : &quot;确实如此&quot; 
+                &#125;
+            &#125;
+        &#125;
+    &#125;&#39;
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- 范围查找  range</span><br><span class="line">  - <span class="keyword">gt</span>  greater than  大于</span><br><span class="line">  - <span class="keyword">gte</span> greater than equel  大于等于</span><br><span class="line">  - <span class="keyword">lt</span> 小于</span><br><span class="line">  - <span class="keyword">lte</span> 小于等于</span><br><span class="line">  </span><br><span class="line">- 高亮显示</span><br><span class="line">  - highlight</span><br><span class="line">  - 结果中对指定的字段匹配到的位置进行<span class="tag">&lt;em&gt;</span>标识, 设置了html斜体标签</span><br><span class="line">  </span><br><span class="line">  ```shell</span><br><span class="line">  curl -X GET <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span>/articles/article/_search?pretty -d &#x27;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;size&quot;</span>:<span class="number">2</span>,</span><br><span class="line">        <span class="string">&quot;_source&quot;</span>: [<span class="string">&quot;article_id&quot;</span>, <span class="string">&quot;title&quot;</span>, <span class="string">&quot;user_id&quot;</span>],</span><br><span class="line">        <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;match&quot;</span>: &#123;</span><br><span class="line">                 <span class="string">&quot;title&quot;</span>: <span class="string">&quot;python web 编程&quot;</span></span><br><span class="line">             &#125;</span><br><span class="line">         &#125;,</span><br><span class="line">         <span class="string">&quot;highlight&quot;</span>:&#123;</span><br><span class="line">              <span class="string">&quot;fields&quot;</span>: &#123;</span><br><span class="line">                  <span class="string">&quot;title&quot;</span>: &#123;&#125;</span><br><span class="line">              &#125;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x27;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>组合查询  bool</p>
+<ul>
+<li><p>进行逻辑运算</p>
+<p>  must  </p>
+<p>  must_not</p>
+<p>  should  or&#x2F;匹配的文档会增加权重</p>
+</li>
+<li><p>filter  直接过滤掉数据, 不进行评分</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">标题匹配<span class="string">&quot;python web&quot;</span> 并且 内容匹配<span class="string">&quot;python c&quot;</span></span></span><br><span class="line"></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d &#x27;</span><br><span class="line">  &#123;</span><br><span class="line">  &quot;_source&quot;: [&quot;title&quot;, &quot;user_id&quot;],</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">      &quot;bool&quot;: &#123;</span><br><span class="line">          &quot;must&quot;: [&#123;&quot;match&quot;: &#123;&quot;title&quot;: &quot;python web&quot;&#125;&#125;, </span><br><span class="line">                   &#123;&quot;match&quot;: &#123;&quot;content&quot;: &quot;python c&quot;&#125;&#125;]   </span><br><span class="line">       &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">标题匹配<span class="string">&quot;python web&quot;</span> 或者 内容匹配<span class="string">&quot;python c&quot;</span></span></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d &#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;_source&quot;: [&quot;title&quot;, &quot;user_id&quot;],</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">      &quot;bool&quot;: &#123;</span><br><span class="line">          &quot;should&quot;: [&#123;&quot;match&quot;: &#123;&quot;title&quot;: &quot;python web&quot;&#125;&#125;, &#123;&quot;match&quot;: &#123;&quot;content&quot;: &quot;python c&quot;&#125;&#125;],</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">(标题匹配<span class="string">&quot;python web&quot;</span> 并且 内容匹配<span class="string">&quot;python c&quot;</span>) 并且 (状态 匹配2 或者 user_id 匹配1)      -&gt; (A and B) and (C or D)</span></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d &#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;_source&quot;: [&quot;title&quot;, &quot;user_id&quot;],</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">      &quot;bool&quot;: &#123;</span><br><span class="line">          &quot;filter&quot;: &#123;</span><br><span class="line">              &quot;bool&quot;: &#123;</span><br><span class="line">                &quot;must&quot;: [&#123;&quot;match&quot;: &#123;&quot;title&quot;: &quot;python web&quot;&#125;&#125;, &#123;&quot;match&quot;: &#123;&quot;content&quot;: &quot;python&quot;&#125;&#125;],</span><br><span class="line">                &quot;should&quot;: [</span><br><span class="line">                  &#123;&quot;match&quot;: &#123;&quot;status&quot;: 2&#125;&#125;, &#123;&quot;match&quot;: &#123;&quot;user_id&quot;: 1&#125;&#125;</span><br><span class="line">                ]</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>filter和query的区别<ul>
+<li>query匹配完会进行排序</li>
+<li>filter只判断是否满足要求, 不进行排序, 而且对于不满足要求的结果会进行缓存</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">要求 status=2 并且 title 匹配 “python web”</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">只使用query</span></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d &#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;_source&quot;: [&quot;title&quot;, &quot;user_id&quot;],</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">      &quot;bool&quot;: &#123;</span><br><span class="line">          &quot;must&quot;: [</span><br><span class="line">              &#123;&quot;term&quot;: </span><br><span class="line">                  &#123;&quot;status&quot;: 2&#125;</span><br><span class="line">              &#125;,</span><br><span class="line">              &#123;&quot;match&quot;: </span><br><span class="line">              	&#123;&quot;title&quot;: &quot;python web&quot;&#125;</span><br><span class="line">              &#125;</span><br><span class="line">          ]</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">先使用filter过滤, 再使用query排序</span></span><br><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d &#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;_source&quot;: [&quot;title&quot;, &quot;user_id&quot;],</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">      &quot;bool&quot;: &#123;</span><br><span class="line">      		&quot;filter&quot;: &#123;</span><br><span class="line">          	&quot;term&quot;: &#123;&quot;status&quot;: 2&#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          &quot;must&quot;: [</span><br><span class="line">              &#123;&quot;match&quot;: </span><br><span class="line">              	&#123;&quot;title&quot;: &quot;python web&quot;&#125;</span><br><span class="line">              &#125;</span><br><span class="line">          ]</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>排序</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d&#x27;</span><br><span class="line">  &#123;</span><br><span class="line">      &quot;size&quot;: 5,</span><br><span class="line">      &quot;_source&quot;: [&quot;article_id&quot;,&quot;title&quot;],</span><br><span class="line">      &quot;query&quot; : &#123;</span><br><span class="line">          &quot;match&quot; : &#123;</span><br><span class="line">              &quot;_all&quot; : &quot;python web&quot;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;sort&quot;: [</span><br><span class="line">          &#123; &quot;create_time&quot;:  &#123; &quot;order&quot;: &quot;desc&quot; &#125;&#125;,</span><br><span class="line">          &#123; &quot;_score&quot;: &#123; &quot;order&quot;: &quot;desc&quot; &#125;&#125;</span><br><span class="line">      ]</span><br><span class="line">  &#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>提升权重</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET 127.0.0.1:9200/articles/article/_search?pretty -d&#x27;</span><br><span class="line">  &#123;</span><br><span class="line">      &quot;size&quot;: 5,</span><br><span class="line">      &quot;_source&quot;: [&quot;article_id&quot;,&quot;title&quot;],</span><br><span class="line">      &quot;query&quot; : &#123;</span><br><span class="line">      		&quot;must&quot;: [</span><br><span class="line">            &quot;match&quot; : &#123;</span><br><span class="line">                &quot;title&quot; : &#123;</span><br><span class="line">                    &quot;query&quot;: &quot;python web&quot;,</span><br><span class="line">                    &quot;boost&quot;: 4</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;match&quot;: &#123;</span><br><span class="line">            		&quot;content&quot;: &quot;python web&quot;</span><br><span class="line">            &#125;</span><br><span class="line">      		]</span><br><span class="line">          </span><br><span class="line">      &#125;</span><br><span class="line">  &#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="12-python操作ES-重点"><a href="#12-python操作ES-重点" class="headerlink" title="12. python操作ES (重点)"></a>12. python操作ES (重点)</h4><ul>
+<li>安装</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install elasticsearch5  # 安装对应版本的模块</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建ES对象</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> elasticsearch5 <span class="keyword">import</span> Elasticsearch  </span><br><span class="line"></span><br><span class="line"><span class="comment"># elasticsearch集群服务器的地址</span></span><br><span class="line">ES = [</span><br><span class="line">    <span class="string">&#x27;127.0.0.1:9200&#x27;</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建elasticsearch客户端</span></span><br><span class="line">es = Elasticsearch(</span><br><span class="line">    ES,</span><br><span class="line">    <span class="comment"># 启动前嗅探es集群服务器</span></span><br><span class="line">    sniff_on_start=<span class="literal">True</span>,</span><br><span class="line">    <span class="comment"># es集群服务器结点连接异常时是否刷新es节点信息</span></span><br><span class="line">    sniff_on_connection_fail=<span class="literal">True</span>,</span><br><span class="line">    <span class="comment"># 每60秒刷新节点信息</span></span><br><span class="line">    sniffer_timeout=<span class="number">60</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>搜索数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">query = &#123;</span><br><span class="line">    <span class="string">&#x27;query&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;bool&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;must&#x27;</span>: [</span><br><span class="line">                &#123;<span class="string">&#x27;match&#x27;</span>: &#123;<span class="string">&#x27;_all&#x27;</span>: <span class="string">&#x27;python web&#x27;</span>&#125;&#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="string">&#x27;filter&#x27;</span>: [</span><br><span class="line">                &#123;<span class="string">&#x27;term&#x27;</span>: &#123;<span class="string">&#x27;status&#x27;</span>: <span class="number">2</span>&#125;&#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ret = es.search(index=<span class="string">&#x27;articles&#x27;</span>, doc_type=<span class="string">&#x27;article&#x27;</span>, body=query)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 查询title和content<span class="punctuation">,</span> 并且要求文章审核通过(status=<span class="number">2</span>)</span><br><span class="line">curl <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="punctuation">:</span><span class="number">9200</span>/articles/article/_search?pretty -d&#x27;</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;from&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;query&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;bool&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;must&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;_all&quot;</span><span class="punctuation">:</span> <span class="string">&quot;python xx&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;filter&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;term&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">2</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span>&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">doc = &#123;</span><br><span class="line">          <span class="string">&#x27;article_id&#x27;</span>: article.<span class="built_in">id</span>,</span><br><span class="line">          <span class="string">&#x27;user_id&#x27;</span>: article.user_id,</span><br><span class="line">          <span class="string">&#x27;title&#x27;</span>: article.title</span><br><span class="line">      &#125;</span><br><span class="line">es.index(index=<span class="string">&#x27;articles&#x27;</span>, doc_type=<span class="string">&#x27;article&#x27;</span>, body=doc, <span class="built_in">id</span>=article.<span class="built_in">id</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/05/19/Python/%E8%AF%BE%E7%A8%8B/26_flask%E9%A1%B9%E7%9B%AE10-Elasticsearch/index/image-20190813175015189.png" alt="image-20190813175015189"></p>
+<h4 id="13-文章搜索接口"><a href="#13-文章搜索接口" class="headerlink" title="13. 文章搜索接口"></a>13. 文章搜索接口</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 文章搜索接口</span><br><span class="line">/search</span><br><span class="line"># 请求方式 </span><br><span class="line">GET</span><br><span class="line"># 请求参数 </span><br><span class="line">q   查询的内容</span><br><span class="line">page   当前页码</span><br><span class="line">per_page  每页条数</span><br><span class="line"></span><br><span class="line">响应数据 json</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  results<span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  page<span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">  per_page<span class="punctuation">:</span> <span class="number">10</span><span class="punctuation">,</span></span><br><span class="line">  total_count<span class="punctuation">:</span> <span class="number">1004</span>  # 查询结果的总数量</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查询请求</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="punctuation">:</span><span class="number">9200</span>/articles/article/_search?pretty -d&#x27;</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;from&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">10</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span> </span><br><span class="line">	<span class="attr">&quot;query&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;bool&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;must&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;_all&quot;</span><span class="punctuation">:</span> <span class="string">&quot;python web&quot;</span><span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;filter&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;term&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">2</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span>  </span><br><span class="line"><span class="punctuation">&#125;</span>&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="14-发布文章"><a href="#14-发布文章" class="headerlink" title="14. 发布文章"></a>14. 发布文章</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># TODO 将基础数据保存到mysql</span></span><br><span class="line"><span class="comment"># 将文章的数据在ES中建立索引</span></span><br><span class="line">doc = &#123;</span><br><span class="line">          <span class="string">&#x27;article_id&#x27;</span>: article.<span class="built_in">id</span>,</span><br><span class="line">          <span class="string">&#x27;user_id&#x27;</span>: article.user_id,</span><br><span class="line">          <span class="string">&#x27;title&#x27;</span>: article.title,</span><br><span class="line">          <span class="string">&#x27;content&#x27;</span>: article.content.content,</span><br><span class="line">          <span class="string">&#x27;status&#x27;</span>: article.status,</span><br><span class="line">          <span class="string">&#x27;create_time&#x27;</span>: article.ctime</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment"># 指定数据库&amp;类型&amp;插入的内容&amp;自定义的文档id</span></span><br><span class="line">current_app.es.index(index=<span class="string">&#x27;articles&#x27;</span>, doc_type=<span class="string">&#x27;article&#x27;</span>, body=doc, <span class="built_in">id</span>=article.<span class="built_in">id</span>)</span><br></pre></td></tr></table></figure>
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢您给予的支持 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/忘機">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3919408003">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/MyGodOnLoad">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../../../../../js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

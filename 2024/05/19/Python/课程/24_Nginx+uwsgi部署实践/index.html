@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="一名菜鸟的日记本">
+    <meta property="og:type" content="website">
+    <meta name="description" content="一名菜鸟的日记本">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Nginx+uwsgi部署实践 - 神秘的张少爷
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="../../../../../../css/aircloud.css">
+
+    
+<link rel="stylesheet" href="../../../../../../css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+  
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+
+
+  
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="atom.xml" title="神秘的张少爷" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry，Stay Foolish </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>神秘的张少爷</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="../../../../../../index.html">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../../tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../../archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#uwsgi"><span class="toc-text">uwsgi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx"><span class="toc-text">nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx-uwsgi-django-websocket"><span class="toc-text">Nginx + uwsgi + django + websocket</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry，Stay Foolish </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Nginx+uwsgi部署实践
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2024-05-19 20:45:57</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#uwsgi" title="uwsgi">uwsgi</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="uwsgi"><a href="#uwsgi" class="headerlink" title="uwsgi"></a>uwsgi</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install uwsgi</span><br></pre></td></tr></table></figure>
+
+<p>settings.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DEBUG = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = [<span class="string">&#x27;*&#x27;</span>,]</span><br></pre></td></tr></table></figure>
+<p>wsgi.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.environ.setdefault(<span class="string">&quot;DJANGO_SETTINGS_MODULE&quot;</span>, <span class="string">&quot;meiduo_mall.settings.prod&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>uwsgi.ini</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="comment"># 使用Nginx连接时使用，Django程序所在服务器地址</span></span><br><span class="line"><span class="attr">socket</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8001</span></span><br><span class="line"><span class="comment"># 直接做web服务器使用，Django程序所在服务器地址</span></span><br><span class="line"><span class="comment"># http=172.16.21.25:8001</span></span><br><span class="line"><span class="comment"># 项目目录</span></span><br><span class="line"><span class="comment"># chdir=项目路径/meiduo_project/meiduo_mall</span></span><br><span class="line"><span class="attr">chdir</span>=/Users/meihao/Desktop/project/meiduo_mall</span><br><span class="line"><span class="comment"># 项目中wsgi.py文件的目录，相对于项目目录</span></span><br><span class="line"><span class="attr">wsgi-file</span>=meiduo_mall/wsgi.py</span><br><span class="line"><span class="comment"># 进程数</span></span><br><span class="line"><span class="attr">processes</span>=<span class="number">4</span></span><br><span class="line"><span class="comment"># 线程数</span></span><br><span class="line"><span class="attr">threads</span>=<span class="number">2</span></span><br><span class="line"><span class="comment"># uwsgi服务器的角色</span></span><br><span class="line"><span class="attr">master</span>=<span class="literal">True</span></span><br><span class="line"><span class="comment"># 存放进程编号的文件</span></span><br><span class="line"><span class="attr">pidfile</span>=uwsgi.pid</span><br><span class="line"><span class="comment"># 日志文件</span></span><br><span class="line"><span class="attr">daemonize</span>=uwsgi.log</span><br><span class="line"><span class="comment"># 指定依赖的虚拟环境</span></span><br><span class="line"><span class="comment"># virtualenv=/Users/meihao/.virtualenvs/project</span></span><br><span class="line"><span class="attr">virtualenv</span>=虚拟环境路径/.virtualenvs/meiduo_mall</span><br><span class="line"><span class="comment"># 静态文件</span></span><br><span class="line"><span class="attr">static-map</span> = /static=/静态文件路径</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">$ uwsgi --ini uwsgi.ini</span><br><span class="line"><span class="comment"># 状态检查</span></span><br><span class="line">$ ps aux | grep uwsgi</span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">$ uwsgi --stop uwsgi.pid</span><br><span class="line">$ pkill -9f uwsgi</span><br><span class="line"></span><br><span class="line">停止启动状态    uwsgi -- stop uwsgi.pid</span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># <span class="regexp">/etc/</span>nginx<span class="regexp">/conf.d/</span>server.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen 8000;</span><br><span class="line">        server_name www.meiduo.site;</span><br><span class="line"></span><br><span class="line">        error_page 404 /404.html;</span><br><span class="line">        location / &#123;</span><br><span class="line">                include uwsgi_params;  <span class="comment"># 文件uwsgi自带</span></span><br><span class="line">                uwsgi_connect_timeout 30; </span><br><span class="line">                uwsgi_pass 192.168.137.128:8001;  <span class="comment"># 与uwsgi配置一致</span></span><br><span class="line">        &#125;</span><br><span class="line">        location = /static/ &#123;</span><br><span class="line">                <span class="built_in">alias</span> /home/ubuntu/Desktop/project/meiduo_mall/meiduo_mall/static/;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location ^~ /test1 &#123;</span><br><span class="line">                <span class="built_in">return</span> 302 http://www.baidu.com;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu:</span></span><br><span class="line"><span class="comment"># 检查配置文件</span></span><br><span class="line">$ sudo nginx -t</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start nginx</span><br><span class="line"><span class="comment"># 状态</span></span><br><span class="line">systemctl status nginx</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">sudo nginx -s reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># mac:</span></span><br><span class="line">$ sudo /usr/local/bin/nginx -t</span><br><span class="line">sudo /usr/local/bin/nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 日志</span><br><span class="line">/<span class="built_in">var</span>/<span class="built_in">log</span>/nginx/access.<span class="built_in">log</span></span><br><span class="line">/<span class="built_in">var</span>/<span class="built_in">log</span>/nginx/<span class="built_in">error</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /<span class="selector-tag">var</span>/www/<span class="selector-tag">html</span>/   默认<span class="selector-tag">html</span>存储路径</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx-uwsgi-django-websocket"><a href="#Nginx-uwsgi-django-websocket" class="headerlink" title="Nginx + uwsgi + django + websocket"></a>Nginx + uwsgi + django + websocket</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/huguodong/p/6611602.html">https://www.cnblogs.com/huguodong/p/6611602.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lph-shares/p/8708786.html">https://www.cnblogs.com/lph-shares/p/8708786.html</a></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setting.py</span></span><br><span class="line"><span class="attr">WEBSOCKET_FACTORY_CLASS</span> = <span class="string">&#x27;dwebsocket.backends.uwsgi.factory.uWsgiWebSocketFactory&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># uwsgi.ini</span></span><br><span class="line"><span class="comment"># uwisgi 部署</span></span><br><span class="line">uwsgi --ini uwsgi.ini --http-websockets</span><br></pre></td></tr></table></figure>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢您给予的支持 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/忘機">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3919408003">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/MyGodOnLoad">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../../../../../js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

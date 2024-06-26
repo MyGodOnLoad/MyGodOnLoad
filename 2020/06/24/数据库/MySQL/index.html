@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="一名菜鸟的日记本">
+    <meta property="og:type" content="website">
+    <meta name="description" content="一名菜鸟的日记本">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        随笔-数据库 - 神秘的张少爷
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="../../../../../css/aircloud.css">
+
+    
+<link rel="stylesheet" href="../../../../../css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+  
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+
+
+  
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="atom.xml" title="神秘的张少爷" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry，Stay Foolish </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>神秘的张少爷</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="../../../../../index.html">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="toc-text">开启远程登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81%E7%AD%96%E7%95%A5"><span class="toc-text">设置密码策略</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E6%8F%92%E5%85%A5%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%A1%A8"><span class="toc-text">将查询结果插入到另一个表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E9%94%99"><span class="toc-text">报错</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry，Stay Foolish </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        随笔-数据库
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-06-24 17:33:11</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#数据库" title="数据库">数据库</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf mysql-5.7.30-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line"></span><br><span class="line">rpm -Uvh *.rpm --nodeps --force</span><br><span class="line"><span class="comment"># 安装完毕</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置mysql</span></span><br><span class="line"><span class="comment"># 先关闭mysql服务</span></span><br><span class="line">service mysqld stop</span><br><span class="line"><span class="comment"># 修改配置文件</span></span><br><span class="line">vi /etc/my.cnf</span><br><span class="line"></span><br><span class="line"><span class="comment">#---------------------------------------</span></span><br><span class="line"><span class="comment">### Disabling symbolic-links is recommended to prevent assorted security risks</span></span><br><span class="line">skip-grant-tables     <span class="comment">#添加这句话，这时候登入mysql就不需要密码</span></span><br><span class="line">symbolic-links=0</span><br><span class="line"><span class="comment">#------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启mysql服务</span></span><br><span class="line">service mysqld start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 无需账号密码登陆</span></span><br><span class="line"><span class="comment"># 设置密码</span></span><br><span class="line">mysql&gt; <span class="built_in">set</span> password <span class="keyword">for</span> root@localhost = password(<span class="string">&#x27;123456&#x27;</span>);</span><br><span class="line">ERROR 1290 (HY000): The MySQL server is running with the --skip-grant-tables option so it cannot execute this statement</span><br><span class="line">mysql&gt; flush privileges;  <span class="comment">#更新权限</span></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line">mysql&gt; <span class="built_in">set</span> password <span class="keyword">for</span> root@localhost = password(<span class="string">&#x27;123456&#x27;</span>); </span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.00 sec)</span><br><span class="line">mysql&gt;flush privileges; <span class="comment">#更新权限</span></span><br><span class="line">mysql&gt;quit; <span class="comment">#退出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">service mysqld stop <span class="comment"># 停止mysql服务, 恢复mysql配置</span></span><br><span class="line"></span><br><span class="line">vim /etc/my.cnf     <span class="comment">#修改配置文件</span></span><br><span class="line"><span class="comment">#------------------------------------------------</span></span><br><span class="line"><span class="comment"># Disabling symbolic-links is recommended to prevent assorted security risks</span></span><br><span class="line"><span class="comment"># skip-grant-tables # 注释掉这句话</span></span><br><span class="line">symbolic-links=0</span><br><span class="line"><span class="comment">#---------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">service mysqld start <span class="comment"># 启动mysql服务</span></span><br><span class="line"></span><br><span class="line">mysql -uroot -p <span class="comment"># 输入新密码登录</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="开启远程登录"><a href="#开启远程登录" class="headerlink" title="开启远程登录"></a>开启远程登录</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;123123&#x27;</span> <span class="keyword">with</span> <span class="keyword">grant</span> <span class="keyword">option</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>by后面的就是远程登录密码，远程登录密码可以和用户密码不一样</li>
+</ul>
+<h4 id="设置密码策略"><a href="#设置密码策略" class="headerlink" title="设置密码策略"></a>设置密码策略</h4><p>查看密码策略</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW <span class="keyword">VARIABLES</span> LIKE <span class="comment">&#x27;validate_password%&#x27;</span>; </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">validate_password_length  固定密码的总长度；</span><br><span class="line">validate_password_dictionary_file 指定密码验证的文件路径；</span><br><span class="line">validate_password_mixed_case_count  整个密码中至少要包含大/小写字母的总个数；</span><br><span class="line">validate_password_number_count  整个密码中至少要包含阿拉伯数字的个数；</span><br><span class="line">validate_password_policy 指定密码的强度验证等级，默认为 MEDIUM</span><br></pre></td></tr></table></figure>
+
+<p>修改密码策略</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">以validate_password_policy为例</span><br><span class="line"><span class="built_in">set</span> global <span class="attribute">validate_password_policy</span>=LOW;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="将查询结果插入到另一个表"><a href="#将查询结果插入到另一个表" class="headerlink" title="将查询结果插入到另一个表"></a>将查询结果插入到另一个表</h4><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">一：如果要插入目标表不存在：</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">into</span> 目标表 <span class="keyword">from</span> 表 <span class="keyword">where</span> ...</span><br><span class="line"></span><br><span class="line">二：如果要插入目标表已经存在：</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 目的表 <span class="keyword">select</span> * <span class="keyword">from</span> 表 <span class="keyword">where</span> 条件</span><br><span class="line"></span><br><span class="line">三：如果是跨数据库操作的话： 怎么把A数据库的atable表所查询的东西，全部插入到B 数据库的btable表中</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">into</span> B.btable <span class="keyword">from</span> A.atable <span class="keyword">where</span> ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h3><p><strong>1209 - The MySQL server is running with the–read-only option so it cannot execute this statement</strong></p>
+<p>一般这个错误有两种原因：</p>
+<ol>
+<li>连到从库了。从库一般设置为只读。</li>
+<li>主库的read_only参数被修改为1</li>
+</ol>
+<p><strong>暂时解决</strong><br>查看mysql配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> @@read_only;</span><br><span class="line">+-------------+</span><br><span class="line"></span><br><span class="line">| @@read_only |</span><br><span class="line"></span><br><span class="line">+-------------+</span><br><span class="line"></span><br><span class="line">|          1 |</span><br><span class="line"></span><br><span class="line">+-------------+</span><br><span class="line"></span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">修改为0</span><br><span class="line">mysql&gt; <span class="built_in">set</span> global read_only=0;</span><br></pre></td></tr></table></figure>
+
+<p><strong>永久解决</strong></p>
+<p>因为写入数据量太大, 内存溢出导致了mysql的重启<br>配置文件中设置了read_only ，所以重启会导致read_only&#x3D;1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">grep read_only my.cnf</span><br><span class="line"></span><br><span class="line">read_only             = on</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">修改为 read_only = 0</span><br></pre></td></tr></table></figure>
+
+<p><strong>Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘(<code>admin</code>) where user&#x3D;’root’’ at line 1</strong></p>
+<p>MySQL修改密码报错</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> authentication_string<span class="operator">=</span>password(&quot;newpasswd&quot;) <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span>&quot;root&quot;; </span><br></pre></td></tr></table></figure>
+
+<p>使用下面方法成功</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">&#x27;root&#x27;</span>; </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  将加密方式改为和旧版本兼容 ,安装mysql 8 默认的强加密方式，旧版本的加密方式是’mysql_native_password’, </p>
+</blockquote>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢您给予的支持 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/忘機">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3919408003">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/MyGodOnLoad">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../../../../js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

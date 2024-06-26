@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="一名菜鸟的日记本">
+    <meta property="og:type" content="website">
+    <meta name="description" content="一名菜鸟的日记本">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        机器学习算法基础 - 神秘的张少爷
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="../../../../../css/aircloud.css">
+
+    
+<link rel="stylesheet" href="../../../../../css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+  
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+
+
+  
+
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="atom.xml" title="神秘的张少爷" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Stay Hungry，Stay Foolish </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>神秘的张少爷</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="../../../../../index.html">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="../../../../../archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%A8%A1%E5%9E%8B%E9%80%9A%E7%94%A8"><span class="toc-text">算法模型通用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E4%B8%8E%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2"><span class="toc-text">交叉验证与网格搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="toc-text">交叉验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2%EF%BC%88Grid-Search%EF%BC%89"><span class="toc-text">网格搜索（Grid Search）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9AFacebook-%E4%BD%8D%E7%BD%AE%E9%A2%84%E6%B5%8B"><span class="toc-text">案例：Facebook 位置预测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E5%92%8C%E5%8A%A0%E8%BD%BD"><span class="toc-text">模型保存和加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95"><span class="toc-text">分类评估方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E7%8E%87%E4%B8%8E%E5%8F%AC%E5%9B%9E%E7%8E%87"><span class="toc-text">精确率与召回率</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5"><span class="toc-text">混淆矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E7%A1%AE%E7%8E%87"><span class="toc-text">准确率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E7%8E%87%EF%BC%88Precision%EF%BC%89%E2%80%93%E6%9F%A5%E7%9A%84%E5%87%86%E4%B8%8D%E5%87%86"><span class="toc-text">精确率（Precision）–查的准不准</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AC%E5%9B%9E%E7%8E%87%EF%BC%88Recall%EF%BC%89%E2%80%93%E6%9F%A5%E7%9A%84%E5%85%A8%E4%B8%8D%E5%85%A8"><span class="toc-text">召回率（Recall）–查的全不全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#F1-score"><span class="toc-text">F1-score</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A-api"><span class="toc-text">分类评估报告 api</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ROC-%E6%9B%B2%E7%BA%BF%E4%B8%8E-AUC-%E6%8C%87%E6%A0%87"><span class="toc-text">ROC 曲线与 AUC 指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TPR-%E4%B8%8E-FPR"><span class="toc-text">TPR 与 FPR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ROC-%E6%9B%B2%E7%BA%BF"><span class="toc-text">ROC 曲线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AUC-%E6%8C%87%E6%A0%87"><span class="toc-text">AUC 指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AUC-%E6%8C%87%E6%A0%87%E8%AE%A1%E7%AE%97-api"><span class="toc-text">AUC 指标计算 api</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B-ROC-%E6%9B%B2%E7%BA%BF"><span class="toc-text">案例- ROC 曲线</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%E2%80%93KNN"><span class="toc-text">K 近邻算法–KNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%9D%E7%A6%BB%E5%BA%A6%E9%87%8F"><span class="toc-text">距离度量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E5%BC%8F%E8%B7%9D%E7%A6%BB%EF%BC%88Euclidean-Distance%EF%BC%89"><span class="toc-text">欧式距离（Euclidean Distance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB%EF%BC%88Manhattan-Distance%EF%BC%89"><span class="toc-text">曼哈顿距离（Manhattan Distance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB%EF%BC%88Chebyshev-Distance%EF%BC%89"><span class="toc-text">切比雪夫距离（Chebyshev Distance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B5%E5%8F%AF%E5%A4%AB%E6%96%AF%E5%9F%BA%E8%B7%9D%E7%A6%BB%EF%BC%88Minkowski-Distance%EF%BC%89"><span class="toc-text">闵可夫斯基距离（Minkowski Distance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E5%8C%96%E6%AC%A7%E5%BC%8F%E8%B7%9D%E7%A6%BB%EF%BC%88Standardized-Euclidean-Distance%EF%BC%89"><span class="toc-text">标准化欧式距离（Standardized Euclidean Distance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%99%E5%BC%A6%E8%B7%9D%E7%A6%BB%EF%BC%88Cosine-Distance%EF%BC%89"><span class="toc-text">余弦距离（Cosine Distance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB%EF%BC%88Hamming-Distance%EF%BC%89"><span class="toc-text">汉明距离（Hamming Distance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%B0%E5%8D%A1%E5%BE%B7%E8%B7%9D%E7%A6%BB%EF%BC%88Jaccard-Distance%EF%BC%89"><span class="toc-text">杰卡德距离（Jaccard Distance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%AC%E6%B0%8F%E8%B7%9D%E7%A6%BB%EF%BC%88Mahalanobis-Distance%EF%BC%89"><span class="toc-text">马氏距离（Mahalanobis Distance）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#K-%E5%80%BC%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">K 值的选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kd-%E6%A0%91"><span class="toc-text">kd 树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-text">树的建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E8%BF%91%E9%A2%86%E5%9F%9F%E6%90%9C%E7%B4%A2"><span class="toc-text">最近领域搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E7%82%B9-2-1%EF%BC%8C3-1"><span class="toc-text">查找点(2.1，3.1)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E7%82%B9-2%EF%BC%8C4-5"><span class="toc-text">查找点(2，4.5)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">案例：鸢尾花数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%92%E5%88%86"><span class="toc-text">数据集划分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">特征预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BD%92%E4%B8%80%E5%8C%96"><span class="toc-text">归一化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E5%8C%96"><span class="toc-text">标准化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E9%B8%A2%E5%B0%BE%E8%8A%B1%E7%A7%8D%E7%B1%BB%E9%A2%84%E6%B5%8B-%E6%B5%81%E7%A8%8B%E5%AE%9E%E7%8E%B0"><span class="toc-text">案例：鸢尾花种类预测-流程实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">获取数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%9F%BA%E6%9C%AC%E5%A4%84%E7%90%86"><span class="toc-text">数据基本处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="toc-text">特征工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%EF%BC%89"><span class="toc-text">机器学习（模型训练）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="toc-text">模型评估</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0-KNN"><span class="toc-text">手动实现 KNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-text">线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%AF%BC%E6%95%B0"><span class="toc-text">数学导数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="toc-text">优化算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E8%A7%84%E6%96%B9%E7%A8%8B"><span class="toc-text">正规方程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-text">推导</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="toc-text">推导方式一</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="toc-text">推导方式二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">梯度下降</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F"><span class="toc-text">公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95%EF%BC%88FG%EF%BC%89"><span class="toc-text">全梯度下降算法（FG）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95%EF%BC%88SG%EF%BC%89"><span class="toc-text">随机梯度下降算法（SG）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E5%B9%B3%E5%9D%87%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95%EF%BC%88SAG%EF%BC%89"><span class="toc-text">随机平均梯度下降算法（SAG）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E6%89%B9%E9%87%8F%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95%EF%BC%88mini-batch%EF%BC%89"><span class="toc-text">小批量梯度下降算法（mini-batch）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E7%BB%93%E8%AE%BA"><span class="toc-text">对比结论</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92-API"><span class="toc-text">线性回归 API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%B3%A2%E5%A3%AB%E9%A1%BF%E6%88%BF%E4%BB%B7%E9%A2%84%E6%B5%8B"><span class="toc-text">案例：波士顿房价预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E8%A7%84%E6%96%B9%E7%A8%8B-1"><span class="toc-text">正规方程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D-1"><span class="toc-text">梯度下降</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A0%E6%8B%9F%E5%90%88%E3%80%81%E8%BF%87%E6%8B%9F%E5%90%88"><span class="toc-text">欠拟合、过拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-text">正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="toc-text">正则化线性模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ridge-Regression%EF%BC%88%E5%B2%AD%E5%9B%9E%E5%BD%92%EF%BC%89"><span class="toc-text">Ridge Regression（岭回归）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lasso-%E5%9B%9E%E5%BD%92"><span class="toc-text">Lasso 回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Elastic-Net-%E5%BC%B9%E6%80%A7%E7%BD%91%E7%BB%9C"><span class="toc-text">Elastic Net 弹性网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Early-Stopping"><span class="toc-text">Early Stopping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%B4%E7%81%BE%E9%9A%BE"><span class="toc-text">维灾难</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-text">逻辑回归</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%8E%9F%E7%90%86"><span class="toc-text">逻辑回归原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5"><span class="toc-text">输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">激活函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1"><span class="toc-text">损失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96"><span class="toc-text">优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B-%E8%89%AF-%E6%81%B6%E6%80%A7%E8%82%BF%E7%98%A4%E9%A2%84%E6%B5%8B"><span class="toc-text">案例-良&#x2F;恶性肿瘤预测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%86%B5"><span class="toc-text">信息熵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E5%88%92%E5%88%86%E4%BE%9D%E6%8D%AE"><span class="toc-text">决策树的划分依据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A"><span class="toc-text">信息增益</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E6%AF%94"><span class="toc-text">信息增益比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E5%B0%BC%E5%80%BC%E5%92%8C%E5%9F%BA%E5%B0%BC%E6%8C%87%E6%95%B0"><span class="toc-text">基尼值和基尼指数</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Stay Hungry，Stay Foolish </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        机器学习算法基础
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2024-06-26 00:00:00</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="算法模型通用"><a href="#算法模型通用" class="headerlink" title="算法模型通用"></a>算法模型通用</h1><h2 id="交叉验证与网格搜索"><a href="#交叉验证与网格搜索" class="headerlink" title="交叉验证与网格搜索"></a>交叉验证与网格搜索</h2><h3 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h3><p><strong>让模型准确率更加准确可信，不能提高模型准确率</strong><br>将训练数据分为训练集和验证集，将训练数据等分为几等份 就是 几折交叉验证，进行几次模型验证；<br>模型的准确度 为 模型多次验证的准确度的<strong>平均值</strong><br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717590034104-2c1b73c1-a022-4cc9-a2d6-90e563ea74ec.png#averageHue=%23ebedeb&clientId=u2ae43044-40c7-4&from=paste&height=413&id=z8lzW&originHeight=413&originWidth=628&originalType=binary&ratio=1&rotation=0&showTitle=false&size=121904&status=done&style=none&taskId=u390feca2-ba07-4679-bba4-866014e6aca&title=&width=628" alt="image.png"></p>
+<h3 id="网格搜索（Grid-Search）"><a href="#网格搜索（Grid-Search）" class="headerlink" title="网格搜索（Grid Search）"></a>网格搜索（Grid Search）</h3><p><strong>超参数</strong> ：在算法运行之前手动设置的参数<br>网格搜索就是对超参的值的寻优<br>算法运行次数 &#x3D; 超参可能值数量 * 交叉验证次数<br><code>sklearn.model_selection.GridSearchCV(estimator, param_grid-None, cv=None)</code></p>
+<ul>
+<li>对估计器的指定参数值进行详尽搜索</li>
+<li>estimator：估计器对象</li>
+<li>param_grid：估计器参数（dict）{“n_neighbors”: [1,3,5]}</li>
+<li>cv：指定几折交叉验证</li>
+<li>fit：输入训练数据</li>
+<li>score：准确率</li>
+<li>结果分析：<ul>
+<li>bestscore_ ：在交叉验证中验证的最好结果</li>
+<li>bestestimator：最好的参数模型</li>
+<li>cvresults：每次交叉验证后的验证集准确率结果和训练集准确率结果<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets, model_selection, preprocessing, neighbors</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取数据集</span></span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line"><span class="comment"># 数据预处理</span></span><br><span class="line">x_train, x_test, y_train, y_test = model_selection.train_test_split(iris.data, iris.target, test_size=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 特征工程--标准化</span></span><br><span class="line">transfer = preprocessing.StandardScaler()</span><br><span class="line">x_train_stand = transfer.fit_transform(x_train)</span><br><span class="line">x_test_stand = transfer.fit_transform(x_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 机器学习</span></span><br><span class="line">estimator = neighbors.KNeighborsClassifier(n_neighbors=<span class="number">1</span>)</span><br><span class="line">model = model_selection.GridSearchCV(estimator, param_grid=&#123;<span class="string">&quot;n_neighbors&quot;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>, <span class="number">9</span>]&#125;, cv=<span class="number">10</span>)</span><br><span class="line">model.fit(x_train_stand, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型评估</span></span><br><span class="line">model.score(x_test_stand, y_test)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最好的模型：&quot;</span>, model.best_estimator_)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最好的结果：&quot;</span>, model.best_score_)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;整体模型结果：&quot;</span>, model.cv_results_)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="案例：Facebook-位置预测"><a href="#案例：Facebook-位置预测" class="headerlink" title="案例：Facebook 位置预测"></a>案例：Facebook 位置预测</h3><p>数据集 <a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/dataset/106510">facebook位置预测数据集_数据集-阿里云天池</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> model_selection, preprocessing, neighbors</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.获取数据</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;./Facebook/train.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.数据预处理</span></span><br><span class="line"><span class="comment"># 2.1.缩小数据范围</span></span><br><span class="line">data = data.query(<span class="string">&quot;x&gt;2.0 &amp; x&lt;2.5 &amp; y&gt;2.0 &amp; y&lt;2.5&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.2.时间特征处理</span></span><br><span class="line">time = pd.to_datetime(data[<span class="string">&#x27;time&#x27;</span>], unit=<span class="string">&#x27;s&#x27;</span>)</span><br><span class="line">data[<span class="string">&#x27;day&#x27;</span>] = time.dt.day</span><br><span class="line">data[<span class="string">&#x27;hour&#x27;</span>] = time.dt.hour</span><br><span class="line">data[<span class="string">&#x27;weekday&#x27;</span>] = time.dt.weekday</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.3.去掉签到数量少的地方</span></span><br><span class="line"><span class="comment"># place_count = data.groupby(by=[&#x27;place_id&#x27;])[&#x27;place_id&#x27;].count()</span></span><br><span class="line"></span><br><span class="line">place_count = data[<span class="string">&#x27;place_id&#x27;</span>].value_counts()</span><br><span class="line">place_count = place_count[place_count &gt; <span class="number">3</span>]</span><br><span class="line">data = data.loc[data[<span class="string">&#x27;place_id&#x27;</span>].isin(place_count.index), :]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.4.确定特征值和目标值</span></span><br><span class="line">x = data[[<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>,<span class="string">&#x27;accuracy&#x27;</span>,<span class="string">&#x27;day&#x27;</span>,<span class="string">&#x27;hour&#x27;</span>,<span class="string">&#x27;weekday&#x27;</span>]]</span><br><span class="line">y = data[<span class="string">&#x27;place_id&#x27;</span>].to_list()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.5.分割数据</span></span><br><span class="line">x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.特征处理</span></span><br><span class="line"><span class="comment"># 3.1.标准化</span></span><br><span class="line"><span class="comment"># 实例化转换器</span></span><br><span class="line">transformer = preprocessing.StandardScaler()</span><br><span class="line">x_train = transformer.fit_transform(x_train)</span><br><span class="line">x_test = transformer.fit_transform(x_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.机器学习</span></span><br><span class="line">_estimator = neighbors.KNeighborsClassifier()</span><br><span class="line">estimator = model_selection.GridSearchCV(_estimator, param_grid=&#123;<span class="string">&#x27;n_neighbors&#x27;</span>:[<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>]&#125;,cv=<span class="number">9</span>)</span><br><span class="line">estimator.fit(x_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.模型评估</span></span><br><span class="line">estimator.score(x_test, y_test)</span><br><span class="line"><span class="comment"># 评价指标</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最好的模型：&quot;</span>, estimator.best_estimator_)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最好的结果：&quot;</span>, estimator.best_score_)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;整体模型结果：&quot;</span>, estimator.cv_results_)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;超参值：&quot;</span>, estimator.best_params_)</span><br></pre></td></tr></table></figure>
+
+<h2 id="模型保存和加载"><a href="#模型保存和加载" class="headerlink" title="模型保存和加载"></a>模型保存和加载</h2><p><code>from sklearn.externals import joblib</code></p>
+<ul>
+<li>保存：<code>joblib.dump(estimator, &#39;test.pkl&#39;)</code></li>
+<li>加载：<code>estimator = joblib.load(&#39;test.pkl&#39;)</code></li>
+</ul>
+<h2 id="分类评估方法"><a href="#分类评估方法" class="headerlink" title="分类评估方法"></a>分类评估方法</h2><h3 id="精确率与召回率"><a href="#精确率与召回率" class="headerlink" title="精确率与召回率"></a>精确率与召回率</h3><h4 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h4><p>在分类任务下，预测结果与正确标记之间存在四种不同的组合，构成混淆矩阵<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1719123835020-43e5bc0c-86f8-41b4-83f8-bcb5e332eb57.png#averageHue=%23e8e8e8&clientId=u5b53ae38-aefd-4&from=paste&height=320&id=dBPHv&originHeight=320&originWidth=576&originalType=binary&ratio=1&rotation=0&showTitle=false&size=45819&status=done&style=none&taskId=u9c3456c3-ff6c-4eec-868a-9d380c561de&title=&width=576" alt="image.png"></p>
+<h4 id="准确率"><a href="#准确率" class="headerlink" title="准确率"></a>准确率</h4><p>总样本中预测结果正确的比例<br>（TP + TN）&#x2F;（TP + FP + FN + TN）</p>
+<h4 id="精确率（Precision）–查的准不准"><a href="#精确率（Precision）–查的准不准" class="headerlink" title="精确率（Precision）–查的准不准"></a>精确率（Precision）–查的准不准</h4><p>预测结果为正例样本中 真实为正例的比例<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1719123883705-cb6ba826-ab8f-4010-9ed9-bd84f47b3e89.png#averageHue=%23eae7e6&clientId=u5b53ae38-aefd-4&from=paste&height=233&id=S8DOX&originHeight=233&originWidth=461&originalType=binary&ratio=1&rotation=0&showTitle=false&size=56784&status=done&style=none&taskId=uac49d0ec-5119-44ef-b346-8d477dce3ab&title=&width=461" alt="image.png"></p>
+<h4 id="召回率（Recall）–查的全不全"><a href="#召回率（Recall）–查的全不全" class="headerlink" title="召回率（Recall）–查的全不全"></a>召回率（Recall）–查的全不全</h4><p>真实为正例的样本中预测结果为正例的比例<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1719123987760-5e9260f7-934a-4336-8ff5-9d80d27a1891.png#averageHue=%23e8e4e2&clientId=u5b53ae38-aefd-4&from=paste&height=274&id=fYzXL&originHeight=274&originWidth=526&originalType=binary&ratio=1&rotation=0&showTitle=false&size=83798&status=done&style=none&taskId=ubece3a24-1da2-470e-93e2-0257cb9c28e&title=&width=526" alt="image.png"></p>
+<h4 id="F1-score"><a href="#F1-score" class="headerlink" title="F1-score"></a>F1-score</h4><p>反映模型的稳健性<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1719124395690-4b05227e-1e08-4e59-ab25-8e1056b2441c.png#averageHue=%23f6f6f6&clientId=u5b53ae38-aefd-4&from=paste&height=96&id=GaHJg&originHeight=96&originWidth=550&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33156&status=done&style=none&taskId=u7e41b691-2ada-462f-b23c-a69fb079757&title=&width=550" alt="image.png"><br>F1 越接近 1，模型稳健性越好</p>
+<h4 id="分类评估报告-api"><a href="#分类评估报告-api" class="headerlink" title="分类评估报告 api"></a>分类评估报告 api</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sklearn.metrics.classification_report(y_true, y_pred, labels=[], target_names=<span class="literal">None</span>)</span><br><span class="line">- y_true:真实目标值</span><br><span class="line">- y_pred:预测目标值</span><br><span class="line">- labels:指定类别对应的数字</span><br><span class="line">- target_names: 目标类别名称</span><br><span class="line">- <span class="keyword">return</span>: 每个类别的精确率与召回率</span><br></pre></td></tr></table></figure>
+<h3 id="ROC-曲线与-AUC-指标"><a href="#ROC-曲线与-AUC-指标" class="headerlink" title="ROC 曲线与 AUC 指标"></a>ROC 曲线与 AUC 指标</h3><p>AUC 只能用来评价二分类<br>AUC 非常适合评价样本不平衡的分类器性能</p>
+<h4 id="TPR-与-FPR"><a href="#TPR-与-FPR" class="headerlink" title="TPR 与 FPR"></a>TPR 与 FPR</h4><ul>
+<li>TPR &#x3D; TP &#x2F; (TP + FN)<ul>
+<li>所有真实类别为1的样本中，预测类别为1的比例</li>
+</ul>
+</li>
+<li>FPR &#x3D; FP &#x2F; (FP + TN)<ul>
+<li>所有真实类别为0的样本中，预测类别为1的比例</li>
+</ul>
+</li>
+</ul>
+<h4 id="ROC-曲线"><a href="#ROC-曲线" class="headerlink" title="ROC 曲线"></a>ROC 曲线</h4><ol>
+<li>定义：ROC曲线是一种图形工具，用于展示分类模型在不同阈值下的真阳性率（True Positive Rate, TPR）与假阳性率（False Positive Rate, FPR）之间的关系。</li>
+<li>真阳性率（TPR）：也称为敏感度，是实际为正例的样本中被正确预测为正例的比例。</li>
+</ol>
+<ul>
+<li>公式：TPR &#x3D; TP &#x2F; (TP + FN)</li>
+</ul>
+<ol start="3">
+<li>假阳性率（FPR）：是实际为负例的样本中被错误预测为正例的比例。</li>
+</ol>
+<ul>
+<li>公式：FPR &#x3D; FP &#x2F; (FP + TN)</li>
+</ul>
+<ol start="4">
+<li>曲线绘制：通过改变分类模型的阈值，可以得到不同的TPR和FPR值，从而绘制出ROC曲线。</li>
+</ol>
+<ul>
+<li>ROC曲线的横轴就是FPRate，纵轴就是TPRate</li>
+<li>当 TPR 趋近于 1，FPR 趋近于 0 时，模型效果越好</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1719127285095-7361ea76-6974-43ca-9101-54f02a4eb6c5.png#averageHue=%23fafafa&clientId=u5b53ae38-aefd-4&from=paste&height=586&id=Ro0u7&originHeight=586&originWidth=672&originalType=binary&ratio=1&rotation=0&showTitle=false&size=67151&status=done&style=none&taskId=u4e83e603-446a-45a1-8d78-c65013af146&title=&width=672" alt="image.png"></p>
+<h4 id="AUC-指标"><a href="#AUC-指标" class="headerlink" title="AUC 指标"></a>AUC 指标</h4><ol>
+<li>定义：AUC（Area Under the Curve）是指ROC曲线下的面积。AUC值的范围从0到1。</li>
+<li>意义：</li>
+</ol>
+<ul>
+<li>AUC &#x3D; 0.5：表示模型的预测能力等同于随机猜测。</li>
+<li>AUC &gt; 0.5：表示模型具有一定的预测能力。</li>
+<li>AUC &lt; 0.5：表示模型的预测能力比随机猜测还差。</li>
+</ul>
+<ol start="3">
+<li>优点：</li>
+</ol>
+<ul>
+<li><p>AUC不受类别不平衡问题的影响，因为它关注的是TPR和FPR的平衡。</p>
+</li>
+<li><p>AUC提供了一个综合的性能度量，可以比较不同模型的整体性能。</p>
+</li>
+<li><p>AUC的范围在[0, 1]之间，并且越接近1越好，越接近0 越差</p>
+</li>
+<li><p><strong>AUC&#x3D;1，完美分类器，采用这个预测模型时，不管设定什么阈值都能得出完美预测。绝大多数预测的场合，不存在完美分类器。</strong></p>
+</li>
+<li><p><strong>0.5&lt;AUC&lt;1，优于随机猜测。这个分类器（模型）妥善设定阈值的话，能有预测价值。</strong></p>
+</li>
+</ul>
+<h4 id="AUC-指标计算-api"><a href="#AUC-指标计算-api" class="headerlink" title="AUC 指标计算 api"></a>AUC 指标计算 api</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score</span><br><span class="line">sklearn.metrics.roc_auc_score(y_true, y_score)</span><br><span class="line">- 计算ROC曲线面积，即AUC值</span><br><span class="line">- y_true：每个样本的真实类别，必须为<span class="number">0</span>(反例),<span class="number">1</span>(正例)标记</span><br><span class="line">- y_score：预测得分，可以是正类的估计概率、置信值或者分类器方法的返回值</span><br></pre></td></tr></table></figure>
+<h4 id="案例-ROC-曲线"><a href="#案例-ROC-曲线" class="headerlink" title="案例- ROC 曲线"></a>案例- ROC 曲线</h4><p>假设有6次展示记录，有两次被点击了，得到一个展示序列（1:1,2:0,3:1,4:0,5:0,6:0），前面的表示序号，后面的表示点击（1）或没有点击（0）。<br>然后在这6次展示的时候都通过model算出了点击的概率序列。</p>
+<ol>
+<li><strong>如果概率的序列是（1:0.9,2:0.7,3:0.8,4:0.6,5:0.5,6:0.4）</strong><br>与原来的序列一起，得到序列（从概率从高到低排）</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><strong>1</strong></th>
+<th><strong>1</strong></th>
+<th><strong>0</strong></th>
+<th><strong>0</strong></th>
+<th><strong>0</strong></th>
+<th><strong>0</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0.9</td>
+<td>0.8</td>
+<td>0.7</td>
+<td>0.6</td>
+<td>0.5</td>
+<td>0.4</td>
+</tr>
+</tbody></table>
+<p>绘制的步骤是：<br>1）把概率序列从高到低排序，得到顺序（1:0.9,3:0.8,2:0.7,4:0.6,5:0.5,6:0.4）；<br>2）从概率最大开始取一个点作为正类，取到点1，计算得到TPR&#x3D;0.5，FPR&#x3D;0.0；<br>3）从概率最大开始，再取一个点作为正类，取到点3，计算得到TPR&#x3D;1.0，FPR&#x3D;0.0；<br>4）再从最大开始取一个点作为正类，取到点2，计算得到TPR&#x3D;1.0，FPR&#x3D;0.25;<br>5）以此类推，得到6对TPR和FPR。<br>然后把这6对数据组成6个点(0,0.5),(0,1.0),(0.25,1),(0.5,1),(0.75,1),(1.0,1.0)。<br>这6个点在二维坐标系中能绘出来。<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1719222053385-3f7d5298-237f-45d2-8445-2465d7e76ae6.png#averageHue=%23fbfbfb&clientId=u5b53ae38-aefd-4&from=paste&height=518&id=Iejt7&originHeight=518&originWidth=1462&originalType=binary&ratio=1&rotation=0&showTitle=false&size=74361&status=done&style=none&taskId=ua0ffb3c8-88b6-443f-bff3-3bf4055eee4&title=&width=1462" alt="roc1.png"></p>
+<ol start="2">
+<li><strong>如果概率的序列是（1:0.9,2:0.8,3:0.7,4:0.6,5:0.5,6:0.4）</strong><br>与原来的序列一起，得到序列（从概率从高到低排）</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0.9</td>
+<td>0.8</td>
+<td>0.7</td>
+<td>0.6</td>
+<td>0.5</td>
+<td>0.4</td>
+</tr>
+</tbody></table>
+<p>绘制的步骤是：<br>6）把概率序列从高到低排序，得到顺序（1:0.9,2:0.8,3:0.7,4:0.6,5:0.5,6:0.4）；<br>7）从概率最大开始取一个点作为正类，取到点1，计算得到TPR&#x3D;0.5，FPR&#x3D;0.0；<br>8）从概率最大开始，再取一个点作为正类，取到点2，计算得到TPR&#x3D;0.5，FPR&#x3D;0.25；<br>9）再从最大开始取一个点作为正类，取到点3，计算得到TPR&#x3D;1.0，FPR&#x3D;0.25;<br>10）以此类推，得到6对TPR和FPR。<br>然后把这6对数据组成6个点(0,0.5),(0.25,0.5),(0.25,1),(0.5,1),(0.75,1),(1.0,1.0)。<br>这6个点在二维坐标系中能绘出来。<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1719222358857-747c979e-e8cd-43d9-8646-f216829110b9.png#averageHue=%23fbfbfb&clientId=u5b53ae38-aefd-4&from=drop&id=Uzudh&originHeight=504&originWidth=1392&originalType=binary&ratio=1&rotation=0&showTitle=false&size=72899&status=done&style=none&taskId=u96bb8fdb-4626-44ad-b292-126b57479f6&title=" alt="roc2.png"></p>
+<ol start="3">
+<li><strong>如果概率的序列是（1:0.4,2:0.6,3:0.5,4:0.7,5:0.8,6:0.9）</strong><br>与原来的序列一起，得到序列（从概率从高到低排）</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><strong>0</strong></th>
+<th><strong>0</strong></th>
+<th><strong>0</strong></th>
+<th><strong>0</strong></th>
+<th><strong>1</strong></th>
+<th><strong>1</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0.9</td>
+<td>0.8</td>
+<td>0.7</td>
+<td>0.6</td>
+<td>0.5</td>
+<td>0.4</td>
+</tr>
+</tbody></table>
+<p>绘制的步骤是：<br>11）把概率序列从高到低排序，得到顺序（6:0.9,5:0.8,4:0.7,2:0.6,3:0.5,1:0.4）；<br>12）从概率最大开始取一个点作为正类，取到点6，计算得到TPR&#x3D;0.0，FPR&#x3D;0.25；<br>13）从概率最大开始，再取一个点作为正类，取到点5，计算得到TPR&#x3D;0.0，FPR&#x3D;0.5；<br>14）再从最大开始取一个点作为正类，取到点4，计算得到TPR&#x3D;0.0，FPR&#x3D;0.75;<br>15）以此类推，得到6对TPR和FPR。<br>然后把这6对数据组成6个点(0.25,0.0),(0.5,0.0),(0.75,0.0),(1.0,0.0),(1.0,0.5),(1.0,1.0)。<br>这6个点在二维坐标系中能绘出来。<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1719222497717-032c33db-256d-45ff-a976-664cf4c6c41c.png#averageHue=%23fbfbfb&clientId=u5b53ae38-aefd-4&from=drop&id=gAxWA&originHeight=516&originWidth=1372&originalType=binary&ratio=1&rotation=0&showTitle=false&size=82251&status=done&style=none&taskId=u03821e91-7a43-4f95-bdd9-73357727ce6&title=" alt="roc3.png"></p>
+<h1 id="K-近邻算法–KNN"><a href="#K-近邻算法–KNN" class="headerlink" title="K 近邻算法–KNN"></a>K 近邻算法–KNN</h1><p><code>pip install scikit-learn</code><br>基础使用</p>
+<ul>
+<li><code>sklearn.neighbors.KNeighborsClassifier(n_neighbors=5)</code></li>
+<li>n_neighbors ：使用的邻居数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line">x = [[<span class="number">0</span>], [<span class="number">1</span>],[<span class="number">2</span>],[<span class="number">3</span>]]</span><br><span class="line">y = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化</span></span><br><span class="line">estimator = KNeighborsClassifier(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 训练</span></span><br><span class="line">estimator.fit(x, y)</span><br><span class="line"><span class="comment"># 预测</span></span><br><span class="line">estimator.predict([[<span class="number">6</span>]])</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="距离度量"><a href="#距离度量" class="headerlink" title="距离度量"></a>距离度量</h2><h3 id="欧式距离（Euclidean-Distance）"><a href="#欧式距离（Euclidean-Distance）" class="headerlink" title="欧式距离（Euclidean Distance）"></a>欧式距离（Euclidean Distance）</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717493986139-aefe0d3f-83ff-41b3-909b-b121e08446ef.png#averageHue=%23f9f9f9&clientId=u05d12713-3db9-4&from=paste&height=258&id=ua56440da&originHeight=258&originWidth=632&originalType=binary&ratio=1&rotation=0&showTitle=false&size=69165&status=done&style=none&taskId=u2f130f3f-8efc-41dd-9722-80eae91b2f3&title=&width=632" alt="image.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = [[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">4</span>]]</span><br><span class="line">经计算：</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>(<span class="number">2</span>-<span class="number">1</span>, <span class="number">2</span>) + <span class="built_in">pow</span>(<span class="number">2</span>-<span class="number">1</span>, <span class="number">2</span>), <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>(<span class="number">3</span>-<span class="number">1</span>, <span class="number">2</span>) + <span class="built_in">pow</span>(<span class="number">3</span>-<span class="number">1</span>, <span class="number">2</span>), <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>(<span class="number">4</span>-<span class="number">1</span>, <span class="number">2</span>) + <span class="built_in">pow</span>(<span class="number">4</span>-<span class="number">1</span>, <span class="number">2</span>), <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>(<span class="number">3</span>-<span class="number">2</span>, <span class="number">2</span>) + <span class="built_in">pow</span>(<span class="number">3</span>-<span class="number">2</span>, <span class="number">2</span>), <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>(<span class="number">4</span>-<span class="number">2</span>, <span class="number">2</span>) + <span class="built_in">pow</span>(<span class="number">4</span>-<span class="number">2</span>, <span class="number">2</span>), <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>(<span class="number">4</span>-<span class="number">3</span>, <span class="number">2</span>) + <span class="built_in">pow</span>(<span class="number">4</span>-<span class="number">3</span>, <span class="number">2</span>), <span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717494522545-8f52732b-2803-4b7b-954a-5e69a9543460.png#averageHue=%23263d4c&clientId=u05d12713-3db9-4&from=paste&height=123&id=u03fbb06d&originHeight=123&originWidth=365&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11880&status=done&style=none&taskId=u424e08cc-30cb-4d42-b8a2-5bc9e09147f&title=&width=365" alt="image.png"></p>
+<h3 id="曼哈顿距离（Manhattan-Distance）"><a href="#曼哈顿距离（Manhattan-Distance）" class="headerlink" title="曼哈顿距离（Manhattan Distance）"></a>曼哈顿距离（Manhattan Distance）</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717494135403-a09eb4ac-efea-4179-940d-adf2ad455113.png#averageHue=%23a7a68d&clientId=u05d12713-3db9-4&from=paste&height=523&id=ucfc5faed&originHeight=523&originWidth=616&originalType=binary&ratio=1&rotation=0&showTitle=false&size=227352&status=done&style=none&taskId=u287f7789-6049-411e-83bb-f745e2fd841&title=&width=616" alt="image.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = [[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">4</span>]]</span><br><span class="line">经计算：</span><br><span class="line"><span class="built_in">abs</span>(<span class="number">2</span>-<span class="number">1</span>) + <span class="built_in">abs</span>(<span class="number">2</span>-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">abs</span>(<span class="number">3</span>-<span class="number">1</span>) + <span class="built_in">abs</span>(<span class="number">3</span>-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">1</span>) + <span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">abs</span>(<span class="number">3</span>-<span class="number">2</span>) + <span class="built_in">abs</span>(<span class="number">3</span>-<span class="number">2</span>)</span><br><span class="line"><span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">2</span>) + <span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">2</span>)</span><br><span class="line"><span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">3</span>) + <span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717494616725-79bb1510-4716-4968-945d-a9f0b90170d2.png#averageHue=%232a4051&clientId=u05d12713-3db9-4&from=paste&height=124&id=u0163f0cf&originHeight=124&originWidth=180&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5476&status=done&style=none&taskId=u8511cdd1-feaf-4ae2-8cad-0d5eaea4e0d&title=&width=180" alt="image.png"></p>
+<h3 id="切比雪夫距离（Chebyshev-Distance）"><a href="#切比雪夫距离（Chebyshev-Distance）" class="headerlink" title="切比雪夫距离（Chebyshev Distance）"></a>切比雪夫距离（Chebyshev Distance）</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717494700581-8cc75a14-8880-4381-8434-44bc52ccdceb.png#averageHue=%23d9c6b4&clientId=u05d12713-3db9-4&from=paste&height=472&id=ubdb4f63d&originHeight=472&originWidth=633&originalType=binary&ratio=1&rotation=0&showTitle=false&size=136878&status=done&style=none&taskId=u371ee497-c6ba-477d-9d0f-7ebc9af653e&title=&width=633" alt="image.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = [[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">4</span>]]</span><br><span class="line">经计算：</span><br><span class="line"><span class="built_in">max</span>(<span class="built_in">abs</span>(<span class="number">2</span>-<span class="number">1</span>), <span class="built_in">abs</span>(<span class="number">2</span>-<span class="number">1</span>))</span><br><span class="line"><span class="built_in">max</span>(<span class="built_in">abs</span>(<span class="number">3</span>-<span class="number">1</span>), <span class="built_in">abs</span>(<span class="number">3</span>-<span class="number">1</span>))</span><br><span class="line"><span class="built_in">max</span>(<span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">1</span>), <span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">1</span>))</span><br><span class="line"><span class="built_in">max</span>(<span class="built_in">abs</span>(<span class="number">3</span>-<span class="number">2</span>), <span class="built_in">abs</span>(<span class="number">3</span>-<span class="number">2</span>))</span><br><span class="line"><span class="built_in">max</span>(<span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">2</span>), <span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">2</span>))</span><br><span class="line"><span class="built_in">max</span>(<span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">3</span>), <span class="built_in">abs</span>(<span class="number">4</span>-<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717494886074-258a89c5-47f5-4f30-b868-aad88c5681c0.png#averageHue=%23344653&clientId=u05d12713-3db9-4&from=paste&height=130&id=u3975c789&originHeight=130&originWidth=210&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7159&status=done&style=none&taskId=ud7e8c3ec-6a0a-409e-8198-58b87afb83a&title=&width=210" alt="image.png"></p>
+<h3 id="闵可夫斯基距离（Minkowski-Distance）"><a href="#闵可夫斯基距离（Minkowski-Distance）" class="headerlink" title="闵可夫斯基距离（Minkowski Distance）"></a>闵可夫斯基距离（Minkowski Distance）</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717495007425-64d75b31-c3a3-4a46-9dc9-cd6b0458acfb.png#averageHue=%23f5f5f5&clientId=u05d12713-3db9-4&from=paste&height=389&id=u2c1a51ed&originHeight=389&originWidth=564&originalType=binary&ratio=1&rotation=0&showTitle=false&size=82708&status=done&style=none&taskId=uf27a308e-a82a-4b67-8e26-c5830039539&title=&width=564" alt="image.png"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>以上四种距离计算公式，忽略了各特征的区别和权重，如 人的特征（身高、体重），并且 各特征的分布（期望、方差等）是不通的</p>
+<h3 id="标准化欧式距离（Standardized-Euclidean-Distance）"><a href="#标准化欧式距离（Standardized-Euclidean-Distance）" class="headerlink" title="标准化欧式距离（Standardized Euclidean Distance）"></a>标准化欧式距离（Standardized Euclidean Distance）</h3><p>针对欧式距离的缺点而改进，也可称为 加权欧式距离<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717495551401-1e88344c-2d27-4ae5-b812-44e00e0f246d.png#averageHue=%23f7f7f7&clientId=u05d12713-3db9-4&from=paste&height=304&id=ud88ba4f5&originHeight=304&originWidth=654&originalType=binary&ratio=1&rotation=0&showTitle=false&size=73312&status=done&style=none&taskId=ub2f8370a-747d-4b66-8073-817833ad698&title=&width=654" alt="image.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = [[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">4</span>]]</span><br><span class="line">经计算：</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>((<span class="number">2</span>-<span class="number">1</span>) / <span class="number">0.5</span>, <span class="number">2</span>) + <span class="built_in">pow</span>((<span class="number">2</span>-<span class="number">1</span>) / <span class="number">1</span>, <span class="number">2</span>) , <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>((<span class="number">3</span>-<span class="number">1</span>) / <span class="number">0.5</span>, <span class="number">2</span>) + <span class="built_in">pow</span>((<span class="number">3</span>-<span class="number">1</span>) / <span class="number">1</span>, <span class="number">2</span>) , <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>((<span class="number">4</span>-<span class="number">1</span>) / <span class="number">0.5</span>, <span class="number">2</span>) + <span class="built_in">pow</span>((<span class="number">4</span>-<span class="number">1</span>) / <span class="number">1</span>, <span class="number">2</span>) , <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>((<span class="number">3</span>-<span class="number">2</span>) / <span class="number">0.5</span>, <span class="number">2</span>) + <span class="built_in">pow</span>((<span class="number">3</span>-<span class="number">2</span>) / <span class="number">1</span>, <span class="number">2</span>) , <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>((<span class="number">4</span>-<span class="number">2</span>) / <span class="number">0.5</span>, <span class="number">2</span>) + <span class="built_in">pow</span>((<span class="number">4</span>-<span class="number">2</span>) / <span class="number">1</span>, <span class="number">2</span>) , <span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">pow</span>(<span class="built_in">pow</span>((<span class="number">4</span>-<span class="number">3</span>) / <span class="number">0.5</span>, <span class="number">2</span>) + <span class="built_in">pow</span>((<span class="number">4</span>-<span class="number">3</span>) / <span class="number">1</span>, <span class="number">2</span>) , <span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717495944769-4de895d5-1790-4563-a379-24f403c0cf77.png#averageHue=%2330424f&clientId=u05d12713-3db9-4&from=paste&height=128&id=JbuzQ&originHeight=128&originWidth=453&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15582&status=done&style=none&taskId=u18ad3f67-eab4-4282-a390-e879fb7c617&title=&width=453" alt="image.png"></p>
+<h3 id="余弦距离（Cosine-Distance）"><a href="#余弦距离（Cosine-Distance）" class="headerlink" title="余弦距离（Cosine Distance）"></a>余弦距离（Cosine Distance）</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717496131587-1746f791-4317-4d19-b0c4-0a61ee156b4d.png#averageHue=%23f7f7f7&clientId=u05d12713-3db9-4&from=paste&height=412&id=u80f01141&originHeight=412&originWidth=656&originalType=binary&ratio=1&rotation=0&showTitle=false&size=104468&status=done&style=none&taskId=u49908606-e1d0-4250-a941-4c506790502&title=&width=656" alt="image.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = [[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">4</span>]]</span><br><span class="line">经计算：</span><br><span class="line">(<span class="number">1</span>*<span class="number">1</span> + <span class="number">1</span>*<span class="number">2</span>) / (<span class="built_in">pow</span>(<span class="number">1</span>^<span class="number">2</span> + <span class="number">1</span>^<span class="number">2</span> , <span class="number">0.5</span>) * <span class="built_in">pow</span>(<span class="number">1</span>^<span class="number">2</span> + <span class="number">2</span>^<span class="number">2</span>, <span class="number">0.5</span>))</span><br><span class="line">(<span class="number">1</span>*<span class="number">2</span> + <span class="number">1</span>*<span class="number">5</span>) / (<span class="built_in">pow</span>(<span class="number">1</span>^<span class="number">2</span> + <span class="number">1</span>^<span class="number">2</span> , <span class="number">0.5</span>) * <span class="built_in">pow</span>(<span class="number">2</span>^<span class="number">2</span> + <span class="number">5</span>^<span class="number">2</span>, <span class="number">0.5</span>))</span><br><span class="line">(<span class="number">1</span>*<span class="number">1</span> + <span class="number">1</span>*(-<span class="number">4</span>)) / (<span class="built_in">pow</span>(<span class="number">1</span>^<span class="number">2</span> + <span class="number">1</span>^<span class="number">2</span> , <span class="number">0.5</span>) * <span class="built_in">pow</span>(<span class="number">1</span>^<span class="number">2</span> + (-<span class="number">4</span>)^<span class="number">2</span>, <span class="number">0.5</span>))</span><br><span class="line">(<span class="number">1</span>*<span class="number">2</span> + <span class="number">2</span>*<span class="number">5</span>) / (<span class="built_in">pow</span>(<span class="number">1</span>^<span class="number">2</span> + <span class="number">2</span>^<span class="number">2</span> , <span class="number">0.5</span>) * <span class="built_in">pow</span>(<span class="number">2</span>^<span class="number">2</span> + <span class="number">5</span>^<span class="number">2</span>, <span class="number">0.5</span>))</span><br><span class="line">(<span class="number">1</span>*<span class="number">1</span> + <span class="number">2</span>*(-<span class="number">4</span>)) / (<span class="built_in">pow</span>(<span class="number">1</span>^<span class="number">2</span> + <span class="number">2</span>^<span class="number">2</span> , <span class="number">0.5</span>) * <span class="built_in">pow</span>(<span class="number">1</span>^<span class="number">2</span> + (-<span class="number">4</span>)^<span class="number">2</span>, <span class="number">0.5</span>))</span><br><span class="line">(<span class="number">2</span>*<span class="number">1</span> + <span class="number">5</span>*(-<span class="number">4</span>)) / (<span class="built_in">pow</span>(<span class="number">2</span>^<span class="number">2</span> + <span class="number">5</span>^<span class="number">2</span> , <span class="number">0.5</span>) * <span class="built_in">pow</span>(<span class="number">1</span>^<span class="number">2</span> + (-<span class="number">4</span>)^<span class="number">2</span>, <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717497477749-344a2674-0c9b-490d-8581-745fbe055a1f.png#averageHue=%232e414e&clientId=u05d12713-3db9-4&from=paste&height=125&id=u3f5e5b04&originHeight=125&originWidth=578&originalType=binary&ratio=1&rotation=0&showTitle=false&size=38611&status=done&style=none&taskId=u8d59e69c-56cc-4706-8fd3-670b36ec1e1&title=&width=578" alt="image.png"></p>
+<h3 id="汉明距离（Hamming-Distance）"><a href="#汉明距离（Hamming-Distance）" class="headerlink" title="汉明距离（Hamming Distance）"></a>汉明距离（Hamming Distance）</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717497561656-70b462ce-bd49-4beb-8958-868a93f14a5d.png#averageHue=%23efeded&clientId=u05d12713-3db9-4&from=paste&height=557&id=ue43028e7&originHeight=557&originWidth=639&originalType=binary&ratio=1&rotation=0&showTitle=false&size=195837&status=done&style=none&taskId=ued0426bb-3af9-41fe-ae6e-9afc65bba7c&title=&width=639" alt="image.png"><br><strong>汉明重量</strong>：字符串相对于同样长度的零字符串的汉明距离，是字符串中非零的元素个数。对于二进制字符串来说，就是1的个数，所以11101的汉明重量是4。因此，如果向量空间中的元素a和b之间的汉明距离等于它们汉明重量的差a-b。<br>应用：汉明重量分析在包括信息论、编码理论、密码学等领域都有应用。比如在信息编码过程中，为了增强容错性，应使得编码间的最小汉明距离尽可能大。但是，如果要比较两个不同长度的字符串，不仅要进行替换，而且要进行插入与删除的运算，在这种场合下，通常使用更加复杂的编辑距离等算法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = [[<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],[<span class="number">11</span>,<span class="number">2</span>],[<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>]]</span><br><span class="line">注：以下计算方式中，把<span class="number">2</span>个向量之间的汉明距离定义为<span class="number">2</span>个向量不通的分量所占的百分比</span><br><span class="line"></span><br><span class="line">经计算：</span><br><span class="line"><span class="number">2</span>/<span class="number">3</span></span><br><span class="line"><span class="number">3</span>/<span class="number">3</span></span><br><span class="line"><span class="number">1</span>/<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h3 id="杰卡德距离（Jaccard-Distance）"><a href="#杰卡德距离（Jaccard-Distance）" class="headerlink" title="杰卡德距离（Jaccard Distance）"></a>杰卡德距离（Jaccard Distance）</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717498200134-c6663845-5916-4688-abdb-787e95a7b212.png#averageHue=%23f3f3f3&clientId=u05d12713-3db9-4&from=paste&height=415&id=ub5051e4d&originHeight=415&originWidth=654&originalType=binary&ratio=1&rotation=0&showTitle=false&size=105037&status=done&style=none&taskId=u801ad524-365e-492d-a1c5-dd30a1d7c70&title=&width=654" alt="image.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = [[<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>], [<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>], [-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>]]</span><br><span class="line">注：以下计算中，把杰卡德距离定义为不同的维度个数占“非全零维度”的比例</span><br><span class="line">经计算：</span><br><span class="line"><span class="number">1</span>/<span class="number">2</span>  x1 x2</span><br><span class="line"><span class="number">1</span>/<span class="number">2</span>  x1 x3</span><br><span class="line"><span class="number">2</span>/<span class="number">2</span>  x2 x3</span><br></pre></td></tr></table></figure>
+<h3 id="马氏距离（Mahalanobis-Distance）"><a href="#马氏距离（Mahalanobis-Distance）" class="headerlink" title="马氏距离（Mahalanobis Distance）"></a>马氏距离（Mahalanobis Distance）</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717498646189-4aa5fbe4-6030-46ef-966b-0e1c4080628e.png#averageHue=%23f3f3f3&clientId=u05d12713-3db9-4&from=paste&height=412&id=ucb02010e&originHeight=412&originWidth=643&originalType=binary&ratio=1&rotation=0&showTitle=false&size=144120&status=done&style=none&taskId=ua195feaa-c306-4ed3-932a-88c22c4ab30&title=&width=643" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717498727357-5fa63eb4-52b6-444d-8b40-4825ec655976.png#averageHue=%23f1f1f1&clientId=u05d12713-3db9-4&from=paste&height=319&id=u7767d374&originHeight=319&originWidth=650&originalType=binary&ratio=1&rotation=0&showTitle=false&size=109525&status=done&style=none&taskId=u0053ae99-e88a-4567-9e36-60794cd3619&title=&width=650" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717498872745-51e686db-71fa-436c-9ae9-10a185335252.png#averageHue=%23f3f2ef&clientId=u05d12713-3db9-4&from=paste&height=506&id=u76eb207d&originHeight=506&originWidth=657&originalType=binary&ratio=1&rotation=0&showTitle=false&size=192483&status=done&style=none&taskId=u6bf3afa5-576e-467f-9a0a-65f412f15a7&title=&width=657" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717498910695-a4b29fbb-8f8a-440f-a153-aef805399cad.png#averageHue=%23f1f0f0&clientId=u05d12713-3db9-4&from=paste&height=498&id=ucd932e3a&originHeight=498&originWidth=647&originalType=binary&ratio=1&rotation=0&showTitle=false&size=191628&status=done&style=none&taskId=ue4cca2a4-22de-4072-a463-0e9fc9e06a1&title=&width=647" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717499077004-68e0f279-473c-4b8a-bb56-8883a043ff4e.png#averageHue=%23f9f9f9&clientId=u05d12713-3db9-4&from=paste&height=319&id=ua2ee2ede&originHeight=319&originWidth=626&originalType=binary&ratio=1&rotation=0&showTitle=false&size=61813&status=done&style=none&taskId=uc4755bda-23ce-4698-9820-851d2d4fbc5&title=&width=626" alt="image.png"></p>
+<h2 id="K-值的选择"><a href="#K-值的选择" class="headerlink" title="K 值的选择"></a>K 值的选择</h2><ul>
+<li>K 值的减小：整体模型变得复杂，容易发生过拟合</li>
+<li>K 值的增大：整体模型变得简单，欠拟合</li>
+<li>K&#x3D;N（N 为训练样本数量），则完全不足取，模型过于简单</li>
+</ul>
+<p><strong>近似误差</strong>：对现有训练集的训练误差。关注训练集，如果近似误差过小可能会导致过拟合。<br><strong>估计误差</strong>：对测试集的测试误差。关注测试集，估计误差小说明对未知数据的预测能力好，模型本身最接近最佳模型。</p>
+<h2 id="kd-树"><a href="#kd-树" class="headerlink" title="kd 树"></a>kd 树</h2><p>KNN 的问题：</p>
+<ul>
+<li>实现 k 近邻算法时，主要考虑的问题是如何对训练数据进行快速 k 近邻搜索。</li>
+<li>k 近邻算法最简单的实现是 线性扫描，计算耗时，算法复杂度 O(DN^2)，N 个样本，D 个特征。</li>
+<li>为提高 KNN 搜索效率，使用特殊的结构存储训练数据，以减小计算次数。</li>
+</ul>
+<p>kd 树：</p>
+<ul>
+<li>为避免每次重新计算一遍距离，算法会把距离信息保存在一棵树中，从树里查询距离信息，避免重新计算</li>
+<li>基本原理：如果 A 和 B 距离很远，B 和 C 距离很近，那么 A 和 C 的距离也很远</li>
+<li>算法复杂度 O(DNlog(N))</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717501527054-8bfdd7cd-1c44-4365-af23-89498ecde83f.png#averageHue=%23f9f9f9&clientId=u05d12713-3db9-4&from=paste&height=679&id=u664c258e&originHeight=679&originWidth=647&originalType=binary&ratio=1&rotation=0&showTitle=false&size=132368&status=done&style=none&taskId=ub1890838-579a-4982-8ae0-68a95c146b7&title=&width=647" alt="image.png"></p>
+<ol>
+<li>树的建立</li>
+<li>最近领域搜索</li>
+</ol>
+<p>kd 树（K-dimension tree）是一种对 k 维空间中的实例点进行存储以便对其进行快速搜索的树形数据结构</p>
+<ul>
+<li>是一种二叉树</li>
+<li>构造 kd 树相当于不断地用垂直于坐标轴的超平面将 k 维空间切分，构成一系列的 k 维超矩形区域。kd 树的结点对应于一个 k 维超矩形区域</li>
+<li>利用 kd 树可以省去对大部分数据点的搜索，从而减少计算量</li>
+</ul>
+<h3 id="树的建立"><a href="#树的建立" class="headerlink" title="树的建立"></a>树的建立</h3><p>kd 树每层需要选定向量中的某一维，根据这一维按左小右大的方式划分数据，在构造过程中关键需要解决 2 个问题：</p>
+<ul>
+<li>选择向量的哪一维进行划分<ul>
+<li>简单方法：随机选择某一维度或按顺序选择</li>
+<li>更优方法：选择数据较分散的维度，分散程度可根据方差来衡量</li>
+</ul>
+</li>
+<li>如何划分数据<ul>
+<li>选择中位数进行划分</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717502839775-e9e81170-d109-497f-a80c-ab6ad8badf1f.png#averageHue=%23f7f6f6&clientId=u05d12713-3db9-4&from=paste&height=397&id=ue2bc5a08&originHeight=397&originWidth=660&originalType=binary&ratio=1&rotation=0&showTitle=false&size=111735&status=done&style=none&taskId=u9bd6a90e-fd55-49d3-8a5f-faf948abaa5&title=&width=660" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717502995430-fb0af607-a01d-4e66-873a-596fac276098.png#averageHue=%23f7f7f7&clientId=u05d12713-3db9-4&from=paste&height=271&id=u1e7d6d5a&originHeight=271&originWidth=398&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66311&status=done&style=none&taskId=u33201b7b-b5cc-45b3-b645-1b20482bff4&title=&width=398" alt="image.png"></p>
+<h3 id="最近领域搜索"><a href="#最近领域搜索" class="headerlink" title="最近领域搜索"></a>最近领域搜索</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717503237093-f3baa50c-3bef-40c1-bf4d-acd7c077f06e.png#averageHue=%23f4f4f4&clientId=u05d12713-3db9-4&from=paste&height=648&id=u8c10f2a3&originHeight=648&originWidth=650&originalType=binary&ratio=1&rotation=0&showTitle=false&size=137439&status=done&style=none&taskId=u3350b4f7-bc9f-45e3-802f-4c251f99a89&title=&width=650" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717503767479-c1924267-5c24-4d0f-96f7-e71f52d88e2e.png#averageHue=%23f8f7f0&clientId=u05d12713-3db9-4&from=paste&height=299&id=u26fd55f5&originHeight=299&originWidth=646&originalType=binary&ratio=1&rotation=0&showTitle=false&size=62502&status=done&style=none&taskId=u22d26be7-1358-4f49-8241-3f69396e75e&title=&width=646" alt="image.png"></p>
+<h4 id="查找点-2-1，3-1"><a href="#查找点-2-1，3-1" class="headerlink" title="查找点(2.1，3.1)"></a>查找点(2.1，3.1)</h4><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717503545979-e240db9c-ff5f-4dc8-817e-02c40243714c.png#averageHue=%23f1f1f1&clientId=u05d12713-3db9-4&from=paste&height=514&id=uc2cfc68f&originHeight=514&originWidth=659&originalType=binary&ratio=1&rotation=0&showTitle=false&size=162610&status=done&style=none&taskId=u6edc7ec6-5c87-47be-b735-bd77ac56302&title=&width=659" alt="image.png"></p>
+<h4 id="查找点-2，4-5"><a href="#查找点-2，4-5" class="headerlink" title="查找点(2，4.5)"></a>查找点(2，4.5)</h4><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717504052835-0cff778c-394f-443e-93ba-85ae25459620.png#averageHue=%23f2f2f0&clientId=u05d12713-3db9-4&from=paste&height=577&id=u6b1b05b6&originHeight=577&originWidth=673&originalType=binary&ratio=1&rotation=0&showTitle=false&size=229384&status=done&style=none&taskId=ub0f2c8c6-8b20-4ed8-a276-d90168a2fec&title=&width=673" alt="image.png"></p>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p><code>scikit-learn</code>数据集 API</p>
+<ul>
+<li><code>scikit-learn.datasets</code><ul>
+<li>加载获取流行数据集</li>
+<li><code>datasets.load_*()</code><ul>
+<li>获取小规模数据集，数据包含在 datasets 里</li>
+</ul>
+</li>
+<li><code>datasets.fetch_*(data_home=None, subset=&#39;train&#39;)</code><ul>
+<li>获取大规模数据集，需要联网下载</li>
+<li>data_home 表示数据集下载的目录，默认是 <code>~/scikit_learn_data</code></li>
+<li>subset：‘train’（训练数据集）、‘test’（测试数据集）、‘all’（所有数据集）</li>
+</ul>
+</li>
+<li>返回值数据类型 <code>datasets.base.Bunch</code>字典格式<ul>
+<li>data：特征数据数组</li>
+<li>target：标签数组</li>
+<li>DESCR：数据描述</li>
+<li>feature_names：特征名</li>
+<li>target_names：标签名</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris, fetch_20newsgroups</span><br><span class="line"></span><br><span class="line">iris = load_iris()</span><br><span class="line"></span><br><span class="line">news = fetch_20newsgroups()</span><br></pre></td></tr></table></figure>
+<h3 id="案例：鸢尾花数据集"><a href="#案例：鸢尾花数据集" class="headerlink" title="案例：鸢尾花数据集"></a>案例：鸢尾花数据集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> font_manager</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">font_manager.fontManager.addfont(os.path.join(<span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;static&#x27;</span>, <span class="string">&#x27;simhei.ttf&#x27;</span>))</span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;SimHei&#x27;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line">iris_df = pd.DataFrame(iris.data, columns=iris.feature_names)</span><br><span class="line">iris_df[<span class="string">&#x27;target&#x27;</span>] = iris.target</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_iris</span>(<span class="params">iris, col1, col2, target</span>):</span><br><span class="line">    sns.lmplot(iris, x=col1, y=col2, hue=target, fit_reg=<span class="literal">True</span>)</span><br><span class="line">    plt.xlabel(col1)</span><br><span class="line">    plt.ylabel(col2)</span><br><span class="line">    plt.title(<span class="string">&#x27;鸢尾花种类分布&#x27;</span>)</span><br><span class="line">    plt.savefig(<span class="string">&#x27;鸢尾花种类分布.png&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">plot_iris(iris_df, <span class="string">&#x27;petal width (cm)&#x27;</span>, <span class="string">&#x27;sepal length (cm)&#x27;</span>, <span class="string">&#x27;target&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717579157312-1f4ccbde-cfa4-4e90-816d-eaefa9d0f8cf.png#averageHue=%23fcfaf9&clientId=u6de17889-a7ab-4&from=drop&id=u3fe78600&originHeight=500&originWidth=557&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43510&status=done&style=none&taskId=ua6398c0f-91ee-4b70-844b-f1ea6bbb069&title=" alt="鸢尾花种类分布.png"></p>
+<h3 id="数据集划分"><a href="#数据集划分" class="headerlink" title="数据集划分"></a>数据集划分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> model_selection</span><br><span class="line">x_train, x_test, y_train, y_test = model_selection.train_test_split(iris.data, iris.target, test_size=<span class="number">0.2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="特征预处理"><a href="#特征预处理" class="headerlink" title="特征预处理"></a>特征预处理</h2><h4 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h4><p>通过对原始数据进行变换把数据映射到（默认为 [0，1] ）之间<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717581435342-99428cab-5eae-44bb-82ef-3c3145ee6b13.png#averageHue=%23f4f4f3&clientId=u2ae43044-40c7-4&from=paste&height=483&id=ucb7e90a0&originHeight=483&originWidth=631&originalType=binary&ratio=1&rotation=0&showTitle=false&size=140284&status=done&style=none&taskId=ufb3b4bac-4030-4e47-a9b0-a9068757430&title=&width=631" alt="image.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">num = <span class="number">100</span></span><br><span class="line">milage = [random.randint(<span class="number">0</span>, <span class="number">10000</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num)]</span><br><span class="line">liters = [random.random() * <span class="number">20</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num)]</span><br><span class="line">consumtime = [random.random() * <span class="number">24</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num)]</span><br><span class="line">data = pd.DataFrame(&#123;<span class="string">&#x27;milage&#x27;</span>:milage, <span class="string">&#x27;liters&#x27;</span>:liters, <span class="string">&#x27;consumtime&#x27;</span>:consumtime&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化转换器</span></span><br><span class="line">transfer = MinMaxScaler(feature_range=(<span class="number">0</span>, <span class="number">1</span>))</span><br><span class="line"><span class="comment"># 转换</span></span><br><span class="line">minmax_data = transfer.fit_transform(data[[<span class="string">&#x27;milage&#x27;</span>,<span class="string">&#x27;liters&#x27;</span>,<span class="string">&#x27;consumtime&#x27;</span>]])</span><br><span class="line">minmax_data</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>容易受异常数据的影响<br>稳定性较差，只适合传统精确小数据场景</p>
+</blockquote>
+<h4 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h4><p>通过对原始数据进行变换把数据变换到均值为 0，标准差为 1 的范围内。<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717583128155-66b4b709-a76c-4459-ad1e-c121985779dd.png#averageHue=%23fbfafa&clientId=u2ae43044-40c7-4&from=paste&height=555&id=uaf7c142f&originHeight=555&originWidth=576&originalType=binary&ratio=1&rotation=0&showTitle=false&size=67710&status=done&style=none&taskId=u82ea502b-9e9c-4140-84f2-00edc0e9b0d&title=&width=576" alt="image.png"></p>
+<blockquote>
+<p>异常数据影响小<br>适合现代嘈杂大数据场景</p>
+</blockquote>
+<h2 id="案例：鸢尾花种类预测-流程实现"><a href="#案例：鸢尾花种类预测-流程实现" class="headerlink" title="案例：鸢尾花种类预测-流程实现"></a>案例：鸢尾花种类预测-流程实现</h2><p><code>sklearn.neighbors.KNeighborsClassifier(n_neighbors=5, algorithm=&#39;auto&#39;)</code></p>
+<ul>
+<li><code>n_neighbors</code>: 邻居数</li>
+<li><code>algorithm</code>: (‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’)<ul>
+<li>auto : 算法自己决定适合的搜索算法</li>
+<li>brute ：暴力搜索，即线性扫描</li>
+<li>kd_tree ：构造 kd 树存储数据以便进行快速搜索的树形结构</li>
+<li>ball_tree : 为了克服 kd 树高维失效而发明的，其构造过程是以质心 C 和半径 r 分割样本空间，每个节点是一个超球体</li>
+</ul>
+</li>
+</ul>
+<h3 id="获取数据集"><a href="#获取数据集" class="headerlink" title="获取数据集"></a>获取数据集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets, model_selection, preprocessing, neighbors</span><br><span class="line"></span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="数据基本处理"><a href="#数据基本处理" class="headerlink" title="数据基本处理"></a>数据基本处理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据分割</span></span><br><span class="line">x_train, x_test, y_train, y_test = model_selection.train_test_split(iris.data, iris.target, test_size=<span class="number">0.2</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实例化标准化转换器</span></span><br><span class="line">transfer = preprocessing.StandardScaler()</span><br><span class="line"><span class="comment"># 标准化</span></span><br><span class="line">x_train_stand = transfer.fit_transform(x_train)</span><br><span class="line">x_test_stand = transfer.fit_transform(x_test)</span><br></pre></td></tr></table></figure>
+<h3 id="机器学习（模型训练）"><a href="#机器学习（模型训练）" class="headerlink" title="机器学习（模型训练）"></a>机器学习（模型训练）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实例化估计器</span></span><br><span class="line">model = neighbors.KNeighborsClassifier()</span><br><span class="line"><span class="comment"># 模型训练</span></span><br><span class="line">model.fit(x_train_stand, y_train)</span><br></pre></td></tr></table></figure>
+<h3 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出预测值</span></span><br><span class="line">y_pre = model.predict(x_test_stand)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;预测值和真实值对比：&quot;</span>, y_pre == y_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出准确率</span></span><br><span class="line">model.score(x_test_stand, y_test)</span><br></pre></td></tr></table></figure>
+<h2 id="手动实现-KNN"><a href="#手动实现-KNN" class="headerlink" title="手动实现 KNN"></a>手动实现 KNN</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 定义KNN算法类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">KNN</span>:</span><br><span class="line">    <span class="comment"># KNN算法初始化</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, n_neighbors=<span class="number">5</span></span>):</span><br><span class="line">        self.n_neighbors = n_neighbors</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fit</span>(<span class="params">self, X, y</span>):</span><br><span class="line">        self.X = X</span><br><span class="line">        self.y = y</span><br><span class="line">                                        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">euclidean_distance</span>(<span class="params">self, x1, x2</span>): </span><br><span class="line">        <span class="keyword">return</span> np.sqrt(np.<span class="built_in">sum</span>((x1 - x2) ** <span class="number">2</span>)) <span class="comment"># 两个向量</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">predict</span>(<span class="params">self, X_test</span>):  </span><br><span class="line">        y_pred = []</span><br><span class="line">        <span class="keyword">for</span> test_sample <span class="keyword">in</span> X_test:</span><br><span class="line">            distances = [self.euclidean_distance(test_sample, x) <span class="keyword">for</span> x <span class="keyword">in</span> self.X]</span><br><span class="line">            nearest_indices:numpy.ndarray = np.argsort(distances)[:self.n_neighbors] <span class="comment"># 排序</span></span><br><span class="line">            nearest_labels = self.y[nearest_indices]</span><br><span class="line">            unique_labels, counts = np.unique(nearest_labels, return_counts=<span class="literal">True</span>)<span class="comment"># 返回值是一个包含两个数组的元组，第一个数组是唯一的标签值，第二个数组是对应每个唯一标签值的计数</span></span><br><span class="line">            predicted_label = unique_labels[np.argmax(counts)] <span class="comment"># np.argmax(counts)返回数组中最大元素的索引</span></span><br><span class="line">            y_pred.append(predicted_label)</span><br><span class="line">        <span class="keyword">return</span> np.array(y_pred) <span class="comment"># 将预测结果转换为数组并返回  </span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 加载鸢尾花数据集</span></span><br><span class="line">iris = load_iris()</span><br><span class="line">x = iris.data</span><br><span class="line">y = iris.target</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 划分训练集和测试集</span></span><br><span class="line">x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=<span class="number">0.3</span>, random_state=<span class="number">100</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 实例化KNN算法类</span></span><br><span class="line">knn = KNN(n_neighbors=<span class="number">5</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 将训练集送入knn算法</span></span><br><span class="line">knn.fit(x_train, y_train)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 预测测试集</span></span><br><span class="line">y_pred = knn.predict(x_test)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 预测结果展示</span></span><br><span class="line">labels = [<span class="string">&quot;山鸢尾&quot;</span>,<span class="string">&quot;虹膜锦葵&quot;</span>,<span class="string">&quot;变色鸢尾&quot;</span>]   </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(y_pred)):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第%d次测试:\t预测值:%s\t\t真实值:%s&quot;</span>%((i+<span class="number">1</span>),labels[y_pred[i]],labels[y_test[i]])) </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 计算准确率</span></span><br><span class="line"><span class="comment"># accuracy_score()函数位于sklearn.metrics模块中，属于Scikit-learn库的一部分</span></span><br><span class="line">accuracy = accuracy_score(y_test, y_pred) <span class="comment"># accuracy_score()函数会比较真实标签值和预测标签值，并计算出准确分类的样本数占总样本数的比例，即准确率。</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;准确率:&quot;</span>, accuracy)</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<p>优点：</p>
+<ol>
+<li>简单直观：KNN算法的思想简单明了，易于理解和实现。</li>
+<li>无需训练过程：KNN是一种基于实例的学习方法，不需要显式地进行训练，而是根据训练数据集直接进行预测。</li>
+<li>对数据分布没有假设：KNN算法对数据分布没有假设，适用于各种类型的数据。</li>
+<li>可以进行多分类，适合类域交叉样本：KNN算法可以处理多分类问题，并且在类别不平衡的情况下也能有效工作。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>计算复杂度高：KNN算法需要计算测试样本和所有训练样本之间的距离，当样本规模较大时，计算复杂度较高。</li>
+<li>存储开销大：KNN算法需要保存所有的训练样本，对内存要求较高。</li>
+<li>预测速度慢：由于需要计算距离并比较所有训练样本，KNN算法的预测速度相对较慢。</li>
+<li>对异常值敏感：KNN算法对异常值敏感，如果训练集中有噪声或异常值，可能会对预测结果产生较大影响。</li>
+<li>需要确定K值：KNN算法中的K值需要人为设定，选择不当可能导致预测结果不准确。</li>
+<li>不擅长不均衡样本</li>
+</ol>
+</blockquote>
+<h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p>利用回归方程对一个或多个自变量（特征值）和因变量（目标值）之间关系进行建模的一种方式。<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717661265917-6aad685b-c326-4d71-a4ed-ca8048eee3bd.png#averageHue=%23fbfbfb&clientId=uc07adeab-8ed0-4&from=paste&height=504&id=ufa30f1e9&originHeight=504&originWidth=615&originalType=binary&ratio=1&rotation=0&showTitle=false&size=87894&status=done&style=none&taskId=u7026b9de-6183-442b-a075-6d1850e70b1&title=&width=615" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717661356920-17e4a609-43ea-4ffb-b314-07003ac5e098.png#averageHue=%23fdfdfd&clientId=uc07adeab-8ed0-4&from=paste&height=199&id=u91d19bb7&originHeight=199&originWidth=622&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28730&status=done&style=none&taskId=u70ce3be8-ee0b-4675-9046-79e45123a16&title=&width=622" alt="image.png"><br>分类：</p>
+<ol>
+<li>线性关系</li>
+<li>非线性关系</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717661583084-7d0852cd-cc6d-43a6-8076-2f6668eea461.png#averageHue=%23fbfbfb&clientId=uc07adeab-8ed0-4&from=paste&height=203&id=uef212c4b&originHeight=410&originWidth=516&originalType=binary&ratio=1&rotation=0&showTitle=false&size=38166&status=done&style=none&taskId=ud3981062-312d-4942-9da4-73757d0c230&title=&width=256" alt="image.png"><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717661635999-ca2b55f6-ab30-48a6-a913-37856c703324.png#averageHue=%23fbf9f8&clientId=uc07adeab-8ed0-4&from=paste&height=219&id=u4ebe7545&originHeight=481&originWidth=514&originalType=binary&ratio=1&rotation=0&showTitle=false&size=101221&status=done&style=none&taskId=ue9418c25-dba7-4084-a030-6f8d2b81706&title=&width=234" alt="image.png"><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717661671937-27ac84a8-a342-4d5e-a777-4d40f6e6223e.png#averageHue=%23f7f5f3&clientId=uc07adeab-8ed0-4&from=paste&height=214&id=uf8eb9777&originHeight=285&originWidth=366&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42202&status=done&style=none&taskId=u8f7055ac-d19c-44df-a5b3-4e896842b21&title=&width=275" alt="image.png"></p>
+<p><code>sklearn.linear_model.LinearRegression()</code></p>
+<ul>
+<li><code>LinearRegression.coef_</code>：回归系数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"></span><br><span class="line">x = [[<span class="number">80</span>, <span class="number">86</span>],</span><br><span class="line">     [<span class="number">82</span>, <span class="number">80</span>],</span><br><span class="line">     [<span class="number">85</span>, <span class="number">78</span>],</span><br><span class="line">     [<span class="number">90</span>, <span class="number">90</span>],</span><br><span class="line">     [<span class="number">86</span>, <span class="number">82</span>],</span><br><span class="line">     [<span class="number">82</span>, <span class="number">90</span>],</span><br><span class="line">     [<span class="number">78</span>, <span class="number">80</span>],</span><br><span class="line">     [<span class="number">92</span>, <span class="number">94</span>]]</span><br><span class="line">y = [<span class="number">84.2</span>, <span class="number">80.6</span>, <span class="number">80.1</span>, <span class="number">90</span>, <span class="number">83.2</span>, <span class="number">87.6</span>, <span class="number">79.4</span>, <span class="number">93.4</span>]</span><br><span class="line"></span><br><span class="line">estimator = linear_model.LinearRegression()</span><br><span class="line">estimator.fit(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看回归系数</span></span><br><span class="line">estimator.coef_</span><br><span class="line"></span><br><span class="line">estimator.predict([[<span class="number">80</span>, <span class="number">100</span>]])</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="数学导数"><a href="#数学导数" class="headerlink" title="数学导数"></a>数学导数</h2><p><a target="_blank" rel="noopener" href="https://www.yuque.com/shenmidezhangshaoye/zl4zhb/vgwh218h1erf8wwy?view=doc_embed">数学基础知识</a></p>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717830537753-4c572f13-e013-48de-ba5f-07feed470bac.png#averageHue=%23f7f7f7&clientId=u62119e98-5ac7-4&from=paste&height=166&id=u4e4e1feb&originHeight=166&originWidth=565&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41718&status=done&style=none&taskId=u0bd94c48-d0a9-476a-8513-8e974957b9c&title=&width=565" alt="image.png"></p>
+<h2 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h2><h3 id="正规方程"><a href="#正规方程" class="headerlink" title="正规方程"></a>正规方程</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717830749149-cbf321d0-81bc-499c-86b9-4eba1e7cd51b.png#averageHue=%23f9f8f8&clientId=u62119e98-5ac7-4&from=paste&height=454&id=u1c6f2e07&originHeight=569&originWidth=565&originalType=binary&ratio=1&rotation=0&showTitle=false&size=92700&status=done&style=none&taskId=u4952e788-f16d-4863-8691-8e1a2aec766&title=&width=451" alt="image.png"></p>
+<h4 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h4><h5 id="推导方式一"><a href="#推导方式一" class="headerlink" title="推导方式一"></a>推导方式一</h5><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717831936296-a0affc9b-3574-4952-ac02-8b27434217d7.png#averageHue=%23f9f9f9&clientId=u62119e98-5ac7-4&from=paste&height=568&id=ufd5c5fe1&originHeight=568&originWidth=578&originalType=binary&ratio=1&rotation=0&showTitle=false&size=148729&status=done&style=none&taskId=uee1413a8-a574-4aa8-9ab1-24ee9629f00&title=&width=578" alt="image.png"></p>
+<h5 id="推导方式二"><a href="#推导方式二" class="headerlink" title="推导方式二"></a>推导方式二</h5><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717833662907-8e1bc051-935f-4ccd-9767-351feafc3f76.png#averageHue=%23b0aca6&clientId=u62119e98-5ac7-4&from=paste&height=716&id=u71c0a13c&originHeight=716&originWidth=800&originalType=binary&ratio=1&rotation=0&showTitle=false&size=586445&status=done&style=none&taskId=u152f6205-dcf7-4e6b-b05b-ca3d533cd9c&title=&width=800" alt="image.png"><br><a target="_blank" rel="noopener" href="https://www.yuque.com/shenmidezhangshaoye/zl4zhb/vgwh218h1erf8wwy#gPa5w">应用–正规方程公式推导</a></p>
+<h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><h4 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h4><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717851368693-7cbd6682-ab6a-4957-96b3-1274fc1fd44f.png#averageHue=%23f3f3f3&clientId=u62119e98-5ac7-4&from=paste&height=74&id=u6b3f1251&originHeight=74&originWidth=248&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8584&status=done&style=none&taskId=u1842d8a7-41da-4c36-8d74-09dbb90b24b&title=&width=248" alt="image.png"><br>学习率<br>微分   梯度</p>
+<ol>
+<li>单变量函数的梯度下降</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717850874357-cf625d43-2cca-4b69-97af-98d186b3f3aa.png#averageHue=%23fbfbfb&clientId=u62119e98-5ac7-4&from=paste&height=416&id=u77af5fec&originHeight=488&originWidth=504&originalType=binary&ratio=1&rotation=0&showTitle=false&size=68850&status=done&style=none&taskId=u1411d0ec-2d5b-4e8e-95bc-8f5ea81cb45&title=&width=430" alt="image.png"><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717850904497-17ec3cc4-0197-47d0-b4ba-41a51da1dba5.png#averageHue=%23fbfbfb&clientId=u62119e98-5ac7-4&from=paste&height=419&id=u0486fe67&originHeight=528&originWidth=507&originalType=binary&ratio=1&rotation=0&showTitle=false&size=58662&status=done&style=none&taskId=u844ad467-334f-44c6-a4e2-f77846f60a9&title=&width=402" alt="image.png"></p>
+<ol start="2">
+<li>多变量函数的梯度下降</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717850957608-2530adf2-0646-48f8-908d-7b9762181f4e.png#averageHue=%23fafaf9&clientId=u62119e98-5ac7-4&from=paste&height=528&id=ue62cf0b4&originHeight=573&originWidth=577&originalType=binary&ratio=1&rotation=0&showTitle=false&size=140646&status=done&style=none&taskId=u52774a8b-1f0f-4a26-af81-971f6d42432&title=&width=532" alt="image.png"></p>
+<h4 id="全梯度下降算法（FG）"><a href="#全梯度下降算法（FG）" class="headerlink" title="全梯度下降算法（FG）"></a>全梯度下降算法（FG）</h4><ul>
+<li>计算训练集所有样本误差，对其求和再取平均值作为目标函数</li>
+<li>因为在执行更新时，需要在整个数据集上计算所有的梯度，所以全梯度下降法的速度很慢。</li>
+<li>无法处理超出内存容量限制的数量集</li>
+<li>不能在线更新模型，即 在运行过程中，不能增加新的样本</li>
+</ul>
+<h4 id="随机梯度下降算法（SG）"><a href="#随机梯度下降算法（SG）" class="headerlink" title="随机梯度下降算法（SG）"></a>随机梯度下降算法（SG）</h4><ul>
+<li>每次只代入计算一个样本目标函数的梯度来更新权重，再取下一个样本重复此过程，直到损失函数值停止下降或损失函数值小于某个可以容忍的阈值。</li>
+<li>简单、高效，通常能较好的避免更新迭代收敛到局部最优解</li>
+<li>缺点：<ul>
+<li>每一轮梯度更新都完全与上一轮的数据和梯度无关</li>
+<li>若遇上噪声 则容易陷入局部最优解</li>
+</ul>
+</li>
+</ul>
+<h4 id="随机平均梯度下降算法（SAG）"><a href="#随机平均梯度下降算法（SAG）" class="headerlink" title="随机平均梯度下降算法（SAG）"></a>随机平均梯度下降算法（SAG）</h4><ul>
+<li>克服了 SG 的“每一轮梯度更新都完全与上一轮的数据和梯度无关”</li>
+<li>在内存中为每一个样本都维护一个旧的梯度，随机选择第 i 个样本来更新此样本的梯度，其他样本的梯度保持不变，然后求得所有梯度的平均值，进而更新参数。</li>
+<li>每一轮更新仅需计算一个样本的梯度，计算成本等同于 SG，但收敛速度快得多</li>
+</ul>
+<h4 id="小批量梯度下降算法（mini-batch）"><a href="#小批量梯度下降算法（mini-batch）" class="headerlink" title="小批量梯度下降算法（mini-batch）"></a>小批量梯度下降算法（mini-batch）</h4><ul>
+<li>在一定程度上，兼顾了 全梯度下降 和 随机梯度下降 两种方法的优点</li>
+<li>每次从训练样本集中随机抽取一个小样本集，在抽出来的小样本集上采用 FG 迭代更新权重</li>
+</ul>
+<h4 id="对比结论"><a href="#对比结论" class="headerlink" title="对比结论"></a>对比结论</h4><ol>
+<li>FG 方法花费的时间成本最多，内存存储最大。</li>
+<li>SAG 在训练初期表现不佳，优化速度较慢。这是因为常将初始梯度设置为 0，而 SAG 每轮梯度更新都结合了上一轮梯度值。</li>
+<li>综合考虑迭代次数和运行时间，SG 表现性能都很好，能在训练初期快速摆脱初始梯度值，快速将平均损失函数降到很低。但要注意，在使用 SG 方法时要慎重选择步长，否则容易错过最优解。</li>
+<li>mini-batch 结合了 SG 和 FG，表现居于 SG 和 FG 之间。在目前的机器学习领域，mini-batch 是使用最多的梯度下降算法，因为它避开了 FG 运算效率低、成本大 和 SG 收敛效果不稳定 的缺点。</li>
+</ol>
+<h3 id="线性回归-API"><a href="#线性回归-API" class="headerlink" title="线性回归 API"></a>线性回归 API</h3><p><code>sklearn.linear_model.LinearRegression()</code></p>
+<ul>
+<li>通过正规方程优化</li>
+<li><code>fit_intercept</code>：是否计算偏置</li>
+<li><code>LinearRegression.coef_</code>：回归系数</li>
+<li><code>LinearRegression.intercept_</code>：偏置</li>
+</ul>
+<p><code>sklearn.linear_model.SGDRegressor(loss=&#39;squared_loss&#39;, fit_intercept=True, learning_rate=&#39;invscaling&#39;,eta0=0.01)</code></p>
+<ul>
+<li><code>SGDRegressor</code>类实现了随机梯度下降学习，它支持不同的 loss 函数和正则化惩罚项来拟合线性回归模型</li>
+<li><code>loss</code>：损失类型<ul>
+<li><code>squared_loss</code>：普通最小二乘法</li>
+</ul>
+</li>
+<li><code>fit_intercept</code>：是否计算偏置</li>
+<li><code>learning_rate</code>：string，学习率<ul>
+<li><code>constant</code>：<code>eta = eta0</code></li>
+<li><code>optimal</code>：<code>eta = 1.0 / (alpha * (t + t0))</code> [default]</li>
+<li><code>invscalling</code> ：<code>eta = eta0 / pow(t, power_t)</code> ，<code>power_t=0.25</code> 存在父类当中</li>
+</ul>
+</li>
+<li>对于一个常数值的学习率来说，可以使用 <code>constant</code>，并指定 eta0 来指定学习率。</li>
+<li><code>SGDRegressor.coef_</code>：回归系数</li>
+<li><code>SGDRegressor.intercept_</code>：偏置</li>
+</ul>
+<h3 id="案例：波士顿房价预测"><a href="#案例：波士顿房价预测" class="headerlink" title="案例：波士顿房价预测"></a>案例：波士顿房价预测</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717914489672-f520a37e-1b4d-484f-b8a3-21bdf2b88337.png#averageHue=%23c3c3c1&clientId=u62119e98-5ac7-4&from=paste&height=372&id=u72f26833&originHeight=381&originWidth=461&originalType=binary&ratio=1&rotation=0&showTitle=false&size=150120&status=done&style=none&taskId=u9e10d1d0-a2e8-40fc-b8d9-446396de66c&title=&width=450" alt="image.png"><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717914510699-06099243-5208-4118-b412-c18ec4b8413c.png#averageHue=%23f4f4f4&clientId=u62119e98-5ac7-4&from=paste&height=343&id=u7490abb1&originHeight=519&originWidth=623&originalType=binary&ratio=1&rotation=0&showTitle=false&size=172849&status=done&style=none&taskId=uf9fd6b34-567f-4a99-9b6c-8a87f78c5c2&title=&width=412" alt="image.png"><br>回归性能评估–均方误差<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1717914609658-7f46b431-2920-4cd5-9410-4b4e5bf535f2.png#averageHue=%23f8f8f8&clientId=u62119e98-5ac7-4&from=paste&height=261&id=u3401f2ce&originHeight=308&originWidth=643&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53621&status=done&style=none&taskId=uddae0b37-31de-4aef-8190-003feeebb4f&title=&width=545" alt="image.png"></p>
+<h4 id="正规方程-1"><a href="#正规方程-1" class="headerlink" title="正规方程"></a>正规方程</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets,model_selection, preprocessing,linear_model,metrics</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">linear_model1</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;线性回归：正规方程&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 1.获取数据集</span></span><br><span class="line">    data = datasets.fetch_california_housing()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2.数据预处理</span></span><br><span class="line">    <span class="comment"># 数据分割</span></span><br><span class="line">    x_train, x_test, y_train, y_test = model_selection.train_test_split(data.data, data.target, test_size=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3.特征工程--标准化</span></span><br><span class="line">    transformer = preprocessing.StandardScaler()</span><br><span class="line">    x_train = transformer.fit_transform(x_train)</span><br><span class="line">    x_test = transformer.fit_transform(x_test)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4.机器学习--线性回归--正规方程</span></span><br><span class="line">    estimator = linear_model.LinearRegression()</span><br><span class="line">    estimator.fit(x_train, y_train)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 5.模型评估</span></span><br><span class="line">    y_predict = estimator.predict(x_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;模型的系数为：&quot;</span>, estimator.coef_)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;模型的偏置为：&quot;</span>, estimator.intercept_)</span><br><span class="line"></span><br><span class="line">    score = estimator.score(x_test, y_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;准确率：&quot;</span>, score)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 6.模型评价--均方误差</span></span><br><span class="line">    err = metrics.mean_squared_error(y_test, y_predict)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;误差为：&quot;</span>, err)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">模型的系数为： [ <span class="number">0.84103131</span>  <span class="number">0.11130489</span> -<span class="number">0.27438264</span>  <span class="number">0.29033755</span> -<span class="number">0.00429525</span> -<span class="number">0.04094309</span></span><br><span class="line"> -<span class="number">0.88850992</span> -<span class="number">0.86048318</span>]</span><br><span class="line">模型的偏置为： <span class="number">2.0640874249026724</span></span><br><span class="line">误差为： <span class="number">0.5549964508519143</span></span><br></pre></td></tr></table></figure>
+<h4 id="梯度下降-1"><a href="#梯度下降-1" class="headerlink" title="梯度下降"></a>梯度下降</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">linear_model2</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;线性回归：梯度下降&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 1.获取数据</span></span><br><span class="line">    data = datasets.fetch_california_housing()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2.数据预处理</span></span><br><span class="line">    <span class="comment"># 数据分割</span></span><br><span class="line">    x_train, x_test, y_train, y_test = model_selection.train_test_split(data.data, data.target, test_size=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3.特征工程--标准化</span></span><br><span class="line">    transformer = preprocessing.StandardScaler()</span><br><span class="line">    x_train = transformer.fit_transform(x_train)</span><br><span class="line">    x_test = transformer.fit_transform(x_test)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4.机器学习--线性回归--正规方程</span></span><br><span class="line">    <span class="comment"># estimator = linear_model.SGDRegressor(loss=&#x27;squared_error&#x27;, fit_intercept=True, learning_rate=&#x27;invscaling&#x27;,eta0=0.01)</span></span><br><span class="line">    <span class="comment"># estimator = linear_model.SGDRegressor(loss=&#x27;squared_error&#x27;, fit_intercept=True, learning_rate=&#x27;optimal&#x27;)</span></span><br><span class="line">    estimator = linear_model.SGDRegressor(loss=<span class="string">&#x27;squared_error&#x27;</span>, fit_intercept=<span class="literal">True</span>, learning_rate=<span class="string">&#x27;constant&#x27;</span>,eta0=<span class="number">0.01</span>)</span><br><span class="line">    estimator.fit(x_train, y_train)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 5.模型评估</span></span><br><span class="line">    y_predict = estimator.predict(x_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;模型的系数为：&quot;</span>, estimator.coef_)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;模型的偏置为：&quot;</span>, estimator.intercept_)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 6.模型评价--均方误差</span></span><br><span class="line">    err = metrics.mean_squared_error(y_test, y_predict)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;误差为：&quot;</span>, err)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># invscaling</span></span><br><span class="line">模型的系数为： [ <span class="number">0.81688798</span>  <span class="number">0.10179519</span> -<span class="number">0.22647939</span>  <span class="number">0.31256283</span> -<span class="number">0.00257367</span>  <span class="number">0.00194664</span> -<span class="number">0.89681826</span> -<span class="number">0.8857027</span> ]</span><br><span class="line">模型的偏置为： [<span class="number">2.07232493</span>]</span><br><span class="line">误差为： <span class="number">0.5134261990580209</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># optimal</span></span><br><span class="line">模型的系数为： [-<span class="number">3.99256500e+09</span>  <span class="number">9.87210858e+09</span>  <span class="number">1.72987497e+10</span>  <span class="number">3.71137485e+10</span> <span class="number">1.89630581e+09</span> -<span class="number">6.34930015e+11</span> -<span class="number">2.56848031e+09</span> -<span class="number">3.36593398e+09</span>]</span><br><span class="line">模型的偏置为： [-<span class="number">5.71810851e+09</span>]</span><br><span class="line">误差为： <span class="number">4.045881204754298e+23</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># constant</span></span><br><span class="line">模型的系数为： [-<span class="number">2.56669465e+10</span>  <span class="number">1.72959710e+10</span>  <span class="number">1.70773754e+11</span>  <span class="number">9.07167174e+10</span>  <span class="number">3.57775592e+10</span> -<span class="number">6.22634283e+11</span>  <span class="number">7.77501486e+09</span> -<span class="number">1.57808740e+10</span>]</span><br><span class="line">模型的偏置为： [-<span class="number">1.02306253e+10</span>]</span><br><span class="line">误差为： <span class="number">4.403164594797046e+23</span></span><br></pre></td></tr></table></figure>
+<h2 id="欠拟合、过拟合"><a href="#欠拟合、过拟合" class="headerlink" title="欠拟合、过拟合"></a>欠拟合、过拟合</h2><p>欠拟合：模型过于简单。在训练数据上不能获得更好的拟合，并且在测试数据上也不能很好的拟合数据。</p>
+<ul>
+<li>原因：原始特征过多，存在嘈杂特征，模型过于复杂</li>
+<li>解决方法：<ul>
+<li>重新清洗数据</li>
+<li>增大数据的训练量</li>
+<li>正则化</li>
+<li>减少特征维度，防止维灾难</li>
+</ul>
+</li>
+</ul>
+<p>过拟合：模型过于复杂。在训练数据上能够获得很好的拟合，但在测试数据上不能很好的拟合。</p>
+<ul>
+<li>原因：学习到数据的特征过少</li>
+<li>解决方法：<ul>
+<li>添加其他特征</li>
+<li>添加多项式特征</li>
+</ul>
+</li>
+</ul>
+<h2 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h2><p>进行特征选择<br>数据提供的特征有些影响模型复杂度或这个特征的数据异常点较多，所以算法在学习时尽量减少这个特征的影响（甚至删除特征的影响），这就是正则化。<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718087378237-6d102d14-4be9-4180-9b68-5262da849d12.png#averageHue=%23f7f5f4&clientId=u62119e98-5ac7-4&from=paste&height=234&id=uba7748cd&originHeight=234&originWidth=637&originalType=binary&ratio=1&rotation=0&showTitle=false&size=71362&status=done&style=none&taskId=u53bc9db8-68ec-4009-9893-9cfb8acf615&title=&width=637" alt="image.png"></p>
+<blockquote>
+<p>尽量减少高次项特征的影响</p>
+</blockquote>
+<p>L1 正则化</p>
+<ul>
+<li>作用：可以使其中一些特征的系数为 0，删除特征的影响</li>
+<li>LASSO 回归</li>
+<li>有交点的线，不平滑</li>
+</ul>
+<p>L2 正则化</p>
+<ul>
+<li>作用：可以使得其中一些特征的系数很小，接近于 0，削弱特征的影响</li>
+<li>Ridge 回归</li>
+<li>平滑曲线</li>
+</ul>
+<h3 id="正则化线性模型"><a href="#正则化线性模型" class="headerlink" title="正则化线性模型"></a>正则化线性模型</h3><h4 id="Ridge-Regression（岭回归）"><a href="#Ridge-Regression（岭回归）" class="headerlink" title="Ridge Regression（岭回归）"></a>Ridge Regression（岭回归）</h4><p>岭回归是线性回归的正则化版本，即在线性回归的代价函数中添加正则项$α \sum_{i&#x3D;1}^{n} Θ_i^2$，以达到在拟合数据的同时，使模型权重尽可能小的目的。岭回归代价函数：<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718120757313-b78690e0-012d-4731-a62f-4f53a4f52f47.png#averageHue=%23fcfcfc&clientId=u190cb7ce-e2d0-4&from=paste&height=201&id=u7439e0a7&originHeight=201&originWidth=594&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19872&status=done&style=none&taskId=u2dee49db-60ee-43e2-98bc-420f08bec4a&title=&width=594" alt="image.png"></p>
+<ul>
+<li>α&#x3D;0 时，岭回归退化为线性回归</li>
+</ul>
+<p><code>sklearn.linear_model.Ridge(alpha=1.0, fit_intercept=True, solver=&quot;auto&quot;, normal=False)</code></p>
+<ul>
+<li>具有 L2 正则化的线性回归</li>
+<li>alpha：正则化力度，取值：0<del>1  1</del>10</li>
+<li>solver：会根据数据自动选择优化方法<ul>
+<li>SAG：如果数据集、特征都比较大，选择该随机梯度下降优化</li>
+</ul>
+</li>
+<li>normalize：数据是否进行标准化<ul>
+<li>False：可以在 fit 之前调用 <code>preprocessing.StandardScaler</code>标准化数据</li>
+</ul>
+</li>
+<li>Ridge.coef_：回归权重</li>
+<li>Ridge.intercept_：回归偏置</li>
+<li>Ridge 方法相当于 <code>SGDRegressor(penalty=&#39;l2&#39;, loss=&#39;squared_loss&#39;)</code>，只不过 SGDRegressor 实现了一个普通的随机梯度下降学习，推荐使用 Ridge（实现了 SAG）</li>
+</ul>
+<p><code>sklearn.linear_model.RidgeCV(_BaseRidgeCV, RegressorMixin)</code></p>
+<ul>
+<li>具有 l2 正则化的线性回归，可以进行交叉验证</li>
+</ul>
+<p>正则化程度对权重系数的影响</p>
+<ul>
+<li>正则化力度越大，权重系数越小</li>
+<li>正则化力度越小，权重系数越大</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718534952750-6efe7c36-4edd-49bd-bdfd-0aa00c97e341.png#averageHue=%23faf9f9&clientId=u5226c25a-0953-4&from=paste&height=461&id=u96e6b681&originHeight=461&originWidth=594&originalType=binary&ratio=1&rotation=0&showTitle=false&size=95979&status=done&style=none&taskId=u0cfa4f5c-889e-43ed-a086-c41e64ee09a&title=&width=594" alt="image.png"></p>
+<h4 id="Lasso-回归"><a href="#Lasso-回归" class="headerlink" title="Lasso 回归"></a>Lasso 回归</h4><p>代价函数：<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718532174973-6a631726-d38a-4e12-a509-66df0150174d.png#averageHue=%23f9f9f9&clientId=u5226c25a-0953-4&from=paste&height=84&id=u915a905e&originHeight=84&originWidth=217&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6718&status=done&style=none&taskId=u2d52840d-0298-4b10-a594-a4b922088f9&title=&width=217" alt="image.png"></p>
+<ul>
+<li>倾向于完全消除不重要的权重</li>
+<li>代价函数在$Θ_i &#x3D; 0$处是不可导的。（两直线的交点是不可导的）</li>
+<li>解决方法：在$Θ_i &#x3D; 0$处用次梯度向量代替梯度，次梯度向量如下：</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718532488951-30e6db35-9d3e-4196-8147-5bb768bd211f.png#averageHue=%23f6f6f6&clientId=u5226c25a-0953-4&from=paste&height=161&id=u7088cea6&originHeight=161&originWidth=614&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35597&status=done&style=none&taskId=ua767c09e-f445-461e-a80f-1f7a16b7fd1&title=&width=614" alt="image.png"></p>
+<ul>
+<li>能够自动进行特征选择，并输出一个稀疏模型（只有少数特征的权重是非零的）</li>
+</ul>
+<h4 id="Elastic-Net-弹性网络"><a href="#Elastic-Net-弹性网络" class="headerlink" title="Elastic Net 弹性网络"></a>Elastic Net 弹性网络</h4><p>弹性网络在岭回归和 Lasso 回归中进行了折中，通过混合比 r 进行控制：</p>
+<ul>
+<li>r&#x3D;0：变为岭回归</li>
+<li>r&#x3D;1：变为 Lasso 回归</li>
+</ul>
+<p>代价函数：<br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718533173398-292f6309-e00a-4170-8eda-321d1befb19c.png#averageHue=%23f7f7f7&clientId=u5226c25a-0953-4&from=paste&height=71&id=u6bc6cde7&originHeight=71&originWidth=325&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9631&status=done&style=none&taskId=ucad828f4-bb64-480a-9158-2f98ee0e4bc&title=&width=325" alt="image.png"></p>
+<h4 id="Early-Stopping"><a href="#Early-Stopping" class="headerlink" title="Early Stopping"></a>Early Stopping</h4><p>在验证错误率达到最小值时停止训练。</p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge, ElasticNet, Lasso</span><br></pre></td></tr></table></figure>
+<p>应避免使用朴素线性回归，而应对模型进行一定的正则化处理</p>
+<ul>
+<li>常用：岭回归</li>
+<li>假设只有少部分特征是有用的：<ul>
+<li>弹性网络</li>
+<li>Lasso </li>
+<li>一般来说，弹性网络的使用更为广泛，因为在特征维度高于训练样本数量，或 特征是强相关的情况下，Lasso 回归的表现不太稳定</li>
+</ul>
+</li>
+</ul>
+<h3 id><a href="#" class="headerlink" title></a></h3><h2 id="维灾难"><a href="#维灾难" class="headerlink" title="维灾难"></a>维灾难</h2><p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718119167705-27869d2d-9b38-4bfa-bb8f-50339eb06dd2.png#averageHue=%23f9f9f9&clientId=u190cb7ce-e2d0-4&from=paste&height=378&id=u3999592f&originHeight=378&originWidth=662&originalType=binary&ratio=1&rotation=0&showTitle=false&size=88210&status=done&style=none&taskId=uaf94bcd9-8e06-40a5-ab73-3eadaaf62d6&title=&width=662" alt="image.png"><br>随着维度的增加，分类器性能逐步上升，到达某点之后，其性能便逐渐下降。<br>维度过多导致过拟合，发生了维灾难。</p>
+<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><ul>
+<li>分类算法</li>
+</ul>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li>广告点击率</li>
+<li>是否为垃圾邮件</li>
+<li>是否患病</li>
+<li>是否金融诈骗</li>
+<li>是否虚假账号</li>
+<li>属于两个类别之间的判断，解决二分类问题的利器</li>
+</ul>
+<h2 id="逻辑回归原理"><a href="#逻辑回归原理" class="headerlink" title="逻辑回归原理"></a>逻辑回归原理</h2><h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/jpeg/12527061/1718985161233-56f47dfe-753d-4e1e-8580-4260e12bae15.jpeg#averageHue=%23f5f4f3&clientId=uaabd6b20-084d-4&from=paste&height=134&id=u5f6e2c0b&originHeight=134&originWidth=856&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31444&status=done&style=none&taskId=uec8dc040-8c4b-4d9e-9eab-bd83fc060fc&title=&width=856" alt="1718985153851.jpg"><br>逻辑回归的输入是线性回归的输出</p>
+<h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><ul>
+<li>sigmoid 函数</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718536337805-472d7673-43fb-47d8-986b-85e8d57635a7.png#averageHue=%23fafaf9&clientId=u5226c25a-0953-4&from=paste&height=112&id=u66491726&originHeight=112&originWidth=315&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15811&status=done&style=none&taskId=u26ab4fda-7253-4164-a693-d5aa87b6528&title=&width=315" alt="image.png"></p>
+<ul>
+<li>判断标准<ul>
+<li>回归的结果输入到 sigmoid 函数当中</li>
+<li>输出结果：[0,1] 区间中的一个概率值，默认 0.5 为阈值，以概率进行分类</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718726184302-908f0905-ab82-4ecb-85bd-c7425dafec6e.png#averageHue=%23f9f9f9&clientId=u0ce174d5-4c70-4&from=paste&height=479&id=u0eaabcc5&originHeight=479&originWidth=612&originalType=binary&ratio=1&rotation=0&showTitle=false&size=32416&status=done&style=none&taskId=ufabbf728-29a1-4531-8f80-c9ad90dca33&title=&width=612" alt="image.png"></p>
+<blockquote>
+<p>逻辑回归最终的分类是通过属于某个类别的概率值来判断是否属于某个类别，并且这个类别默认标记为1(正例),另外的一个类别会标记为0(反例)。（方便损失计算）<br>输出结果解释(重要)：假设有两个类别A，B，并且假设我们的概率值为属于A(1)这个类别的概率值。现在有一个样本的输入到逻辑回归输出结果0.55，那么这个概率值超过0.5，意味着我们训练或者预测的结果就是A(1)类别。那么反之，如果得出结果为0.3那么，训练或者预测结果就为B(0)类别。</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718537008465-b4636258-7708-4b60-985e-0201b5e2c342.png#averageHue=%23f5f5f5&clientId=u5226c25a-0953-4&from=paste&height=206&id=uf4019354&originHeight=206&originWidth=638&originalType=binary&ratio=1&rotation=0&showTitle=false&size=63884&status=done&style=none&taskId=uc1de935d-b736-48c1-b153-6fd38ebe638&title=&width=638" alt="image.png"></p>
+<blockquote>
+<p>假设概率&gt;0.6 时为 A，概率小于 0.6 时为 B</p>
+</blockquote>
+<h3 id="损失"><a href="#损失" class="headerlink" title="损失"></a>损失</h3><p>逻辑回归的损失，称之为对数似然损失，公式如下：</p>
+<ul>
+<li>分开类别</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718537131561-369ff101-9608-4b71-8670-d95eb7704dfc.png#averageHue=%23f7f7f7&clientId=u5226c25a-0953-4&from=paste&height=87&id=u193e6687&originHeight=87&originWidth=508&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28079&status=done&style=none&taskId=u136ecf73-7b48-450b-a6e3-eb5fa4b0362&title=&width=508" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718538209583-4ec36b7d-e398-4fdc-a664-60239583e31f.png#averageHue=%23f9f7f6&clientId=u5226c25a-0953-4&from=paste&height=314&id=u1c39b3f0&originHeight=314&originWidth=419&originalType=binary&ratio=1&rotation=0&showTitle=false&size=37570&status=done&style=none&taskId=u02b2a115-d9a5-407c-9835-8e588aca13a&title=&width=419" alt="image.png"></p>
+<blockquote>
+<p>假设 y&#x3D;1 时代表 A，y&#x3D;0 时代表 B<br>概率越大 是 A 的可能性越大，即 h(x)越大，-log(h(x))越小<br>概率越小 是 B 的可能性越大，即 h(x)越小，1-h(x) 越大，-log(1-h(x))越小<br>损失函数 cost 越小，精确率越高</p>
+</blockquote>
+<ul>
+<li>综合完整损失函数</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1718538248494-516fa530-f0c6-4cc5-b660-95aceaa983ec.png#averageHue=%23f8f8f8&clientId=u5226c25a-0953-4&from=paste&height=83&id=u8fe851dc&originHeight=83&originWidth=598&originalType=binary&ratio=1&rotation=0&showTitle=false&size=26498&status=done&style=none&taskId=uc7b6908b-ed1a-4858-8d5c-46ea1d3011e&title=&width=598" alt="image.png"></p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>使用梯度下降优化算法，去减少损失函数的值。这样去更新逻辑回归前面对应算法的权重参数，提升原本属于 1 类别的概率，降低原本属于 0 类别的概率</p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p><code>sklearn.linear_model.LogisticRegression(solver=&#39;liblinear&#39;, penalty=&#39;l2&#39;, C=1.0)</code></p>
+<ul>
+<li>solver 可选参数：<code>[&#39;liblinear&#39;, &#39;sag&#39;, &#39;saga&#39;,&#39;newton-cg&#39;,&#39;lbfgs&#39;]</code><ul>
+<li>默认：’liblinear’ ，用于优化问题的算法</li>
+<li>对于小数据集来说，’liblinear’是个不错的选择，而 ‘sag’ 和 ‘saga’ 对于大型数据集会更快</li>
+<li>对于多类问题，只有 ‘newton-cg’，’sag’，’saga’ 和 ‘lbfgs’ 可以处理多项损失，’liblinear’仅限于 ‘one-versus-rest’ 分类</li>
+</ul>
+</li>
+<li>penalty：正则化的种类</li>
+<li>C：正则化力度<blockquote>
+<p>默认将类别数量少的当作正例</p>
+</blockquote>
+</li>
+</ul>
+<p><code>LogisticRegression</code>方法相当于 <code>SGDClassifier(loss=&#39;log&#39;,penalty=&#39;&#39;)</code>，SGDClassifier 实现了一个普通的随机梯度下降学习，而使用<code>LogisticRegression</code>（实现了 SAG）</p>
+<h2 id="案例-良-恶性肿瘤预测"><a href="#案例-良-恶性肿瘤预测" class="headerlink" title="案例-良&#x2F;恶性肿瘤预测"></a>案例-良&#x2F;恶性肿瘤预测</h2><blockquote>
+<p>数据描述<br>（1）699条样本，共11列数据，第一列用语检索的id，后9列分别是与肿瘤相关的医学特征，最后一列表示肿瘤类型的数值。<br>（2）包含16个缺失值，用”?”标出。</p>
+</blockquote>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">过程：</span><br><span class="line"><span class="number">1.</span>获取数据</span><br><span class="line"><span class="number">2.</span>基本数据处理</span><br><span class="line"><span class="number">2.1</span> 缺失值处理</span><br><span class="line"><span class="number">2.2</span> 确定特征值,目标值</span><br><span class="line"><span class="number">2.3</span> 分割数据</span><br><span class="line"><span class="number">3.</span>特征工程<span class="comment">(标准化)</span></span><br><span class="line"><span class="number">4.</span>机器学习<span class="comment">(逻辑回归)</span></span><br><span class="line"><span class="number">5.</span>模型评估</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing, model_selection, linear_model, metrics</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.获取数据</span></span><br><span class="line">names = [<span class="string">&#x27;Sample code number&#x27;</span>, <span class="string">&#x27;Clump Thickness&#x27;</span>, <span class="string">&#x27;Uniformity of Cell Size&#x27;</span>, <span class="string">&#x27;Uniformity of Cell Shape&#x27;</span>,</span><br><span class="line">                   <span class="string">&#x27;Marginal Adhesion&#x27;</span>, <span class="string">&#x27;Single Epithelial Cell Size&#x27;</span>, <span class="string">&#x27;Bare Nuclei&#x27;</span>, <span class="string">&#x27;Bland Chromatin&#x27;</span>,</span><br><span class="line">                   <span class="string">&#x27;Normal Nucleoli&#x27;</span>, <span class="string">&#x27;Mitoses&#x27;</span>, <span class="string">&#x27;Class&#x27;</span>]</span><br><span class="line">data = pd.read_csv(<span class="string">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data&quot;</span>, names=names)</span><br><span class="line">data.head(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.数据处理</span></span><br><span class="line"><span class="comment"># 缺失值处理</span></span><br><span class="line">data.replace(<span class="string">&quot;?&quot;</span>, np.NaN, inplace=<span class="literal">True</span>)</span><br><span class="line">data.dropna(inplace=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 确定特征值和目标值</span></span><br><span class="line">x = data.iloc[:, <span class="number">1</span>: <span class="number">10</span>]</span><br><span class="line">y = data.loc[:, <span class="string">&quot;Class&quot;</span>].tolist()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.分割数据集</span></span><br><span class="line">x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.标准化</span></span><br><span class="line"><span class="comment"># 转换器</span></span><br><span class="line">transformer = preprocessing.StandardScaler()</span><br><span class="line">x_train = transformer.fit_transform(x_train)</span><br><span class="line">x_test = transformer.fit_transform(x_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.机器学习-逻辑回归</span></span><br><span class="line">estimator = linear_model.LogisticRegression(penalty=<span class="string">&quot;l2&quot;</span>, C=<span class="number">1.0</span>, solver=<span class="string">&quot;liblinear&quot;</span>)</span><br><span class="line">estimator.fit(x_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.模型评估</span></span><br><span class="line">y_predict = estimator.predict(x_test)</span><br><span class="line">score = estimator.score(x_test, y_test)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;准确率：<span class="subst">&#123;score&#125;</span>&quot;</span>)</span><br><span class="line">err = metrics.mean_squared_error(y_test, y_predict)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;均方误差：&quot;</span>, err)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 评估报告</span></span><br><span class="line">ret = metrics.classification_report(y_test, y_predict, labels=[<span class="number">2</span>,<span class="number">4</span>], target_names=[<span class="string">&quot;良性&quot;</span>,<span class="string">&quot;恶性&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(ret)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">                 precision    recall  f1-score   support</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        良性       0.98      0.97      0.97        93</span></span><br><span class="line"><span class="string">        恶性       0.93      0.95      0.94        44</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    accuracy                           0.96       137</span></span><br><span class="line"><span class="string">   macro avg       0.96      0.96      0.96       137</span></span><br><span class="line"><span class="string">weighted avg       0.96      0.96      0.96       137</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在很多分类场景当中我们不一定只关注预测的准确率！！！！！<br>比如以这个癌症举例子！！！<strong>我们并不关注预测的准确率，而是关注在所有的样本当中，癌症患者有没有被全部预测（检测）出来。</strong></p>
+</blockquote>
+<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><p><strong>决策树：是一种树形结构，其中每个内部节点表示一个属性上的判断，每个分支代表一个判断结果的输出，最后每个叶节点代表一种分类结果，本质是一颗由多个判断节点组成的树</strong>。<br><img src="images/%E7%9B%B8%E4%BA%B2%E5%AF%B9%E8%AF%9D.png" alt="ç›¸äº²å¯¹è¯"></p>
+<h2 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h2><p>物理学上，“混乱”程度的量度被称为熵；分子总是从有序趋向无序 是为熵增。<br>信息理论</p>
+<ol>
+<li>从信息的完整性上进行描述：</li>
+</ol>
+<ul>
+<li>当系统的有序状态一致时，数据越集中的地方熵值越小，数据越分散的地方熵值越大。</li>
+</ul>
+<ol start="2">
+<li>从信息的有序性上进行的描述:</li>
+</ol>
+<ul>
+<li>当数据量一致时，系统越有序，熵值越低；系统越混乱或者分散，熵值越高。</li>
+</ul>
+<p><strong>“信息熵” (information entropy)是度量样本集合纯度最常用的一种指标。</strong></p>
+<p>假定当前样本集合 D 中第 k 类样本所占的比例为 𝑝𝑘<em>pk</em> (k &#x3D; 1, 2,. . . , |y|) ，𝑝𝑘&#x3D;𝐶𝑘𝐷<em>pk</em>&#x3D;<em>DCk</em>, D为样本的所有数量，𝐶𝑘_Ck_为第k类样本的数量。<br>则 D的信息熵定义为(（log是以2为底，lg是以10为底）:**<img src="https://cdn.nlark.com/yuque/0/2024/png/12527061/1719226594417-11cfa4ee-f075-4a4a-bedf-d970ccc3a2b3.png#averageHue=%23f7f7f7&clientId=u5b53ae38-aefd-4&from=drop&id=u8bd4af7e&originHeight=126&originWidth=1552&originalType=binary&ratio=1&rotation=0&showTitle=false&size=30007&status=done&style=none&taskId=ua1455a79-03d9-438a-b612-e9ca5dd1138&title=" alt="公式1.png"><br>信息熵 Ent(D)的值越小，则 D 的纯度越高。</p>
+<blockquote>
+<p>当每个事件概率相同时，熵最大，这件事越不确定</p>
+</blockquote>
+<h2 id="决策树的划分依据"><a href="#决策树的划分依据" class="headerlink" title="决策树的划分依据"></a>决策树的划分依据</h2><h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><p><strong>信息增益</strong>：以某特征划分数据集前后的熵的差值。<br>熵可以表示样本集合的不确定性，熵越大，样本的不确定性就越大。<br><strong>使用划分前后集合熵的差值来衡量使用当前特征对于样本集合D划分效果的好坏</strong> 。<br><strong>信息增益 &#x3D; entroy(前) - entroy(后)</strong></p>
+<blockquote>
+<p>注：信息增益表示得知特征X的信息而使得类Y的信息熵减少的程度</p>
+</blockquote>
+<p>特征a对训练数据集D的信息增益Gain(D,a),定义为<strong>集合D的信息熵Ent(D)</strong> 与<strong>给定特征a条件下D的信息条件熵𝐸𝑛𝑡(𝐷∣𝑎)</strong> 之差，即公式为：</p>
+<p><img src="images/%E5%85%AC%E5%BC%8F2.png" alt="image-20190701180230634"></p>
+<p>公式的详细解释：<br>信息熵的计算：<br><img src="images/%E5%85%AC%E5%BC%8F3.png" alt="image-20190701180248293"></p>
+<p>条件熵的计算：<br><img src="images/%E5%85%AC%E5%BC%8F4.png" alt="image-20190701180307869"></p>
+<p>其中：<br>𝐷𝑣D​v​​ 表示a属性中第v个分支节点包含的样本数<br>𝐶𝑘𝑣C​kv​​ 表示a属性中第v个分支节点包含的样本数中，第k个类别下包含的样本数</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>如下图，第一列为论坛号码，第二列为性别，第三列为活跃度，最后一列用户是否流失。<br>我们要解决一个问题：<strong>性别和活跃度两个特征，哪个对用户流失影响更大</strong>？</p>
+<p><img src="images/entropy_example1.png" alt="image-20190214123146695"></p>
+<p>通过计算信息增益可以解决这个问题，统计上右表信息<br>其中Positive为正样本（已流失），Negative为负样本（未流失），下面的数值为不同划分下对应的人数。<br>可得到三个熵：</p>
+<p><strong>a.计算类别信息熵</strong><br>整体熵：<br><img src="images/%E5%85%AC%E5%BC%8F5.png" alt="image-20190701180330245"></p>
+<p><strong>b.计算性别属性的信息熵(a&#x3D;”性别”)</strong><br><img src="images/%E6%80%A7%E5%88%AB%E4%BF%A1%E6%81%AF%E7%86%B5.png" alt="image-20190701175350303"></p>
+<p><strong>c.计算性别的信息增益(a&#x3D;”性别”)</strong><br><img src="images/%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A1.png" alt="image-20190701173018397"></p>
+<p><strong>b.计算活跃度属性的信息熵(a&#x3D;”活跃度”)</strong><br><img src="images/%E6%B4%BB%E8%B7%83%E4%BF%A1%E6%81%AF%E7%86%B5.png" alt="image-20190701175748466"></p>
+<p><strong>c.计算活跃度的信息增益(a&#x3D;”活跃度”)</strong><br><img src="images/%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A2.png" alt="image-20190701173116116"></p>
+<p><strong>活跃度的信息增益比性别的信息增益大</strong>，也就是说，<strong>活跃度对用户流失的影响比性别大。</strong> 在做特征选择或者数据分析的时候，我们应该重点考察活跃度这个指标。</p>
+<blockquote>
+<p>信息增益存在的问题：偏向于选择类别较多的特征进行划分</p>
+</blockquote>
+<h3 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h3><p>在上面的介绍中，有意忽略了”编号”这一列.若把”编号”也作为一个候选划分属性，则根据信息增益公式可计算出它的信息增益为 0.9182，远大于其他候选划分属性。但是很明显这么分类,最后出现的结果不具有泛化效果.无法对新样本进行有效预测.</p>
+<p><strong>信息增益准则对可取值数目较多的属性有所偏好</strong>，为减少这种偏好可能带来的不利影响，著名的 <strong>C4.5 决策树算法 不直接使用信息增益，而是使用”增益率” (gain ratio) 来选择最优划分属性.</strong></p>
+<p><strong>增益率：</strong> 增益率是用信息增益Gain(D, a)和属性a的信息熵 的比值来共同定义的。</p>
+<p><img src="images/%E5%85%AC%E5%BC%8F6.png" alt="image-20190701180359267"></p>
+<blockquote>
+<p>属性 a 的可能取值数目越多(即 V 越大)，则 IV(a) 的值通常会越大.</p>
+</blockquote>
+<h3 id="基尼值和基尼指数"><a href="#基尼值和基尼指数" class="headerlink" title="基尼值和基尼指数"></a>基尼值和基尼指数</h3>
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢您给予的支持 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/忘機">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3919408003">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/MyGodOnLoad">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="../../../../../js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>
